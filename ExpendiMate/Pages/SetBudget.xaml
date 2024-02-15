@@ -2,11 +2,67 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ExpendiMate.Pages.SetBudget"
+             BackgroundColor="#005003"
              Title="Set Budget">
+    
     <VerticalStackLayout>
         <Label 
             Text="Welcome to .NET MAUI!"
+            TextColor="White"
             VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+            HorizontalOptions="Center"
+            Margin="20"/>
+
+        <FlexLayout Direction="Row"
+                    AlignItems="Center"
+                    JustifyContent="SpaceEvenly"
+                    Wrap="Wrap">
+            <Frame 
+                BackgroundColor="#4b4b4b" 
+                MinimumWidthRequest="180" 
+                HeightRequest="150" 
+                CornerRadius="10" 
+                Margin="10"
+                BorderColor="Transparent">
+
+                <StackLayout>
+                    <Label FontSize="14" 
+                           FontAttributes="Bold" 
+                           TextColor="White" 
+                           HorizontalTextAlignment="Center"
+                           Text="Income"/>
+
+                    <Image Source="pencil.png"
+                           WidthRequest="20" 
+                           HeightRequest="20"
+                           HorizontalOptions="End"
+                           VerticalOptions="EndAndExpand"/>
+                </StackLayout>
+            </Frame>
+
+            <Frame 
+                BackgroundColor="#4b4b4b" 
+                MinimumWidthRequest="180" 
+                HeightRequest="150" 
+                CornerRadius="10" 
+                Margin="10"
+                BorderColor="Transparent">
+
+                <StackLayout>
+                    <Label FontSize="14" 
+                           FontAttributes="Bold" 
+                           TextColor="White" 
+                           HorizontalTextAlignment="Center"
+                           Text="Expense"/>
+
+                    <Image Source="pencil.png"
+                           WidthRequest="20" 
+                           HeightRequest="20"
+                           HorizontalOptions="End"
+                           VerticalOptions="EndAndExpand"/>
+                </StackLayout>
+            </Frame>
+        </FlexLayout>
+        
     </VerticalStackLayout>
 </ContentPage>

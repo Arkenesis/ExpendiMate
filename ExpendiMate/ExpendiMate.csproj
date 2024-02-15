@@ -60,6 +60,8 @@
 	  <None Remove="Resources\Images\analysis.png" />
 	  <None Remove="Resources\Images\home.png" />
 	  <None Remove="Resources\Images\money_bag.png" />
+	  <None Remove="Resources\Images\pencil.png" />
+	  <None Remove="Resources\Images\subscription_model.png" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -78,6 +80,9 @@
 
 	<ItemGroup>
 	  <MauiXaml Update="Pages\Analytics.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Pages\Installment.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Pages\SetBudget.xaml">

@@ -29,6 +29,12 @@
             ContentTemplate="{DataTemplate local:Analytics}"
             Route="Analytics" 
                 Icon="analysis.png"/>
+
+        <ShellContent
+            Title="Installment"
+            ContentTemplate="{DataTemplate local:Installment}"
+            Route="Installment"
+                Icon="subscription_model.png"/>
     </FlyoutItem>
 
     <Shell.ItemTemplate>

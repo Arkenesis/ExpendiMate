@@ -59,9 +59,11 @@
 	<ItemGroup>
 	  <None Remove="Resources\Images\analysis.png" />
 	  <None Remove="Resources\Images\home.png" />
+	  <None Remove="Resources\Images\innovation.png" />
 	  <None Remove="Resources\Images\money_bag.png" />
 	  <None Remove="Resources\Images\pencil.png" />
 	  <None Remove="Resources\Images\subscription_model.png" />
+	  <None Remove="Resources\Images\wallet.png" />
 	</ItemGroup>
 
 	<ItemGroup>

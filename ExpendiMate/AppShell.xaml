@@ -50,11 +50,11 @@
 
     <Shell.TitleView>
         <StackLayout BackgroundColor="#19a76a">
-            <Label Text="Title Label"
-               HorizontalOptions="CenterAndExpand"
-               VerticalOptions="CenterAndExpand" 
-               FontSize="Large"
-               TextColor="White"/>
+            <Label x:Name="pageTitle"
+                   HorizontalOptions="CenterAndExpand"
+                   VerticalOptions="CenterAndExpand" 
+                   FontSize="Large"
+                   TextColor="White"/>
         </StackLayout>
     </Shell.TitleView>
               

@@ -53,7 +53,8 @@
             <Label x:Name="pageTitle"
                    HorizontalOptions="CenterAndExpand"
                    VerticalOptions="CenterAndExpand" 
-                   FontSize="Large"
+                   FontSize="Medium"
+                   FontAttributes="Bold"
                    TextColor="White"/>
         </StackLayout>
     </Shell.TitleView>

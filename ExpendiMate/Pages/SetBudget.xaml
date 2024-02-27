@@ -2,21 +2,34 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ExpendiMate.Pages.SetBudget"
-             BackgroundColor="#005003"
+             BackgroundColor="White"
              Title="Set Budget">
 
     <ScrollView>
         <VerticalStackLayout>
-            <HorizontalStackLayout HorizontalOptions="Center">
-                <Image Source="wallet.png"
-                       WidthRequest="30"
-                       HeightRequest="30"/>
+            <HorizontalStackLayout HorizontalOptions="Center"
+                                   Margin="10">
+                <Frame BackgroundColor="#4b9460"
+                       BorderColor="Transparent"
+                       HeightRequest="80"
+                       WidthRequest="200"
+                       CornerRadius="40">
 
-                <Label Text="$2301.60"
-                       TextColor="White"
-                       Margin="10"
-                       FontSize="Large"
-                       FontAttributes="Bold"/>
+                    <HorizontalStackLayout HorizontalOptions="CenterAndExpand"
+                                           VerticalOptions="CenterAndExpand"
+                                           Padding="0">
+                        
+                        <Image Source="wallet.png"
+                               WidthRequest="30"
+                               HeightRequest="30"
+                               TranslationX="-10"/>
+
+                        <Label Text="$2301.60"
+                               TextColor="White"
+                               FontSize="Medium"
+                               FontAttributes="Bold"/>
+                    </HorizontalStackLayout>
+                </Frame>
             </HorizontalStackLayout>
 
             <FlexLayout Direction="Row"
@@ -82,7 +95,7 @@
             </FlexLayout>
 
             <FlexLayout Margin="10">
-                <Label TextColor="White"
+                <Label TextColor="#4b9460"
                        FontAttributes="Bold"
                        TranslationX="12"
                        TranslationY="15"
@@ -166,7 +179,7 @@
             </FlexLayout>
 
             <FlexLayout Margin="10">
-                <Label TextColor="White"
+                <Label TextColor="#4b9460"
                        FontAttributes="Bold"
                        TranslationX="12"
                        Text="Current Budget: $2500.00"/>
@@ -182,7 +195,7 @@
 
                     <HorizontalStackLayout>
                         <Image Source="innovation.png"
-                               WidthRequest="30"
+                               MinimumWidthRequest="30"
                                HeightRequest="30"
                                VerticalOptions="Center"
                                TranslationX="-10"/>

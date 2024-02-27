@@ -2,32 +2,46 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ExpendiMate.MainPage"
-             BackgroundColor="#005003"
+             BackgroundColor="White"
              Title="Expenses">
 
     <ScrollView>
         <VerticalStackLayout>
-            <HorizontalStackLayout HorizontalOptions="Center">
-                <Image Source="wallet.png"
-                       WidthRequest="40"
-                       HeightRequest="40"
-                       TranslationY="10"/>
-
-                <Label Text="Total"
-                       TextColor="White"
-                       FontSize="Small"
-                       FontAttributes="Bold"
-                       TranslationX="40"
-                       TranslationY="10"/>
+            <HorizontalStackLayout HorizontalOptions="Center"
+                                   Margin="10">
                 
-                <Label Text="$2301.60"
-                       TextColor="White"
-                       Margin="5"
-                       FontSize="Medium"
-                       FontAttributes="Bold"
-                       TranslationX="-30"
-                       TranslationY="20"/>
+                <Frame BackgroundColor="#4b9460"
+                       BorderColor="Transparent"
+                       HeightRequest="80"
+                       WidthRequest="200"
+                       CornerRadius="40">
+                    
+                    <HorizontalStackLayout HorizontalOptions="CenterAndExpand"
+                                           VerticalOptions="CenterAndExpand"
+                                           Padding="0">
+                        
+                        <Image Source="wallet.png"
+                               WidthRequest="40"
+                               HeightRequest="40"/>
+
+                        <Label Text="Total"
+                               TextColor="White"
+                               FontSize="Small"
+                               FontAttributes="Bold"
+                               TranslationX="40"
+                               TranslationY="-5"/>
+
+                        <Label Text="$2301.60"
+                               TextColor="White"
+                               Margin="5"
+                               FontSize="Medium"
+                               FontAttributes="Bold"
+                               TranslationX="-30"
+                               TranslationY="8"/>
+                    </HorizontalStackLayout>
+                </Frame>
             </HorizontalStackLayout>
+            
 
             <FlexLayout Direction="Row"
                         AlignItems="Center"
@@ -35,40 +49,42 @@
                         Wrap="Wrap">
 
                 <Frame BackgroundColor="#4b4b4b"
-                       WidthRequest="350"
+                       MinimumWidthRequest="350"
                        HeightRequest="300"
                        Margin="10"
-                       BorderColor="Transparent">
+                       BorderColor="Transparent"
+                       CornerRadius="20">
 
-                    <HorizontalStackLayout HorizontalOptions="Center">
-                        <Label Text="Day"
-                               TextColor="White"
-                               FontSize="Small"
-                               Margin="5"/>
+                    <VerticalStackLayout>
+                        <HorizontalStackLayout  HorizontalOptions="Center">
+                            <Label Text="Day"
+                                   TextColor="White"
+                                   FontSize="Small"
+                                   Margin="5"/>
 
-                        <Label Text="Week"
-                               TextColor="White"
-                               FontSize="Small"
-                               Margin="5"/>
+                            <Label Text="Week"
+                                   TextColor="White"
+                                   FontSize="Small"
+                                   Margin="5"/>
 
-                        <Label Text="Month"
-                               TextColor="White"
-                               FontSize="Small"
-                               Margin="5"/>
+                            <Label Text="Month"
+                                   TextColor="White"
+                                   FontSize="Small"
+                                   Margin="5"/>
 
-                        <Label Text="Year"
-                               TextColor="White"
-                               FontSize="Small"
-                               Margin="5"/>
+                            <Label Text="Year"
+                                   TextColor="White"
+                                   FontSize="Small"
+                                   Margin="5"/>
+                        </HorizontalStackLayout>
 
-                        <StackLayout>
+                        <StackLayout HorizontalOptions="Center">
                             <Label Text="Date"
                                    TextColor="White"
                                    FontSize="Small"
                                    Margin="5"/>
                         </StackLayout>
-                    </HorizontalStackLayout>
-                    
+                    </VerticalStackLayout>
                 </Frame>
             </FlexLayout>
         </VerticalStackLayout>

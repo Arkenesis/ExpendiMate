@@ -63,6 +63,7 @@
 	  <None Remove="Resources\Images\money_bag.png" />
 	  <None Remove="Resources\Images\pencil.png" />
 	  <None Remove="Resources\Images\subscription_model.png" />
+	  <None Remove="Resources\Images\tutorial.png" />
 	  <None Remove="Resources\Images\wallet.png" />
 	</ItemGroup>
 
@@ -85,6 +86,9 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Pages\Analytics.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Pages\BudgetingGuide.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Pages\Installment.xaml">

@@ -11,30 +11,28 @@
     FlyoutWidth="200"
     Title="ExpendiMate">
 
-    <FlyoutItem Title="Dashboard" FlyoutDisplayOptions="AsMultipleItems">
-        <ShellContent
-            Title="Home"
-            ContentTemplate="{DataTemplate main:MainPage}"
-            Route="MainPage"
-                Icon="home.png"/>
+    <FlyoutItem Title="Dashboard" 
+                FlyoutDisplayOptions="AsMultipleItems">
+        
+        <ShellContent Title="Home"
+                      ContentTemplate="{DataTemplate main:MainPage}"
+                      Route="MainPage"
+                      Icon="home.png"/>
 
-        <ShellContent
-            Title="Set Budget"
-            ContentTemplate="{DataTemplate local:SetBudget}"
-            Route="SetBudget" 
-                Icon="money_bag.png"/>
+        <ShellContent Title="Set Budget"
+                      ContentTemplate="{DataTemplate local:SetBudget}"
+                      Route="SetBudget" 
+                      Icon="money_bag.png"/>
 
-        <ShellContent
-            Title="Analytics"
-            ContentTemplate="{DataTemplate local:Analytics}"
-            Route="Analytics" 
-                Icon="analysis.png"/>
+        <ShellContent Title="Analytics"
+                      ContentTemplate="{DataTemplate local:Analytics}"
+                      Route="Analytics" 
+                      Icon="analysis.png"/>
 
-        <ShellContent
-            Title="Installment"
-            ContentTemplate="{DataTemplate local:Installment}"
-            Route="Installment"
-                Icon="subscription_model.png"/>
+        <ShellContent Title="Installment"
+                      ContentTemplate="{DataTemplate local:Installment}"
+                      Route="Installment"
+                      Icon="subscription_model.png"/>
     </FlyoutItem>
 
     <Shell.ItemTemplate>

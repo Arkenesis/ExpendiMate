@@ -13,6 +13,6 @@ namespace ExpendiMate
         {
             base.OnNavigated(args);
             pageTitle.Text = Current.CurrentPage.Title;
-    }
+        }
     }
 }

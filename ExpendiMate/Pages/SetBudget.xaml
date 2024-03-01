@@ -94,13 +94,13 @@
                 </Frame>
             </FlexLayout>
 
-            <FlexLayout Margin="10">
+            <StackLayout Margin="10">
                 <Label TextColor="#4b9460"
                        FontAttributes="Bold"
                        TranslationX="12"
                        TranslationY="15"
                        Text="Set Budget"/>
-            </FlexLayout>
+            </StackLayout>
 
             <FlexLayout Margin="20"
                         JustifyContent="SpaceEvenly"
@@ -109,7 +109,7 @@
                         Direction="Row"
                         TranslationX="-15">
 
-                <Frame BackgroundColor="#19a76a"
+                <Frame BackgroundColor="#4b9460"
                        WidthRequest="70"
                        HeightRequest="40"
                        CornerRadius="10"
@@ -126,7 +126,7 @@
                     </StackLayout>
                 </Frame>
 
-                <Frame BackgroundColor="#19a76a"
+                <Frame BackgroundColor="#4b4b4b"
                        WidthRequest="70"
                        HeightRequest="40"
                        CornerRadius="10"
@@ -143,7 +143,7 @@
                     </StackLayout>
                 </Frame>
 
-                <Frame BackgroundColor="#19a76a"
+                <Frame BackgroundColor="#4b4b4b"
                        WidthRequest="70"
                        HeightRequest="40"
                        CornerRadius="10"
@@ -160,7 +160,7 @@
                     </StackLayout>
                 </Frame>
 
-                <Frame BackgroundColor="#19a76a"
+                <Frame BackgroundColor="#4b4b4b"
                        WidthRequest="70"
                        HeightRequest="40"
                        CornerRadius="10"
@@ -178,12 +178,31 @@
                 </Frame>
             </FlexLayout>
 
-            <FlexLayout Margin="10">
+            <VerticalStackLayout Margin="10">
                 <Label TextColor="#4b9460"
                        FontAttributes="Bold"
                        TranslationX="12"
-                       Text="Current Budget: $2500.00"/>
-            </FlexLayout>
+                       Text="Current Budget"/>
+
+                <Frame BackgroundColor="#4b9460"
+                       WidthRequest="150"
+                       HeightRequest="55"
+                       HorizontalOptions="Start"
+                       TranslationX="10"
+                       Margin="10"
+                       BorderColor="Transparent"
+                       CornerRadius="20">
+
+                    <StackLayout>
+                        <Label Text="$2500.00"
+                               TextColor="White"
+                               FontSize="12"
+                               FontAttributes="Bold"
+                               VerticalOptions="CenterAndExpand"
+                               HorizontalOptions="CenterAndExpand"/>
+                    </StackLayout>
+                </Frame>
+            </VerticalStackLayout>
 
             <FlexLayout>
                 <Frame BackgroundColor="#4b4b4b"

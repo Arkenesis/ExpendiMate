@@ -36,7 +36,7 @@
                                Margin="5"
                                FontSize="Medium"
                                FontAttributes="Bold"
-                               TranslationX="-30"
+                               TranslationX="-40"
                                TranslationY="8"/>
                     </HorizontalStackLayout>
                 </Frame>
@@ -56,33 +56,52 @@
                        CornerRadius="20">
 
                     <VerticalStackLayout>
-                        <HorizontalStackLayout  HorizontalOptions="Center">
+                        <HorizontalStackLayout  HorizontalOptions="StartAndExpand">
                             <Label Text="Day"
                                    TextColor="White"
                                    FontSize="Small"
-                                   Margin="5"/>
+                                   Margin="20, 5"/>
 
                             <Label Text="Week"
-                                   TextColor="White"
+                                   TextColor="#13d74a"
                                    FontSize="Small"
-                                   Margin="5"/>
+                                   TextDecorations="Underline"
+                                   Margin="20, 5"/>
 
                             <Label Text="Month"
                                    TextColor="White"
                                    FontSize="Small"
-                                   Margin="5"/>
+                                   Margin="20, 5"/>
 
                             <Label Text="Year"
                                    TextColor="White"
                                    FontSize="Small"
-                                   Margin="5"/>
+                                   Margin="20, 5"/>
                         </HorizontalStackLayout>
 
                         <StackLayout HorizontalOptions="Center">
-                            <Label Text="Date"
+                            <Label Text="8 Jan - 14 Jan"
                                    TextColor="White"
-                                   FontSize="Small"
+                                   TextDecorations="Underline"
+                                   FontSize="14"
+                                   FontAttributes="Bold"
                                    Margin="5"/>
+                        </StackLayout>
+
+                        <StackLayout HorizontalOptions="EndAndExpand"
+                                     VerticalOptions="EndAndExpand"
+                                     HeightRequest="50"
+                                     WidthRequest="50"
+                                     Padding="0">
+                            
+                            <Button Text="+"
+                                    FontAttributes="Bold"
+                                    FontSize="20"
+                                    BackgroundColor="Gold" 
+                                    TextColor="Black" 
+                                    CornerRadius="10"
+                                    TranslationY="140"
+                                    Clicked="ExpenseButton_Clicked"/>
                         </StackLayout>
                     </VerticalStackLayout>
                 </Frame>

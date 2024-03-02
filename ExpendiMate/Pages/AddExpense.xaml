@@ -2,64 +2,102 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ExpendiMate.Pages.AddExpense"
+             xmlns:models="clr-namespace:ExpendiMate.Models"
              Title="Add Expense"
              Shell.FlyoutBehavior="Disabled">
 
-    <ScrollView>
-        <VerticalStackLayout>
-            <Label Text="Name"
-                   TextColor="#009040"
-                   FontSize="20"
-                   FontAttributes="Bold"
-                   Margin="10, 20"/>
+    <VerticalStackLayout>
+        <Label Text="Name"
+               TextColor="#009040"
+               FontSize="20"
+               FontAttributes="Bold"
+               Margin="10, 20"/>
 
-            <Entry Placeholder="Enter the expense name" 
-                   TextColor="Green" 
-                   MaxLength="500"
-                   WidthRequest="400"
-                   HorizontalOptions="Start"
-                   Margin="10,-10"/>
+        <Entry Placeholder="Enter the expense name" 
+               TextColor="Green" 
+               MaxLength="500"
+               WidthRequest="400"
+               HorizontalOptions="Start"
+               Margin="10,-10"
+               Text="{Binding ExpenseName}"/>
 
-            <!-- Character count indicator -->
-            <!--
-                <Label Text="0/500" 
-                       TextColor="Green"
-                       HorizontalOptions="End"
-                       Margin="0, 10"/>
-            -->
+        <Label Text="Cost"
+               TextColor="#009040"
+               FontSize="20"
+               FontAttributes="Bold"
+               Margin="10, 20"/>
 
-            <Label Text="Category"
-                   TextColor="#009040"
-                   FontSize="20"
-                   FontAttributes="Bold"
-                   Margin="10, 40"/>
+        <Entry Placeholder="Enter the cost amount" 
+               TextColor="Green" 
+               MaxLength="500"
+               WidthRequest="400"
+               HorizontalOptions="Start"
+               Margin="10,-10"
+               Text="{Binding ExpenseCost}"/>
 
-            <Picker x:Name="Category"
-                    TranslationY="-30"
-                    BackgroundColor="#8D8D8D"
-                    TextColor="White"
-                    WidthRequest="400"
-                    HorizontalOptions="Start"
-                    Margin="10">
+        <Label Text="Category"
+               TextColor="#009040"
+               FontSize="20"
+               FontAttributes="Bold"
+               Margin="10, 40"/>
 
-                <Picker.ItemsSource>
-                    <x:Array Type="{x:Type x:String}">
-                        <x:String>Groceries</x:String>
-                        <x:String>Food</x:String>
-                        <x:String>Education</x:String>
-                        <x:String>Leisure</x:String>
-                        <x:String>Health</x:String>
-                        <x:String>Gifts</x:String>
-                    </x:Array>
-                </Picker.ItemsSource>
-            </Picker>
+        <Picker x:Name="Category"
+                TranslationY="-30"
+                BackgroundColor="#8D8D8D"
+                TextColor="White"
+                WidthRequest="400"
+                HorizontalOptions="Start"
+                Margin="10"
+                SelectedItem="{Binding ExpenseCategory}">
+            
+            <Picker.ItemsSource>
+                <x:Array Type="{x:Type x:String}">
+                    <x:String>Groceries</x:String>
+                    <x:String>Food</x:String>
+                    <x:String>Education</x:String>
+                    <x:String>Leisure</x:String>
+                    <x:String>Health</x:String>
+                    <x:String>Gifts</x:String>
+                </x:Array>
+            </Picker.ItemsSource>
+        </Picker>
 
-            <Label Text="Date"
-                   TextColor="#009040"
-                   FontSize="20"
-                   FontAttributes="Bold"
-                   Margin="10, 10"
-                   TranslationY="-20"/>
+        <Label Text="Date"
+               TextColor="#009040"
+               FontSize="20"
+               FontAttributes="Bold"
+               Margin="10, 10"
+               TranslationY="-20"/>
+        <DatePicker 
+            MinimumDate="01/01/2024"
+            MaximumDate="12/31/2024"
+            Date="{Binding ExpenseDate}" />
+        
+        <HorizontalStackLayout>
+            <Frame BackgroundColor="#4b9460"
+                   WidthRequest="90"
+                   HeightRequest="45"
+                   CornerRadius="10"
+                   BorderColor="Transparent"
+                   Padding="0"
+                   Margin="10, -20">
+
+                <!-- Text="Binding MyDate, StringFormat='{0:d}'-->
+                <VerticalStackLayout>
+                    <Label Text="14/01"
+                           TextColor="Black"
+                           HorizontalOptions="Center"
+                           FontAttributes="Bold"
+                           FontSize="12"/>
+
+                    <Label Text="Today"
+                           TextColor="Black"
+                           HorizontalOptions="Center"
+                           FontAttributes="Bold"
+                           FontSize="12"/>
+                </VerticalStackLayout>
+            </Frame>
+
 
             <HorizontalStackLayout>
                 <Frame BackgroundColor="#32df7f"
@@ -201,8 +239,14 @@
                     FontSize="16"
                     BackgroundColor="#009040"
                     WidthRequest="200"
-                    Margin="0, 10"/>
-            <!--Clicked="SaveExpense_Clicked"-->
+                    Margin="0, 10"
+                    Clicked="AddExpenses"/>
+
+            <Button
+                x:Name="ClearExpensesButton"
+                Text="Delete all Data"
+                Clicked="ClearAllExpenses"/>
         </VerticalStackLayout>
     </ScrollView>
+
 </ContentPage>

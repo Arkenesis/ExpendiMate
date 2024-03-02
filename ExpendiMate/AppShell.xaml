@@ -33,6 +33,11 @@
                       ContentTemplate="{DataTemplate local:Installment}"
                       Route="Installment"
                       Icon="subscription_model.png"/>
+
+        <ShellContent Title="Budgeting Guide"
+                      ContentTemplate="{DataTemplate local:BudgetingGuide}"
+                      Route="BudgetingGuide"
+                      Icon="tutorial.png"/>
     </FlyoutItem>
 
     <Shell.ItemTemplate>

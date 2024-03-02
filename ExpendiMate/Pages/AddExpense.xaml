@@ -2,6 +2,7 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ExpendiMate.Pages.AddExpense"
+             xmlns:models="clr-namespace:ExpendiMate.Models"
              Title="Add Expense"
              Shell.FlyoutBehavior="Disabled">
     <VerticalStackLayout>
@@ -16,15 +17,22 @@
                MaxLength="500"
                WidthRequest="400"
                HorizontalOptions="Start"
-               Margin="10,-10"/>
+               Margin="10,-10"
+               Text="{Binding ExpenseName}"/>
 
-        <!-- Character count indicator -->
-        <!--
-        <Label Text="0/500" 
-               TextColor="Green"
-               HorizontalOptions="End"
-               Margin="0, 10"/>
-        -->
+        <Label Text="Cost"
+               TextColor="#009040"
+               FontSize="20"
+               FontAttributes="Bold"
+               Margin="10, 20"/>
+
+        <Entry Placeholder="Enter the cost amount" 
+               TextColor="Green" 
+               MaxLength="500"
+               WidthRequest="400"
+               HorizontalOptions="Start"
+               Margin="10,-10"
+               Text="{Binding ExpenseCost}"/>
 
         <Label Text="Category"
                TextColor="#009040"
@@ -38,7 +46,8 @@
                 TextColor="White"
                 WidthRequest="400"
                 HorizontalOptions="Start"
-                Margin="10">
+                Margin="10"
+                SelectedItem="{Binding ExpenseCategory}">
             
             <Picker.ItemsSource>
                 <x:Array Type="{x:Type x:String}">
@@ -58,7 +67,11 @@
                FontAttributes="Bold"
                Margin="10, 10"
                TranslationY="-20"/>
-
+        <DatePicker 
+            MinimumDate="01/01/2024"
+            MaximumDate="12/31/2024"
+            Date="{Binding ExpenseDate}" />
+        
         <HorizontalStackLayout>
             <Frame BackgroundColor="#4b9460"
                    WidthRequest="90"
@@ -83,6 +96,17 @@
                            FontSize="12"/>
                 </VerticalStackLayout>
             </Frame>
+
+            <Button
+                x:Name="AddExpensesButton"
+                Text="Add Expenses"
+                Clicked="AddExpenses"/>
+
+            <Button
+                x:Name="ClearExpensesButton"
+                Text="Delete all Data"
+                Clicked="ClearAllExpenses"/>
+            
         </HorizontalStackLayout>
     </VerticalStackLayout>
 </ContentPage>

@@ -1,25 +1,47 @@
 using ExpendiMate.Models;
+using ExpendiMate.ViewModels;
 
 namespace ExpendiMate.Pages;
 
 public partial class AddExpense : ContentPage
 {
-	public List<MainViewModel> Expense { get; set; }
-	public AddExpense()
-	{
-		Expense = new List<MainViewModel>();
-		Expense.Add(new MainViewModel()
-		{
-			ExpenseName = "",
-			ExpenseCategory = "",
-			ExpenseCost = 0,
-			ExpenseComments = "",
-			ExpenseDate = DateTime.Today,
-			ExpensePicturePath = string.Empty
-		});
+    ExpensesModel model;
 
-		BindingContext = this;
+    //Pass the variable in
+    public AddExpense(ExpensesModel m)
+    {
+        model = m;
+        BindingContext = model;
+        InitializeComponent();
+    }
 
-		InitializeComponent();
-	}
+    private async void AddExpenses(object sender, EventArgs e)
+    {
+        var model = (ExpensesModel) BindingContext;
+        if (model.ExpenseName == null )
+        {
+            await DisplayAlert("Warning", "You must enter expense name.", "OK");
+            return;
+        }
+        if (model.ExpenseCategory == null)
+        {
+            await DisplayAlert("Warning", "You must enter expense category", "OK");
+            return;
+        }
+        if (model.ExpenseCost <= 0)
+        {
+            await DisplayAlert("Warning", "You must enter positive number & bigger than 0.", "OK");
+            return;
+        }
+        ExpensesViewModel.Current.SaveExpenses(model);
+        ExpensesViewModel.Current.UpdateExpensesByCategory();
+        await Navigation.PopAsync();
+    }
+
+    private async void ClearAllExpenses(object sender, EventArgs e)
+    {
+        ExpensesViewModel.Current.DeleteAllData();
+        ExpensesViewModel.Current.UpdateExpensesByCategory();
+        await Navigation.PopAsync();
+    }
 }

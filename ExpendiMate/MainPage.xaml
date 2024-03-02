@@ -7,30 +7,24 @@
 
     <ScrollView>
         <VerticalStackLayout>
-            <HorizontalStackLayout HorizontalOptions="Center"
-                                   Margin="10">
-                
+            <HorizontalStackLayout HorizontalOptions="Center" Margin="10">
                 <Frame BackgroundColor="#4b9460"
                        BorderColor="Transparent"
                        HeightRequest="80"
                        WidthRequest="200"
                        CornerRadius="40">
-                    
                     <HorizontalStackLayout HorizontalOptions="CenterAndExpand"
                                            VerticalOptions="CenterAndExpand"
                                            Padding="0">
-                        
                         <Image Source="wallet.png"
                                WidthRequest="40"
                                HeightRequest="40"/>
-
                         <Label Text="Total"
                                TextColor="White"
                                FontSize="Small"
                                FontAttributes="Bold"
                                TranslationX="40"
                                TranslationY="-5"/>
-
                         <Label Text="$2301.60"
                                TextColor="White"
                                Margin="5"
@@ -41,44 +35,37 @@
                     </HorizontalStackLayout>
                 </Frame>
             </HorizontalStackLayout>
-            
 
             <FlexLayout Direction="Row"
                         AlignItems="Center"
                         JustifyContent="SpaceEvenly"
                         Wrap="Wrap">
-
                 <Frame BackgroundColor="#4b4b4b"
                        MinimumWidthRequest="350"
                        HeightRequest="300"
                        Margin="10"
                        BorderColor="Transparent"
                        CornerRadius="20">
-
                     <VerticalStackLayout>
                         <HorizontalStackLayout  HorizontalOptions="StartAndExpand">
                             <Label Text="Day"
                                    TextColor="White"
                                    FontSize="Small"
                                    Margin="20, 5"/>
-
                             <Label Text="Week"
                                    TextColor="#13d74a"
                                    FontSize="Small"
                                    TextDecorations="Underline"
                                    Margin="20, 5"/>
-
                             <Label Text="Month"
                                    TextColor="White"
                                    FontSize="Small"
                                    Margin="20, 5"/>
-
                             <Label Text="Year"
                                    TextColor="White"
                                    FontSize="Small"
                                    Margin="20, 5"/>
                         </HorizontalStackLayout>
-
                         <StackLayout HorizontalOptions="Center">
                             <Label Text="8 Jan - 14 Jan"
                                    TextColor="White"
@@ -87,13 +74,11 @@
                                    FontAttributes="Bold"
                                    Margin="5"/>
                         </StackLayout>
-
                         <StackLayout HorizontalOptions="EndAndExpand"
                                      VerticalOptions="EndAndExpand"
                                      HeightRequest="50"
                                      WidthRequest="50"
                                      Padding="0">
-                            
                             <Button Text="+"
                                     FontAttributes="Bold"
                                     FontSize="20"
@@ -106,7 +91,67 @@
                     </VerticalStackLayout>
                 </Frame>
             </FlexLayout>
+
+            <!--<ListView x:Name="ExpensesListView"
+                SelectionMode="None"
+                ItemsSource="{Binding Expenses}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <VerticalStackLayout>
+                                <Label TextColor="Black" Text="{Binding ExpenseName}" FontAttributes="Bold"/>
+                                <Label TextColor="Black" Text="{Binding ExpenseCost}"/>
+                                <Label TextColor="Black" Text="{Binding ExpenseComments}" />
+                                <Label TextColor="Black" Text="{Binding ExpenseDate}"/>
+                                <Label TextColor="Black" Text="{Binding ExpensePicturePath}" />
+                            </VerticalStackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>-->
+
+
+            <ListView ItemsSource="{Binding ExpensesByCategory}"
+                  IsGroupingEnabled="True">
+                <ListView.GroupHeaderTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Label Text="{Binding Name}"
+                               BackgroundColor="LightGray"
+                               FontSize="20"
+                               FontAttributes="Bold" />
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.GroupHeaderTemplate>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid Padding="10">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <Label Grid.Column="1" 
+                                   Text="{Binding ExpenseName}" 
+                                   TextColor="Black" 
+                                   FontAttributes="Bold" />
+                                <Label Grid.Row="1"
+                                   Grid.Column="1" 
+                                   Text="{Binding ExpenseCost}"
+                                   TextColor="Black" 
+                                   FontAttributes="Italic" 
+                                   VerticalOptions="End" />
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+
         </VerticalStackLayout>
     </ScrollView>
-
 </ContentPage>

@@ -21,20 +21,6 @@
                    Margin="10,-10"
                    Text="{Binding ExpenseName}"/>
 
-            <Label Text="Cost"
-                   TextColor="#009040"
-                   FontSize="20"
-                   FontAttributes="Bold"
-                   Margin="10, 20"/>
-
-            <Entry Placeholder="Enter the cost amount" 
-                   TextColor="Green" 
-                   MaxLength="500"
-                   WidthRequest="400"
-                   HorizontalOptions="Start"
-                   Margin="10,-10"
-                   Text="{Binding ExpenseCost}"/>
-
             <Label Text="Category"
                    TextColor="#009040"
                    FontSize="20"
@@ -68,39 +54,15 @@
                    FontAttributes="Bold"
                    Margin="10, 10"
                    TranslationY="-20"/>
+            
+            <!--
             <DatePicker 
                 MinimumDate="01/01/2024"
-                MaximumDate="12/31/2024"
+                MaximumDate="12/31/2025"
                 Date="{Binding ExpenseDate}" />
-        
-            <HorizontalStackLayout>
-                <Frame BackgroundColor="#4b9460"
-                       WidthRequest="90"
-                       HeightRequest="45"
-                       CornerRadius="10"
-                       BorderColor="Transparent"
-                       Padding="0"
-                       Margin="10, -20">
+            -->
 
-                    <!-- Text="Binding MyDate, StringFormat='{0:d}'-->
-                    <VerticalStackLayout>
-                        <Label Text="14/01"
-                               TextColor="Black"
-                               HorizontalOptions="Center"
-                               FontAttributes="Bold"
-                               FontSize="12"/>
-
-                        <Label Text="Today"
-                               TextColor="Black"
-                               HorizontalOptions="Center"
-                               FontAttributes="Bold"
-                               FontSize="12"/>
-                    </VerticalStackLayout>
-                </Frame>
-            </HorizontalStackLayout>
-
-
-            <HorizontalStackLayout>
+            <HorizontalStackLayout TranslationY="-10">
                 <Frame BackgroundColor="#32df7f"
                        WidthRequest="90"
                        HeightRequest="45"
@@ -189,12 +151,13 @@
                    FontAttributes="Bold"
                    Margin="10, 20"/>
 
-            <Entry Placeholder="Enter the cost" 
+            <Entry Placeholder="Enter the cost amount" 
                    TextColor="Green" 
                    MaxLength="500"
                    WidthRequest="400"
                    HorizontalOptions="Start"
-                   Margin="10,-10"/>
+                   Margin="10,-10"
+                   Text="{Binding ExpenseCost}"/>
 
             <Label Text="Comments"
                    TextColor="#009040"
@@ -235,18 +198,26 @@
                         WidthRequest="100"/>
             </HorizontalStackLayout>
 
-            <Button Text="Save"
-                    FontAttributes="Bold"
-                    FontSize="16"
-                    BackgroundColor="#009040"
-                    WidthRequest="200"
-                    Margin="0, 10"
-                    Clicked="AddExpenses"/>
+            <HorizontalStackLayout>
+                <Button x:Name="ClearExpensesButton"
+                        Text="Clear all data"
+                        FontSize="16"
+                        FontAttributes="Bold"
+                        BackgroundColor="Red"
+                        WidthRequest="180"
+                        Margin="10, 10"
+                        HorizontalOptions="Start"
+                        Clicked="ClearAllExpenses"/>
 
-            <Button
-                x:Name="ClearExpensesButton"
-                Text="Delete all Data"
-                Clicked="ClearAllExpenses"/>
+                <Button Text="Save"
+                        FontAttributes="Bold"
+                        FontSize="16"
+                        BackgroundColor="#009040"
+                        WidthRequest="180"
+                        Margin="10, 10"
+                        HorizontalOptions="End"
+                        Clicked="AddExpenses"/>
+            </HorizontalStackLayout>
         </VerticalStackLayout>
     </ScrollView>
 

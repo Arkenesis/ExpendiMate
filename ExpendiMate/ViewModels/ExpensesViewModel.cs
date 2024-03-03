@@ -20,7 +20,6 @@ namespace ExpendiMate.ViewModels
         {
             Current = this;
             connection = DatabaseServices.Connection;
-
             UpdateExpensesByCategory();
         }
 
@@ -31,11 +30,14 @@ namespace ExpendiMate.ViewModels
             {
                 UpdateExpensesByCategory();
                 return connection.Table<ExpensesModel>().ToList();
-
             }
         }
 
-        public ObservableCollection<ExpensesCategoryModel> ExpensesByCategory { get ; set ; } = new ();
+        public ObservableCollection<ExpensesCategoryModel> ExpensesByCategory
+        { 
+            get ; 
+            set ; 
+        } = new ();
 
         public void SaveExpenses(ExpensesModel model)
         {
@@ -83,7 +85,7 @@ namespace ExpendiMate.ViewModels
         public void DeleteAllData()
         {
             connection.DeleteAll<ExpensesModel>();
-            connection.DeleteAll<IncomeModel>();
+            connection.DeleteAll<UserModel>();
             connection.DeleteAll<InstallmentModel>();
         }
 

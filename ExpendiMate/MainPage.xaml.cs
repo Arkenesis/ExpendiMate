@@ -15,6 +15,7 @@ namespace ExpendiMate
             InitializeComponent();
         }
 
+        //Update the view if property change
         protected override void OnAppearing()
         {
             //The name of the property that we listen in ViewModel

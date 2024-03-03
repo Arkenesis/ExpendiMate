@@ -76,6 +76,15 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Compile Update="Pages\SetIncome.xaml.cs">
+	    <DependentUpon>SetIncome.xaml</DependentUpon>
+	  </Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiXaml Update="Pages\SetIncome.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Pages\AddExpense.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

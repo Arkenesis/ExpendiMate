@@ -1,4 +1,5 @@
-﻿using ExpendiMate.ViewModels;
+﻿using ExpendiMate.Pages;
+using ExpendiMate.ViewModels;
 using SQLite;
 using System;
 using System.Collections.Generic;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 namespace ExpendiMate.Models
 {
     //Income
-    public class IncomeModel : ObservableObject
+    public class UserModel : ObservableObject
     {
         [PrimaryKey, AutoIncrement]
         public int Id { get; set; } 
@@ -22,6 +23,5 @@ namespace ExpendiMate.Models
                 return (double)Income / BudgetPercent;
             }
         }
-        public double BudgetBalance { get; set; }
     }
 }

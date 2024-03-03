@@ -24,7 +24,7 @@
                                HeightRequest="30"
                                TranslationX="-10"/>
 
-                        <Label Text="$2301.60"
+                        <Label Text="{Binding BudgetBalance}"
                                TextColor="White"
                                FontSize="Medium"
                                FontAttributes="Bold"/>
@@ -49,17 +49,18 @@
                                FontAttributes="Bold" 
                                TextColor="White" 
                                HorizontalTextAlignment="Center"
-                               Text="Income"/>
+                               Text="INCOME"/>
 
                         <Label FontSize="Large"
                                FontAttributes="Bold"
                                TextColor="White"
                                HorizontalTextAlignment="Center"
-                               Text="$5000.00"/>
+                               Text="{Binding User.Income}"/>
 
-                        <Image Source="pencil.png"
+                        <ImageButton Source="pencil.png"
                                WidthRequest="20" 
                                HeightRequest="20"
+                               Clicked="IncomeClicked"
                                HorizontalOptions="End"
                                VerticalOptions="EndAndExpand"/>
                     </StackLayout>
@@ -83,13 +84,7 @@
                                FontAttributes="Bold"
                                TextColor="White"
                                HorizontalTextAlignment="Center"
-                               Text="$198.40"/>
-
-                        <Image Source="pencil.png"
-                               WidthRequest="20" 
-                               HeightRequest="20"
-                               HorizontalOptions="End"
-                               VerticalOptions="EndAndExpand"/>
+                               Text="{Binding Expenses}"/>
                     </StackLayout>
                 </Frame>
             </FlexLayout>
@@ -194,7 +189,7 @@
                        CornerRadius="20">
 
                     <StackLayout>
-                        <Label Text="$2500.00"
+                        <Label Text="{Binding User.Budget}"
                                TextColor="White"
                                FontSize="12"
                                FontAttributes="Bold"

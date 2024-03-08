@@ -10,11 +10,16 @@ namespace ExpendiMate.ViewModels
         public static SetBudgetViewModel Current { get; set; }
 
         SQLiteConnection connection;
-
         public SetBudgetViewModel()
         {
             Current = this;
             connection = DatabaseServices.Connection;
+            var data = connection.Query<UserModel>("SELECT * FROM Users").FirstOrDefault();
+            if (data == null)
+            {
+                var newData = new UserModel();
+                SetBudgetViewModel.Current.SaveAndUpdateUser(newData);
+            }
             UpdateView();
         }
 
@@ -23,17 +28,7 @@ namespace ExpendiMate.ViewModels
         {
             get
             {
-                var data = connection.Query<UserModel>("SELECT * FROM UserModel").ToList();
-                if (data.Count == 0)
-                {
-                    var newData = new UserModel();
-                    SaveAndUpdateUser(newData);
-                    return newData;
-                }
-                else
-                {
-                    return data[0];
-                }
+                return connection.Query<UserModel>("SELECT * FROM Users").FirstOrDefault();
             }
         }
 
@@ -201,7 +196,14 @@ namespace ExpendiMate.ViewModels
 
         public void SaveAndUpdateUser(UserModel model)
         {
-            connection.Update(model);
+            if (model.Id > 0)
+            {
+                connection.Update(model);
+            }
+            else
+            {
+                connection.Insert(model);
+            }
             UpdateView();
         }
 

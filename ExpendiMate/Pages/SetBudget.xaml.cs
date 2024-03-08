@@ -1,4 +1,6 @@
+using ExpendiMate.Models;
 using ExpendiMate.ViewModels;
+using System.Reflection;
 
 namespace ExpendiMate.Pages;
 
@@ -6,6 +8,7 @@ public partial class SetBudget : ContentPage
 {
 
     SetBudgetViewModel viewModel;
+
     public SetBudget()
     {
         viewModel = new SetBudgetViewModel();
@@ -55,6 +58,12 @@ public partial class SetBudget : ContentPage
     //        await DisplayAlert("Income", "Invalid input. Please enter a valid number.", "OK");
     //    }
     //}
+    protected override void OnAppearing()
+    {
+        //The name of the property that we listen in ViewModel
+        viewModel.OnPropertyChanged("User");
+    }
+
     private void SetBudget50(object sender, EventArgs e)
     {
         var model = viewModel.User;

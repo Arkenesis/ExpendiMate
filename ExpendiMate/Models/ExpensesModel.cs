@@ -10,6 +10,7 @@ namespace ExpendiMate.Models
 {
 
     //Expense
+    [Table("expenses")]
     public class ExpensesModel : ObservableObject
     {
         [PrimaryKey, AutoIncrement]

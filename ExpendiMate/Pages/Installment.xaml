@@ -1,12 +1,55 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:windows="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.WindowsSpecific;assembly=Microsoft.Maui.Controls"
              x:Class="ExpendiMate.Pages.Installment"
+             BackgroundColor="White"
              Title="Installment">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+
+    <ScrollView>
+        <FlexLayout Direction="Column" JustifyContent="SpaceEvenly">
+            <Label Text="Installment Summary" FontSize="Large" TextColor="Black" HorizontalOptions="Center"/>
+            <Label Text="{Binding TotalCost, StringFormat='${0:F2}'}" FontSize="Large" TextColor="Black" HorizontalOptions="Center"/>
+
+            <Grid ColumnDefinitions="*,*,*,*,*" ColumnSpacing="50">
+                <Label Text="Item"   TextColor="Black" Grid.Column="1" HorizontalOptions="Start"/>
+                <Label Text="Cost"   TextColor="Black" Grid.Column="4" HorizontalOptions="Start"/>
+            </Grid>
+
+            <ListView x:Name="listView" 
+                          VerticalOptions="FillAndExpand"
+                          SelectionMode="None"
+                          ItemTapped="InstallmentItem_Clicked"
+                          ItemsSource="{Binding Installments}"
+                          MinimumHeightRequest="200">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid ColumnDefinitions="*,*,*,*,*" ColumnSpacing="50">
+                                <Label Text="{Binding InstallmentName}"   TextColor="Black" Grid.Column="1" HorizontalOptions="Start"/>
+
+                                <Switch IsToggled="{Binding InstallmentIsActivated, Mode=OneWay}" Toggled="ToggleInstallment" Grid.Column="3"/>
+
+                                <Label Text="{Binding InstallmentCost}"   TextColor="Black" Grid.Column="4" HorizontalOptions="Start"/>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+            <Grid ColumnDefinitions="*,*,*,*,*">
+                <Button Text="+"
+                        FontAttributes="Bold"
+                        FontSize="32"
+                        WidthRequest="100"
+                        HeightRequest="100"
+                        BackgroundColor="#009040"
+                        Clicked="InstallmentButton_Clicked"
+                        HorizontalOptions="Center"
+                        CornerRadius="100"
+                        Grid.Column="2"/>
+            </Grid>
+
+        </FlexLayout>
+    </ScrollView>
 </ContentPage>

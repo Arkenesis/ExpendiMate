@@ -24,7 +24,7 @@
                                HeightRequest="30"
                                TranslationX="-10"/>
 
-                        <Label Text="{Binding BudgetBalance,StringFormat='${0:F2}'}"
+                        <Label Text="{Binding User.BudgetBalance,StringFormat='${0:F2}'}"
                                TextColor="White"
                                FontSize="Medium"
                                FontAttributes="Bold"/>
@@ -55,7 +55,7 @@
                                FontAttributes="Bold"
                                TextColor="White"
                                HorizontalTextAlignment="Center"
-                               Text="{Binding Income,StringFormat='${0:F2}'}"/>
+                               Text="{Binding User.Income,StringFormat='${0:F2}'}"/>
 
                         <ImageButton Source="pencil.png"
                                WidthRequest="20" 
@@ -84,7 +84,7 @@
                                FontAttributes="Bold"
                                TextColor="White"
                                HorizontalTextAlignment="Center"
-                               Text="{Binding Expenses,StringFormat='${0:F2}'}"/>
+                               Text="{Binding User.Expenses,StringFormat='${0:F2}'}"/>
                     </StackLayout>
                 </Frame>
             </FlexLayout>
@@ -203,7 +203,7 @@
                        CornerRadius="20">
 
                     <StackLayout>
-                        <Label Text="{Binding Budget,StringFormat='${0:F2}'}"
+                        <Label Text="{Binding User.Budget,StringFormat='${0:F2}'}"
                                TextColor="White"
                                FontSize="12"
                                FontAttributes="Bold"

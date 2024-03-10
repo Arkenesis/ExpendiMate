@@ -1,12 +1,8 @@
-﻿using ExpendiMate.Models;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using ExpendiMate.Models;
 using ExpendiMate.Services;
 using SQLite;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ExpendiMate.ViewModels
 {

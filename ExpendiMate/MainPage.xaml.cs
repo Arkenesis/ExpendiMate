@@ -16,12 +16,12 @@ namespace ExpendiMate
         }
 
         //Update the view if property change
-        protected override void OnAppearing()
-        {
-            //The name of the property that we listen in ViewModel
-            viewModel.OnPropertyChanged("Expenses");
-            viewModel.OnPropertyChanged("ExpensesByCategory");
-        }
+        //protected override void OnAppearing()
+        //{
+        //    //The name of the property that we listen in ViewModel
+        //    viewModel.OnPropertyChanged("Expenses");
+        //    viewModel.OnPropertyChanged("ExpensesByCategory");
+        //}
 
         private void ExpenseButton_Clicked(object sender, EventArgs e)
         {

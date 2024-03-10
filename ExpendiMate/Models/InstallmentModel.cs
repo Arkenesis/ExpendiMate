@@ -1,4 +1,5 @@
-﻿using ExpendiMate.ViewModels;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using ExpendiMate.ViewModels;
 using SQLite;
 using System;
 using System.Collections.Generic;
@@ -9,13 +10,18 @@ using System.Threading.Tasks;
 namespace ExpendiMate.Models
 {
     //Installment
-    public class InstallmentModel : ObservableObject
+    [Table("Installment")]
+    public partial class InstallmentModel : ObservableObject
     {
         [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
-        public string InstallmentName { get; set; } = "";
-        public double InstallmentCost { get; set; }
-        public DateTime InstallmentDate { get; set; }
-        public double InstallmentSummary { get; set; }
+        [ObservableProperty]
+        private string installmentName = "";
+        [ObservableProperty]
+        private double installmentCost = 0;
+        [ObservableProperty]
+        private DateTime installmentDate;
+        [ObservableProperty]
+        private bool installmentIsActivated = false;
     }
 }

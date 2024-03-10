@@ -19,7 +19,7 @@ public partial class SetBudget : ContentPage
     private async void IncomeClicked(object sender, EventArgs e)
     {
 
-        Navigation.PushAsync(new SetIncome(viewModel.User));
+        await Navigation.PushAsync(new SetIncome(viewModel.User));
 
         //string result = await DisplayPromptAsync("Income", "Enter your income amount...");
 
@@ -61,7 +61,7 @@ public partial class SetBudget : ContentPage
     protected override void OnAppearing()
     {
         //The name of the property that we listen in ViewModel
-        viewModel.OnPropertyChanged("User");
+        viewModel.UpdateView();
     }
 
     private void SetBudget50(object sender, EventArgs e)

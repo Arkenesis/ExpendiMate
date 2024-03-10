@@ -68,6 +68,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />
 		<PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
 		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="$(MauiVersion)" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.0" />
@@ -76,12 +77,18 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Compile Update="Pages\SetInstallment.xaml.cs">
+	    <DependentUpon>SetInstallment.xaml</DependentUpon>
+	  </Compile>
 	  <Compile Update="Pages\SetIncome.xaml.cs">
 	    <DependentUpon>SetIncome.xaml</DependentUpon>
 	  </Compile>
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiXaml Update="Pages\SetInstallment.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Pages\SetIncome.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

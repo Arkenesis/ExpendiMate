@@ -38,6 +38,7 @@
                       ContentTemplate="{DataTemplate local:BudgetingGuide}"
                       Route="BudgetingGuide"
                       Icon="tutorial.png"/>
+
     </FlyoutItem>
 
     <Shell.ItemTemplate>

@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:micro="clr-namespace:Microcharts.Maui;assembly=Microcharts.Maui"
              x:Class="ExpendiMate.MainPage"
              BackgroundColor="White"
              Title="Expenses">
@@ -41,31 +42,56 @@
                         JustifyContent="SpaceEvenly"
                         Wrap="Wrap">
                 <Frame BackgroundColor="#4b4b4b"
-                       MinimumWidthRequest="350"
-                       HeightRequest="300"
+                       WidthRequest="330"
+                       HeightRequest="308"
                        Margin="10"
                        BorderColor="Transparent"
                        CornerRadius="20">
                     <VerticalStackLayout>
-                        <HorizontalStackLayout  HorizontalOptions="StartAndExpand">
-                            <Label Text="Day"
+                        <Grid ColumnDefinitions="*,*,*,*" Margin="0,20,0,0">
+                            <Frame BackgroundColor="Transparent" BorderColor="Transparent" Grid.Column="0">
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="Data_Clicked" NumberOfTapsRequired="1" />
+                                </Frame.GestureRecognizers>
+                                <Label Text="Day"
                                    TextColor="White"
-                                   FontSize="Small"
-                                   Margin="20, 5"/>
-                            <Label Text="Week"
+                                   FontSize="16"
+                                   HorizontalTextAlignment="Center"
+                                   FontAttributes="Bold"/>
+                            </Frame>
+                            <Frame BackgroundColor="Transparent" BorderColor="Transparent" Grid.Column="1">
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="Data_Clicked" NumberOfTapsRequired="1" />
+                                </Frame.GestureRecognizers>
+                                <Label Text="Week"
                                    TextColor="#13d74a"
-                                   FontSize="Small"
+                                   FontSize="16"
                                    TextDecorations="Underline"
-                                   Margin="20, 5"/>
-                            <Label Text="Month"
+                                   HorizontalTextAlignment="Center"
+                                   FontAttributes="Bold"/>
+                            </Frame>
+                            <Frame BackgroundColor="Transparent" BorderColor="Transparent" Grid.Column="2">
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="Data_Clicked" NumberOfTapsRequired="1" />
+                                </Frame.GestureRecognizers>
+                                <Label Text="Month"
                                    TextColor="White"
-                                   FontSize="Small"
-                                   Margin="20, 5"/>
-                            <Label Text="Year"
+                                   FontSize="16"
+                                   HorizontalTextAlignment="Center"
+                                   FontAttributes="Bold"/>
+                            </Frame>
+                            <Frame BackgroundColor="Transparent" BorderColor="Transparent" Grid.Column="3">
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="Data_Clicked" NumberOfTapsRequired="1" />
+                                </Frame.GestureRecognizers>
+                                <Label Text="Year"
                                    TextColor="White"
-                                   FontSize="Small"
-                                   Margin="20, 5"/>
-                        </HorizontalStackLayout>
+                                   FontSize="16"
+                                   HorizontalTextAlignment="Center"
+                                   FontAttributes="Bold"/>
+                            </Frame>
+
+                        </Grid>
                         <StackLayout HorizontalOptions="Center">
                             <Label Text="8 Jan - 14 Jan"
                                    TextColor="White"
@@ -74,6 +100,9 @@
                                    FontAttributes="Bold"
                                    Margin="5"/>
                         </StackLayout>
+
+                        <micro:ChartView x:Name="ExpensesChart" HeightRequest="200"/>
+
                         <StackLayout HorizontalOptions="EndAndExpand"
                                      VerticalOptions="EndAndExpand"
                                      HeightRequest="50"
@@ -85,7 +114,6 @@
                                     BackgroundColor="Gold" 
                                     TextColor="Black" 
                                     CornerRadius="10"
-                                    TranslationY="140"
                                     Clicked="ExpenseButton_Clicked"/>
                         </StackLayout>
                     </VerticalStackLayout>
@@ -116,15 +144,21 @@
                 <ListView.GroupHeaderTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <Label Text="{Binding Name}"    
-                               TextColor="Black" 
-                               BackgroundColor="LightGray"
-                               FontSize="20"
-                               FontAttributes="Bold" />
+                            <Frame>
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="Frame_Tapped" NumberOfTapsRequired="1" />
+                                </Frame.GestureRecognizers>
+                                <Label Text="{Binding Name}"    
+                                       TextColor="Black" 
+                                       BackgroundColor="LightGray"
+                                       FontSize="20"
+                                       FontAttributes="Bold" />
+                            </Frame>
+
                         </ViewCell>
                     </DataTemplate>
                 </ListView.GroupHeaderTemplate>
-                <ListView.ItemTemplate>
+                <!--<ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
                             <Grid Padding="10">
@@ -149,7 +183,7 @@
                             </Grid>
                         </ViewCell>
                     </DataTemplate>
-                </ListView.ItemTemplate>
+                </ListView.ItemTemplate>-->
             </ListView>
 
 

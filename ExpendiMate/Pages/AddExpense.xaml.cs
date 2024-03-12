@@ -35,13 +35,13 @@ public partial class AddExpense : ContentPage
         }
         ExpensesViewModel.Current.SaveExpenses(model);
         ExpensesViewModel.Current.UpdateExpensesByCategory();
-        await Navigation.PopAsync();
+        await Navigation.PopToRootAsync();
     }
 
     private async void ClearAllExpenses(object sender, EventArgs e)
     {
         ExpensesViewModel.Current.DeleteAllData();
         ExpensesViewModel.Current.UpdateExpensesByCategory();
-        await Navigation.PopAsync();
+        await Navigation.PopToRootAsync();
     }
 }

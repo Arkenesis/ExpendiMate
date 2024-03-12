@@ -3,7 +3,6 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ExpendiMate.Pages.AddExpense"
              xmlns:models="clr-namespace:ExpendiMate.Models"
-             Title="Add Expense"
              Shell.FlyoutBehavior="Disabled">
     <ScrollView>
         <VerticalStackLayout>

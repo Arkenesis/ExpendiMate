@@ -31,7 +31,7 @@ public partial class Installment : ContentPage
         {
             return;
         }
-        //Issues   : Initialization of switch fires in Installment Pages fires the "Toggled event", conflict with the ListView which crash the program.
+        //Issues   : Initialization of switch button in Installment Pages fires the "Toggled event", conflict with the ListView which crash the program.
         //Solution : Check the value of BindingContext, only fires the update function if the user toggle the switch.
         Switch toggleSwitch = (Switch) sender;
         InstallmentModel item = (InstallmentModel) toggleSwitch.BindingContext;
@@ -45,9 +45,11 @@ public partial class Installment : ContentPage
             viewModel.SaveAndUpdate(item);
         }
     }
+
+    //The name of the property that we listen in ViewModel
     protected override void OnAppearing()
     {
-        //The name of the property that we listen in ViewModel
+        
         viewModel.UpdateView();
     }
 }

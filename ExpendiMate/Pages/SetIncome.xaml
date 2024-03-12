@@ -3,25 +3,25 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ExpendiMate.Pages.SetIncome"
              xmlns:models="clr-namespace:ExpendiMate.Models"
-             Shell.FlyoutBehavior="Disabled">
+             Shell.FlyoutBehavior="Disabled"
+             Title="Set Income Amount">
     <ScrollView>
         <VerticalStackLayout>
             <Label Text="Income"
                    TextColor="#009040"
                    FontSize="20"
                    FontAttributes="Bold"
-                   Margin="10, 20"/>
+                   Margin="10"/>
 
             <Entry Placeholder="Enter Income" 
-                   TextColor="Green" 
-                   MaxLength="500"
-                   WidthRequest="400"
-                   HorizontalOptions="Start"
-                   Margin="10,-10"
+                   TextColor="Green"
+                   HorizontalOptions="FillAndExpand"
+                   Margin="10"
                    Text="{Binding Income, Mode=TwoWay}"/>
 
             <HorizontalStackLayout>
                 <Button Text="Save"
+                        TextColor="White"
                         FontAttributes="Bold"
                         FontSize="16"
                         BackgroundColor="#009040"

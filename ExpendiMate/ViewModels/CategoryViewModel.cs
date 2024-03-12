@@ -1,4 +1,7 @@
-﻿using ExpendiMate.Models;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using ExpendiMate.Models;
+using ExpendiMate.Services;
+using SQLite;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -8,20 +11,38 @@ using System.Threading.Tasks;
 
 namespace ExpendiMate.ViewModels
 {
-    internal class CategoryViewModel
+    public partial class CategoryViewModel
     {
-        public ObservableCollection<CategoryModel> Categories { get; } = new ObservableCollection<CategoryModel>();
+        public static CategoryViewModel Current { get; set; }
 
-        public void AddCategory(string CategoryName, Color CategoryColor)
+        SQLiteConnection connection;
+        public ObservableCollection<ExpensesModel> CategoryItems { get; set; } = new();
+
+        List<ExpensesModel> list;
+
+        public CategoryViewModel(ExpensesCategoryModel model)
         {
-            var NewCategory = new CategoryModel
+            Current = this;
+            connection = DatabaseServices.Connection;
+            list = model;
+            foreach(var item in list)
             {
-                CategoryId = Categories.Count + 1,
-                CategoryName = CategoryName,
-                CategoryColor = CategoryColor
-            };
-
-            Categories.Add(NewCategory);
+                CategoryItems.Add(item);
+            }
         }
+
+        public double TotalCost
+        {
+            get
+            {
+                double sum = 0;
+                foreach (var item in list)
+                {
+                    sum = sum + item.ExpenseCost;
+                }
+                return sum;
+            }
+        }
+
     }
 }

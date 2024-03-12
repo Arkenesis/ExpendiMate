@@ -11,9 +11,9 @@
             <Label Text="Installment Summary" FontSize="Large" TextColor="Black" HorizontalOptions="Center"/>
             <Label Text="{Binding TotalCost, StringFormat='${0:F2}'}" FontSize="Large" TextColor="Black" HorizontalOptions="Center"/>
 
-            <Grid ColumnDefinitions="*,*,*,*,*" ColumnSpacing="50">
-                <Label Text="Item"   TextColor="Black" Grid.Column="1" HorizontalOptions="Start"/>
-                <Label Text="Cost"   TextColor="Black" Grid.Column="4" HorizontalOptions="Start"/>
+            <Grid ColumnDefinitions="*,*,*,*,*">
+                <Label Text="Item"   TextColor="Black" Grid.Column="0" HorizontalOptions="Center"/>
+                <Label Text="Cost"   TextColor="Black" Grid.Column="4" HorizontalOptions="Center"/>
             </Grid>
 
             <ListView x:Name="listView" 
@@ -25,12 +25,12 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <Grid ColumnDefinitions="*,*,*,*,*" ColumnSpacing="50">
-                                <Label Text="{Binding InstallmentName}"   TextColor="Black" Grid.Column="1" HorizontalOptions="Start"/>
+                            <Grid ColumnDefinitions="*,*,*,*,*">
+                                <Label Text="{Binding InstallmentName}"   TextColor="Black" Grid.Column="0" Grid.ColumnSpan="3" HorizontalOptions="Start" TranslationX="10"/>
 
-                                <Switch IsToggled="{Binding InstallmentIsActivated, Mode=OneWay}" Toggled="ToggleInstallment" Grid.Column="3"/>
+                                <Switch IsToggled="{Binding InstallmentIsActivated, Mode=OneWay}" Toggled="ToggleInstallment" Grid.Column="3" HorizontalOptions="Center" TranslationY="-10"/>
 
-                                <Label Text="{Binding InstallmentCost}"   TextColor="Black" Grid.Column="4" HorizontalOptions="Start"/>
+                                <Label Text="{Binding InstallmentCost}"   TextColor="Black" Grid.Column="4" HorizontalOptions="Center"/>
                             </Grid>
                         </ViewCell>
                     </DataTemplate>
@@ -39,10 +39,11 @@
 
             <Grid ColumnDefinitions="*,*,*,*,*">
                 <Button Text="+"
+                        TextColor="White"
                         FontAttributes="Bold"
-                        FontSize="32"
-                        WidthRequest="100"
-                        HeightRequest="100"
+                        FontSize="24"
+                        WidthRequest="30"
+                        HeightRequest="30"
                         BackgroundColor="#009040"
                         Clicked="InstallmentButton_Clicked"
                         HorizontalOptions="Center"

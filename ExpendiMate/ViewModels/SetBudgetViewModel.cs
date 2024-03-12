@@ -53,21 +53,21 @@ namespace ExpendiMate.ViewModels
             User.BudgetBalance = User.Budget - User.Expenses;
 
             if (User.BudgetPercent == 0.5 )
-                ButtonColor1 = Colors.Green;
+                ButtonColor1 = new Color(50, 223, 127);
             else 
-                ButtonColor1 = Colors.DarkGray;
+                ButtonColor1 = new Color(75, 75, 75);
             if (User.BudgetPercent == 0.3)
-                ButtonColor2 = Colors.Green;
+                ButtonColor2 = new Color(50, 223, 127);
             else 
-                ButtonColor2 = Colors.DarkGray;
+                ButtonColor2 = new Color(75, 75, 75);
             if (User.BudgetPercent == 0.2)
-                ButtonColor3 = Colors.Green;
+                ButtonColor3 = new Color(50, 223, 127);
             else 
-                ButtonColor3 = Colors.DarkGray;
+                ButtonColor3 = new Color(75, 75, 75);
             if (User.BudgetPercent != 0.5 && User.BudgetPercent != 0.3 && User.BudgetPercent != 0.2)
-                ButtonColor4 = Colors.Green;
-            else 
-                ButtonColor4 = Colors.DarkGray;
+                ButtonColor4 = new Color(50, 223, 127); // Green
+            else
+                ButtonColor4 = new Color(75, 75, 75);  // Grey
         }
         public double getTotalExpense()
         {

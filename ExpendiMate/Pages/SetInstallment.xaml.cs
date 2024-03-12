@@ -7,7 +7,6 @@ public partial class SetInstallment : ContentPage
 {
     InstallmentModel model;
 
-    //Pass the variable in
     public SetInstallment(InstallmentModel m)
     {
         model = m;

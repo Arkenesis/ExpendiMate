@@ -4,11 +4,12 @@
              xmlns:windows="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.WindowsSpecific;assembly=Microsoft.Maui.Controls"
              x:Class="ExpendiMate.Pages.Category"
              BackgroundColor="White"
-             Shell.FlyoutBehavior="Disabled">
+             Shell.FlyoutBehavior="Disabled"
+             x:Name="CategoryPage">
 
     <ScrollView>
         <FlexLayout Direction="Column">
-            <Label Text="January Expenditure"                         FontSize="28" TextColor="#009040" HorizontalOptions="Center" FontAttributes="Bold" Margin="0,20,0,0" />
+            <Label Text="Total Expenditure"                           FontSize="28" TextColor="#009040" HorizontalOptions="Center" FontAttributes="Bold" Margin="0,20,0,0" />
             <Label Text="{Binding TotalCost, StringFormat='${0:F2}'}" FontSize="28" TextColor="#009040" HorizontalOptions="Center" FontAttributes="Bold"/>
 
             <BoxView Color="#2A794D" HeightRequest="2" HorizontalOptions="Fill" Margin="10,20,10,20"/>
@@ -23,17 +24,23 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <StackLayout>
-                                <Grid ColumnDefinitions="21,*" ColumnSpacing="3">
-                                    <BoxView Color="#91F742" CornerRadius="16" WidthRequest="16" HeightRequest="16" HorizontalOptions="Fill" Margin="20,20,0,0" Grid.ColumnSpan="0"/>
-                                    <Grid ColumnDefinitions="2*,*,*" ColumnSpacing="10" Grid.Column="1">
-                                        <Label Text="{Binding ExpenseName}"                                   FontSize="14" TextColor="Black" HorizontalOptions="Start" Grid.Column="0" Margin="20,20,0,0"/>
-                                        <Label Text="{Binding ExpenseDate, StringFormat='{}{0:dd/MM/yyyy}'}"  FontSize="14" TextColor="Black" HorizontalOptions="End"   Grid.Column="1" Margin="0,20,0,0"/>
-                                        <Label Text="{Binding ExpenseCost, StringFormat='${0:F2}'}"           FontSize="14" TextColor="Black" HorizontalOptions="End"   Grid.Column="2" Margin="0,20,20,0"/>
+                            <Frame BackgroundColor="Transparent" BorderColor="Transparent">
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="CategoryItem_Tapped" NumberOfTapsRequired="1" />
+                                </Frame.GestureRecognizers>
+                                <StackLayout>
+                                    <Grid ColumnDefinitions="21,*" ColumnSpacing="3">
+                                        <!--<BoxView Color="#91F742" CornerRadius="16" WidthRequest="16" HeightRequest="16" HorizontalOptions="Fill" Margin="20,20,0,0" Grid.ColumnSpan="0"/>-->
+                                        <BoxView Color="{Binding BindingContext.IconColor, Source={x:Reference CategoryPage}}" CornerRadius="16" WidthRequest="16" HeightRequest="16" HorizontalOptions="Fill" Margin="20,20,0,0" Grid.ColumnSpan="0"/>
+                                        <Grid ColumnDefinitions="2*,*,1.2*" ColumnSpacing="10" Grid.Column="1">
+                                            <Label Text="{Binding ExpenseName}"                                   FontSize="14" TextColor="Black" HorizontalOptions="Start" VerticalOptions="Center"  Grid.Column="0" Margin="20,20,0,0"/>
+                                            <Label Text="{Binding ExpenseDate, StringFormat='{}{0:dd/M/yyyy}'}"   FontSize="14" TextColor="Black" HorizontalOptions="Start" VerticalOptions="Center"  Grid.Column="1" Margin="0,20,0,0"/>
+                                            <Label Text="{Binding ExpenseCost, StringFormat='${0:F2}'}"           FontSize="14" TextColor="Black" HorizontalOptions="End"   VerticalOptions="Center"  Grid.Column="2" Margin="0,20,20,0"/>
+                                        </Grid>
                                     </Grid>
-                                </Grid>
-                                <BoxView Color="#2A794D" HeightRequest="2" HorizontalOptions="Fill" Margin="10"/>
-                            </StackLayout>
+                                    <BoxView Color="#2A794D" HeightRequest="2" HorizontalOptions="Fill" Margin="10"/>
+                                </StackLayout>
+                            </Frame>
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>

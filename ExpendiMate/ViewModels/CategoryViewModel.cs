@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace ExpendiMate.ViewModels
 {
-    public partial class CategoryViewModel
+    public partial class CategoryViewModel : ObservableObject
     {
         public static CategoryViewModel Current { get; set; }
 
@@ -20,11 +20,26 @@ namespace ExpendiMate.ViewModels
 
         List<ExpensesModel> list;
 
+        [ObservableProperty]
+        string iconColor;
+
+        public CategoryViewModel(ExpensesYearModel model)
+        {
+            Current = this;
+            connection = DatabaseServices.Connection;
+            list = model;
+            foreach (var item in list)
+            {
+                CategoryItems.Add(item);
+            }
+        }
+
         public CategoryViewModel(ExpensesCategoryModel model)
         {
             Current = this;
             connection = DatabaseServices.Connection;
             list = model;
+            IconColor = model.IconColor;
             foreach(var item in list)
             {
                 CategoryItems.Add(item);

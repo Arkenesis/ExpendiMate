@@ -23,7 +23,7 @@ public partial class AddExpense : ContentPage
             await DisplayAlert("Warning", "You must enter expense name.", "OK");
             return;
         }
-        if (model.ExpenseCategory == null)
+        if (model.ExpenseCategory == null || model.ExpenseCategory == "")
         {
             await DisplayAlert("Warning", "You must enter expense category", "OK");
             return;
@@ -34,14 +34,14 @@ public partial class AddExpense : ContentPage
             return;
         }
         ExpensesViewModel.Current.SaveExpenses(model);
-        ExpensesViewModel.Current.UpdateExpensesByCategory();
+        ExpensesViewModel.Current.UpdateView();
         await Navigation.PopToRootAsync();
     }
 
     private async void ClearAllExpenses(object sender, EventArgs e)
     {
         ExpensesViewModel.Current.DeleteAllData();
-        ExpensesViewModel.Current.UpdateExpensesByCategory();
+        ExpensesViewModel.Current.UpdateView();
         await Navigation.PopToRootAsync();
     }
 }

@@ -5,6 +5,7 @@ using Microcharts;
 using Microcharts.Maui;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Xml;
 
 namespace ExpendiMate
 {
@@ -26,12 +27,12 @@ namespace ExpendiMate
             //    The name of the property that we listen in 
             //    viewModel.OnPropertyChanged("ExpensesByCategory");
             viewModel.UpdateView();
+            DayLabel.TextColor = Color.FromHex("#4b9460");
+            DayLabel.TextDecorations = TextDecorations.Underline;
+            resetLabel(WeekLabel);
+            resetLabel(MonthLabel);
+            resetLabel(YearLabel);
             base.OnAppearing();
-            viewModel.createChart();
-            ExpensesChart.Chart = viewModel.Item;
-
-            if (!ExpensesChart.Chart.IsAnimating)
-                ExpensesChart.Chart.AnimateAsync(true).ConfigureAwait(false);
         }
 
         private void ExpenseButton_Clicked(object sender, EventArgs e)
@@ -58,8 +59,40 @@ namespace ExpendiMate
         {
             var frame = (Frame) sender;
             var label = (Label) frame.Content;
+            label.TextColor = Color.FromHex("#4b9460");
+            label.TextDecorations = TextDecorations.Underline;
             string res = label.Text;
-            viewModel.setExpenses(res);
+            if(label.Text == "Day")
+            {
+                resetLabel(WeekLabel);
+                resetLabel(MonthLabel);
+                resetLabel(YearLabel);
+            }
+            if (label.Text == "Week")
+            {
+                resetLabel(DayLabel);
+                resetLabel(MonthLabel);
+                resetLabel(YearLabel);
+            }
+            if (label.Text == "Month")
+            {
+                resetLabel(DayLabel);
+                resetLabel(WeekLabel);
+                resetLabel(YearLabel);
+            }
+            if (label.Text == "Year")
+            {
+                resetLabel(DayLabel);
+                resetLabel(WeekLabel);
+                resetLabel(MonthLabel);
+            }
+            viewModel.UpdateView(res);
+        }
+
+        private void resetLabel(Label input)
+        {
+            input.TextColor = Color.Parse("White");
+            input.TextDecorations = TextDecorations.None;
         }
     }
 }

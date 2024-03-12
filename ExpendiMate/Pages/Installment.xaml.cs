@@ -49,7 +49,6 @@ public partial class Installment : ContentPage
     //The name of the property that we listen in ViewModel
     protected override void OnAppearing()
     {
-        
         viewModel.UpdateView();
     }
 }

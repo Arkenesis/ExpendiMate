@@ -9,24 +9,25 @@
     <ScrollView>
         <VerticalStackLayout>
             <HorizontalStackLayout HorizontalOptions="Center" Margin="10">
+
                 <Frame BackgroundColor="#4b9460"
                        BorderColor="Transparent"
-                       HeightRequest="80"
-                       WidthRequest="200"
-                       CornerRadius="40">
+                       HeightRequest="69"
+                       WidthRequest="188"
+                       CornerRadius="32">
                     <HorizontalStackLayout HorizontalOptions="CenterAndExpand"
                                            VerticalOptions="CenterAndExpand"
-                                           Padding="0">
+                                           Margin="20,0,0,0">
                         <Image Source="wallet.png"
-                               WidthRequest="40"
-                               HeightRequest="40"/>
+                               WidthRequest="32"
+                               HeightRequest="32"/>
                         <Label Text="Total"
                                TextColor="White"
                                FontSize="Small"
                                FontAttributes="Bold"
                                TranslationX="40"
                                TranslationY="-5"/>
-                        <Label Text="$2301.60"
+                        <Label Text="{Binding Total, StringFormat='${0:F2}'}"
                                TextColor="White"
                                Margin="5"
                                FontSize="Medium"
@@ -43,7 +44,7 @@
                         Wrap="Wrap">
                 <Frame BackgroundColor="#4b4b4b"
                        WidthRequest="330"
-                       HeightRequest="308"
+                       HeightRequest="328"
                        Margin="10"
                        BorderColor="Transparent"
                        CornerRadius="20">
@@ -54,21 +55,22 @@
                                     <TapGestureRecognizer Tapped="Data_Clicked" NumberOfTapsRequired="1" />
                                 </Frame.GestureRecognizers>
                                 <Label Text="Day"
-                                   TextColor="White"
+                                   TextColor="#4b9460"
+                                   TextDecorations="Underline"
                                    FontSize="16"
                                    HorizontalTextAlignment="Center"
-                                   FontAttributes="Bold"/>
+                                   FontAttributes="Bold"
+                                   x:Name="DayLabel"/>
                             </Frame>
                             <Frame BackgroundColor="Transparent" BorderColor="Transparent" Grid.Column="1">
                                 <Frame.GestureRecognizers>
                                     <TapGestureRecognizer Tapped="Data_Clicked" NumberOfTapsRequired="1" />
                                 </Frame.GestureRecognizers>
                                 <Label Text="Week"
-                                   TextColor="#13d74a"
                                    FontSize="16"
-                                   TextDecorations="Underline"
                                    HorizontalTextAlignment="Center"
-                                   FontAttributes="Bold"/>
+                                   FontAttributes="Bold"
+                                   x:Name="WeekLabel"/>
                             </Frame>
                             <Frame BackgroundColor="Transparent" BorderColor="Transparent" Grid.Column="2">
                                 <Frame.GestureRecognizers>
@@ -78,7 +80,8 @@
                                    TextColor="White"
                                    FontSize="16"
                                    HorizontalTextAlignment="Center"
-                                   FontAttributes="Bold"/>
+                                   FontAttributes="Bold"
+                                   x:Name="MonthLabel"/>
                             </Frame>
                             <Frame BackgroundColor="Transparent" BorderColor="Transparent" Grid.Column="3">
                                 <Frame.GestureRecognizers>
@@ -88,12 +91,13 @@
                                    TextColor="White"
                                    FontSize="16"
                                    HorizontalTextAlignment="Center"
-                                   FontAttributes="Bold"/>
+                                   FontAttributes="Bold"
+                                   x:Name="YearLabel"/>
                             </Frame>
 
                         </Grid>
                         <StackLayout HorizontalOptions="Center">
-                            <Label Text="8 Jan - 14 Jan"
+                            <Label Text="{Binding InBetween}"
                                    TextColor="White"
                                    TextDecorations="Underline"
                                    FontSize="14"
@@ -101,21 +105,18 @@
                                    Margin="5"/>
                         </StackLayout>
 
-                        <micro:ChartView x:Name="ExpensesChart" HeightRequest="200"/>
+                        <micro:ChartView HeightRequest="200" Chart="{Binding Item}"/>
 
-                        <StackLayout HorizontalOptions="EndAndExpand"
-                                     VerticalOptions="EndAndExpand"
-                                     HeightRequest="50"
-                                     WidthRequest="50"
-                                     Padding="0">
+                        <Frame BackgroundColor="Transparent" BorderColor="Transparent" HorizontalOptions="End" TranslationX="-10" TranslationY="-10">
                             <Button Text="+"
                                     FontAttributes="Bold"
-                                    FontSize="20"
-                                    BackgroundColor="Gold" 
-                                    TextColor="Black" 
+                                    FontSize="30"
+                                    TextColor="White"
+                                    HeightRequest="5"
                                     CornerRadius="10"
+                                    BackgroundColor="#00B14F"
                                     Clicked="ExpenseButton_Clicked"/>
-                        </StackLayout>
+                        </Frame>
                     </VerticalStackLayout>
                 </Frame>
             </FlexLayout>
@@ -138,55 +139,32 @@
                 </ListView.ItemTemplate>
             </ListView>-->
 
-
-            <ListView ItemsSource="{Binding ExpensesByCategory}"
-                  IsGroupingEnabled="True">
+            <ListView ItemsSource="{Binding ExpensesByCategory}" IsGroupingEnabled="True">
                 <ListView.GroupHeaderTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <Frame>
+                            <Frame WidthRequest="330" HeightRequest="40" Margin="20,10,20,0" BackgroundColor="#4B4B4B">
                                 <Frame.GestureRecognizers>
                                     <TapGestureRecognizer Tapped="Frame_Tapped" NumberOfTapsRequired="1" />
                                 </Frame.GestureRecognizers>
-                                <Label Text="{Binding Name}"    
-                                       TextColor="Black" 
-                                       BackgroundColor="LightGray"
-                                       FontSize="20"
-                                       FontAttributes="Bold" />
+                                <Grid ColumnDefinitions="25,2*,*,*" ColumnSpacing="10">
+                                    <BoxView Color="{Binding IconColor}" CornerRadius="16" WidthRequest="16" HeightRequest="16" HorizontalOptions="End" Grid.Column="0"/>
+                                    <Label Text="{Binding Name}"                               TextColor="White" FontSize="14" FontAttributes="Bold" HorizontalOptions="Start" VerticalOptions="Center" Grid.Column="1" />
+                                    <Label Text="{Binding Percentage, StringFormat='{0:F1}%'}" TextColor="White" FontSize="14" FontAttributes="Bold" HorizontalOptions="Start"   VerticalOptions="Center" Grid.Column="2" />
+                                    <Label Text="{Binding Total,      StringFormat='${0:F2}'}" TextColor="White" FontSize="14" FontAttributes="Bold" HorizontalOptions="Start"   VerticalOptions="Center" Grid.Column="3" />
+                                </Grid>
                             </Frame>
-
                         </ViewCell>
                     </DataTemplate>
                 </ListView.GroupHeaderTemplate>
-                <!--<ListView.ItemTemplate>
+                <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <Grid Padding="10">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto" />
-                                    <RowDefinition Height="Auto" />
-                                </Grid.RowDefinitions>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto" />
-                                    <ColumnDefinition Width="Auto" />
-                                </Grid.ColumnDefinitions>
-                                <Label Grid.Column="1" 
-                                   Text="{Binding ExpenseName}" 
-                                   TextColor="Black" 
-                                   FontAttributes="Bold" />
-                                <Label Grid.Row="1"
-                                   Grid.Column="1" 
-                                   Text="{Binding ExpenseCost}"
-                                   TextColor="Black" 
-                                   FontAttributes="Italic" 
-                                   VerticalOptions="End" />
-                            </Grid>
+
                         </ViewCell>
                     </DataTemplate>
-                </ListView.ItemTemplate>-->
+                </ListView.ItemTemplate>
             </ListView>
-
-
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

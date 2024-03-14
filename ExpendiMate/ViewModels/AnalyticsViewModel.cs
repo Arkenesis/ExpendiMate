@@ -40,7 +40,7 @@ namespace ExpendiMate.ViewModels
                 List<ChartEntry> entries = new();
                 var entry = new ChartEntry(0)
                 {
-                    Label = "In "+ lastDayOfYear.Year + " you don't record anythings.",
+                    Label = "In "+ currYear.AddYears(year).Year + " you don't record anythings.",
                     ValueLabel = "0",
                     Color = SKColor.Parse("#5DB075"),
                     ValueLabelColor = SKColor.Parse("#000000"),

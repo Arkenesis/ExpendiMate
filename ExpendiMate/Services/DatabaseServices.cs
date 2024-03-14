@@ -22,6 +22,10 @@ namespace ExpendiMate.Services
                     System.IO.Directory.CreateDirectory(databaseDir);
                     _databaseFile = Path.Combine(databaseDir, "expenses.sqlite");
                 }
+                System.Diagnostics.Debug.WriteLine("WHERE IS MY FILE: "+_databaseFile);
+                var file = new FileInfo(_databaseFile);
+                System.Diagnostics.Debug.WriteLine("File Size in byte : " + (double) file.Length);
+                System.Diagnostics.Debug.WriteLine("File Size in Kb : " + (double) file.Length/1024);
                 return _databaseFile;
             }
         }

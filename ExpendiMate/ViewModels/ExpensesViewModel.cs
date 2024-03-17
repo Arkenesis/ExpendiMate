@@ -1,16 +1,16 @@
-﻿using ExpendiMate.Models;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using ExpendiMate.Models;
 using ExpendiMate.Services;
+using Microcharts;
+using SkiaSharp;
 using SQLite;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Xml;
+
 
 namespace ExpendiMate.ViewModels
 {
-    internal class ExpensesViewModel : ObservableObject
+    internal partial class ExpensesViewModel : ObservableObject
     {
         public static ExpensesViewModel Current { get; set; }
 
@@ -20,20 +20,36 @@ namespace ExpendiMate.ViewModels
         {
             Current = this;
             connection = DatabaseServices.Connection;
-
-            UpdateExpensesByCategory();
+            UpdateView();
         }
 
         //Get every expense record
-        public List<ExpensesModel> Expenses
-        {
-            get
-            {
-                UpdateExpensesByCategory();
-                return connection.Table<ExpensesModel>().ToList();
+        //public List<ExpensesModel> Expenses
+        //{
+        //    get
+        //    {
+        //        UpdateExpensesByCategory();
+        //        return connection.Table<ExpensesModel>().ToList();
+        //    }
+        //}
 
-            }
-        }
+        //public List<ExpensesModel> ExpensesByWeek
+        //{
+        //    get
+        //    {
+        //        UpdateExpensesByCategory();
+        //        return connection.Query<ExpensesModel>("SELECT * FROM Expenses WHERE ExpenseDate >= DATE('now', '-7 days')").ToList();
+        //    }
+        //}
+
+        //public List<ExpensesModel> ExpensesByMonth
+        //{
+        //    get
+        //    {
+        //        UpdateExpensesByCategory();
+        //        return connection.Table<ExpensesModel>().ToList();
+        //    }
+        //}
 
         public ObservableCollection<ExpensesCategoryModel> ExpensesByCategory { get ; set ; } = new ();
 
@@ -59,33 +75,150 @@ namespace ExpendiMate.ViewModels
             }
         }
 
-        public void UpdateExpensesByCategory()
-        {
-            // Clearing the collection moved to the constructor to avoid repeated clearing
+        // Total Cost of all the expenses
+        [ObservableProperty]
+        double total;
 
-            // Get all expenses
-            List<ExpensesModel> allExpenses = connection.Table<ExpensesModel>().ToList();
+        [ObservableProperty]
+        string inBetween;
+
+        [ObservableProperty]
+        string selectedDate;
+
+        public void UpdateView(string input="")
+        {
+            //Date Format
+            //https://learn.microsoft.com/en-us/dotnet/standard/base-types/standard-date-and-time-format-strings
+            var timeRange = DateTime.Today;
+            string result = ""+timeRange.ToString("d MMMM yyyy");
+            List<ExpensesModel> allExpenses;
+
+            if (input == "Week")
+            {
+                DateTime temp = DateTime.Today.AddDays(-7);
+                result =  temp.ToString("d MMMM") + " - " + timeRange.ToString("d MMMM");
+                allExpenses = connection.Table<ExpensesModel>().Where(i => i.ExpenseDate >= temp && timeRange >= i.ExpenseDate).ToList();
+                SelectedDate = "Week";
+            }
+            else if (input == "Month")
+            {
+                DateTime temp = new DateTime(DateTime.Today.Year, DateTime.Today.Month, 1);
+                DateTime lastDayOfTheMonth = temp.AddMonths(1).AddDays(-1);
+                result = temp.ToString("d MMMM") + " - " + lastDayOfTheMonth.ToString("d MMMM");
+                allExpenses = connection.Table<ExpensesModel>().Where(i => i.ExpenseDate >= temp && lastDayOfTheMonth >= i.ExpenseDate).ToList();
+                SelectedDate = "Month";
+            }
+            else if (input == "Year")
+            {
+                DateTime temp = new DateTime(DateTime.Today.Year, 1, 1);
+                DateTime lastDayOfTheYear = temp.AddYears(1).AddDays(-1);
+                result = temp.ToString("d MMMM yyyy") + " - " + lastDayOfTheYear.ToString("d MMMM yyyy");
+                allExpenses = connection.Table<ExpensesModel>().Where(i => i.ExpenseDate >= temp && lastDayOfTheYear >= i.ExpenseDate).ToList();
+                SelectedDate = "Year";
+            }
+            else
+            {
+                allExpenses = connection.Table<ExpensesModel>().Where(i => i.ExpenseDate >= timeRange).ToList();
+            }
+            InBetween = result;
+
+            
 
             // Group expenses by category
+            // Key: Category Name
+            // Value: Category List
             var groupedExpenses = allExpenses.GroupBy(e => e.ExpenseCategory);
 
             // Clear the existing items
             ExpensesByCategory.Clear();
 
-            // Add grouped expenses to ExpensesByCategory
+            // Calculate total of all categories
+            Total = allExpenses.Sum(item => item.ExpenseCost);
+
+            List<ChartEntry> entries = new();
+
+            // Add into ObservableCollection
+            // ObservableCollection allows display data on the UI
             foreach (var group in groupedExpenses)
             {
-                var categoryModel = new ExpensesCategoryModel(group.Key, group.ToList());
+                //Create new object to store data
+                ExpensesCategoryModel categoryModel = new ExpensesCategoryModel(group.Key, group.ToList());
+
+                // Calculate category Cost
+                List<ExpensesModel> expensesDetailsList = group.ToList();
+                double sum = 0;
+                foreach (var item in expensesDetailsList)
+                {
+                    sum = sum + item.ExpenseCost;
+                }
+                categoryModel.Total = sum;
+
+                // Set color
+                if (CategoryModel.Category.TryGetValue(group.Key, out string outputColor))
+                {
+                    categoryModel.IconColor = outputColor;
+                    if (categoryModel.IconColor == "") categoryModel.IconColor = "#68DE68";
+                }
+
+                // Calculate percentage
+                categoryModel.Percentage = sum / Total * 100;
+
+                // Create Chart Data
+                var entry = new ChartEntry((int)sum)
+                { Label = categoryModel.Name,
+                    ValueLabel = "$" + sum,
+                    Color = SKColor.Parse(categoryModel.IconColor),
+                    ValueLabelColor = SKColor.Parse("#FFFFFF"),
+                    OtherColor = SKColor.Parse(categoryModel.IconColor)
+                };
+                entries.Add(entry);
                 ExpensesByCategory.Add(categoryModel);
             }
+            createChart(entries);
+            OnPropertyChanged(nameof(Item));
         }
 
         public void DeleteAllData()
         {
             connection.DeleteAll<ExpensesModel>();
-            connection.DeleteAll<IncomeModel>();
+            connection.DeleteAll<UserModel>();
             connection.DeleteAll<InstallmentModel>();
         }
 
+        [ObservableProperty]
+        DonutChart item;
+
+        public void createChart(IEnumerable<ChartEntry> entries)
+        {
+            //if (Item != null) return;
+
+            //var entries = new[]
+            //{
+            //    new ChartEntry(212)
+            //    {
+            //        Label = "UWP",
+            //        ValueLabel = "112",
+            //        Color = SKColor.Parse("#2c3e50")
+            //    }
+            //};
+            Item = new DonutChart { 
+                Entries = entries, 
+                BackgroundColor = SKColor.Parse("#4b4b4b"), 
+                LabelColor = new SKColor(255, 255, 255),
+                AnimationDuration = new TimeSpan(0,0,3),
+                HoleRadius = 0.8F,
+                LabelMode = LabelMode.LeftAndRight
+            };
+        }
+
+        //public void UpdateView()
+        //{
+        //    OnPropertyChanged(nameof(Expenses));
+        //}
+
+        //internal void setExpenses(string res)
+        //{
+        //    throw new NotImplementedException();
+        //}
     }
 }

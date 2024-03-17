@@ -1,5 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
-
+using Microcharts.Maui;
 namespace ExpendiMate
 {
     public static class MauiProgram
@@ -9,6 +9,7 @@ namespace ExpendiMate
             var builder = MauiApp.CreateBuilder();
             builder
                 .UseMauiApp<App>()
+                .UseMicrocharts()
                 .ConfigureFonts(fonts =>
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");

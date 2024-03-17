@@ -37,7 +37,7 @@ namespace ExpendiMate.Services
                     _connection = new SQLiteConnection(DatabaseFile);
                     _connection.CreateTable<ExpensesModel>();
                     _connection.CreateTable<ExpenseItemModel>();
-                    _connection.CreateTable<IncomeModel>();
+                    _connection.CreateTable<UserModel>();
                     _connection.CreateTable<InstallmentModel>();
                 }
                 return _connection;

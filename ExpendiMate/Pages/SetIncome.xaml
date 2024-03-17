@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ExpendiMate.Pages.SetIncome"
+             xmlns:models="clr-namespace:ExpendiMate.Models"
+             Shell.FlyoutBehavior="Disabled"
+             Title="Set Income Amount">
+    <ScrollView>
+        <VerticalStackLayout>
+            <Label Text="Income"
+                   TextColor="#009040"
+                   FontSize="20"
+                   FontAttributes="Bold"
+                   Margin="10"/>
+
+            <Entry Placeholder="Enter Income" 
+                   TextColor="Green"
+                   HorizontalOptions="FillAndExpand"
+                   Margin="10"
+                   Text="{Binding Income, Mode=TwoWay}"/>
+
+            <HorizontalStackLayout>
+                <Button Text="Save"
+                        TextColor="White"
+                        FontAttributes="Bold"
+                        FontSize="16"
+                        BackgroundColor="#009040"
+                        WidthRequest="180"
+                        Margin="10, 10"
+                        HorizontalOptions="End"
+                        Clicked="SaveIncome"/>
+            </HorizontalStackLayout>
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>

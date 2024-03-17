@@ -15,8 +15,8 @@
                        WidthRequest="200"
                        CornerRadius="40">
 
-                    <HorizontalStackLayout HorizontalOptions="CenterAndExpand"
-                                           VerticalOptions="CenterAndExpand"
+                    <HorizontalStackLayout HorizontalOptions="Center"
+                                           VerticalOptions="Center"
                                            Padding="0">
                         
                         <Image Source="wallet.png"
@@ -24,7 +24,7 @@
                                HeightRequest="30"
                                TranslationX="-10"/>
 
-                        <Label Text="$2301.60"
+                        <Label Text="{Binding User.BudgetBalance,StringFormat='${0:F2}'}"
                                TextColor="White"
                                FontSize="Medium"
                                FontAttributes="Bold"/>
@@ -34,146 +34,153 @@
 
             <FlexLayout Direction="Row"
                         AlignItems="Center"
-                        JustifyContent="SpaceEvenly"
+                        JustifyContent="Center"
                         Wrap="Wrap">
 
-                <Frame BackgroundColor="#4b4b4b" 
-                       MinimumWidthRequest="180" 
-                       HeightRequest="150" 
-                       CornerRadius="10" 
-                       Margin="10"
-                       BorderColor="Transparent">
+                <Frame BackgroundColor="#4b4b4b"
+                       HeightRequest="120"
+                       WidthRequest="162"
+                       CornerRadius="10"
+                       BorderColor="Transparent"
+                       Margin="8,0,0,0">
 
                     <StackLayout>
-                        <Label FontSize="16" 
+                        <Label FontSize="14" 
                                FontAttributes="Bold" 
                                TextColor="White" 
                                HorizontalTextAlignment="Center"
-                               Text="Income"/>
+                               Text="INCOME"
+                               Margin="0,20,0,0"/>
 
-                        <Label FontSize="Large"
+                        <Label FontSize="24"
                                FontAttributes="Bold"
                                TextColor="White"
                                HorizontalTextAlignment="Center"
-                               Text="$5000.00"/>
+                               Text="{Binding User.Income,StringFormat='${0:F2}'}"/>
 
-                        <Image Source="pencil.png"
-                               WidthRequest="20" 
-                               HeightRequest="20"
-                               HorizontalOptions="End"
-                               VerticalOptions="EndAndExpand"/>
+                        <Frame HorizontalOptions="End" VerticalOptions="End" WidthRequest="30" HeightRequest="30" BackgroundColor="Transparent" BorderColor="Transparent" TranslationY="10" TranslationX="-10">
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="IncomeClicked" NumberOfTapsRequired="1" />
+                            </Frame.GestureRecognizers>
+                            <VerticalStackLayout>
+                                <Image Source="pencil.png"/>
+                            </VerticalStackLayout>
+                        </Frame>
+
                     </StackLayout>
                 </Frame>
 
                 <Frame BackgroundColor="#4b4b4b" 
-                       MinimumWidthRequest="180" 
-                       HeightRequest="150" 
+                       HeightRequest="120"
+                       WidthRequest="162"
                        CornerRadius="10" 
                        Margin="10"
                        BorderColor="Transparent">
 
                     <StackLayout>
-                        <Label FontSize="16" 
+                        <Label FontSize="14" 
                                FontAttributes="Bold" 
                                TextColor="White" 
                                HorizontalTextAlignment="Center"
-                               Text="Expense"/>
+                               Text="Expense"
+                               Margin="0,20,0,0"/>
 
-                        <Label FontSize="Large"
+                        <Label FontSize="24"
                                FontAttributes="Bold"
                                TextColor="White"
                                HorizontalTextAlignment="Center"
-                               Text="$198.40"/>
-
-                        <Image Source="pencil.png"
-                               WidthRequest="20" 
-                               HeightRequest="20"
-                               HorizontalOptions="End"
-                               VerticalOptions="EndAndExpand"/>
+                               Text="{Binding User.Expenses,StringFormat='${0:F2}'}"/>
                     </StackLayout>
                 </Frame>
             </FlexLayout>
 
-            <StackLayout Margin="10">
+            <StackLayout Margin="10,0,0,0">
                 <Label TextColor="#4b9460"
                        FontAttributes="Bold"
-                       TranslationX="12"
-                       TranslationY="15"
                        Text="Set Budget"/>
             </StackLayout>
 
-            <FlexLayout Margin="20"
+            <FlexLayout Margin="5,10,0,0"
                         JustifyContent="SpaceEvenly"
                         Wrap="Wrap"
                         AlignItems="Start"
-                        Direction="Row"
-                        TranslationX="-15">
+                        Direction="Row">
 
-                <Frame BackgroundColor="#4b9460"
-                       WidthRequest="70"
-                       HeightRequest="40"
+                <Frame BackgroundColor="{Binding ButtonColor1}"
+                       WidthRequest="76"
+                       HeightRequest="50"
                        CornerRadius="10"
                        BorderColor="Transparent"
                        Padding="0">
 
                     <StackLayout>
-                        <Label TextColor="White"
-                               VerticalOptions="CenterAndExpand"
-                               HorizontalOptions="CenterAndExpand"
-                               FontSize="12"
-                               FontAttributes="Bold"
-                               Text="50%"/>
+                        <Button
+                            Text="50%"
+                            TextColor="White"
+                            BackgroundColor="Transparent"
+                            VerticalOptions="Center"
+                            HorizontalOptions="Center"
+                            FontSize="16"
+                            Clicked="SetBudget50" />
                     </StackLayout>
                 </Frame>
 
-                <Frame BackgroundColor="#4b4b4b"
-                       WidthRequest="70"
-                       HeightRequest="40"
+                <Frame BackgroundColor="{Binding ButtonColor2}"
+                       WidthRequest="76"
+                       HeightRequest="50"
                        CornerRadius="10"
                        BorderColor="Transparent"
                        Padding="0">
 
                     <StackLayout>
-                        <Label TextColor="White"
-                               VerticalOptions="CenterAndExpand"
-                               HorizontalOptions="CenterAndExpand"
-                               FontSize="12"
-                               FontAttributes="Bold"
-                               Text="30%"/>
+                        <Button
+                            Text="30%"
+                            TextColor="White"
+                            BackgroundColor="Transparent"
+                            VerticalOptions="Center"
+                            HorizontalOptions="Center"
+                            FontSize="16"
+                            Clicked="SetBudget30" />
                     </StackLayout>
                 </Frame>
 
-                <Frame BackgroundColor="#4b4b4b"
-                       WidthRequest="70"
-                       HeightRequest="40"
+                <Frame BackgroundColor="{Binding ButtonColor3}"
+                       WidthRequest="76"
+                       HeightRequest="50"
                        CornerRadius="10"
                        BorderColor="Transparent"
                        Padding="0">
 
                     <StackLayout>
-                        <Label TextColor="White"
-                               VerticalOptions="CenterAndExpand"
-                               HorizontalOptions="CenterAndExpand"
-                               FontSize="12"
-                               FontAttributes="Bold"
-                               Text="20%"/>
+                        <Button
+                            Text="20%"
+                            TextColor="White"
+                            BackgroundColor="Transparent"
+                            VerticalOptions="Center"
+                            HorizontalOptions="Center"
+                            FontSize="16"
+                            Clicked="SetBudget20" />
+                        
                     </StackLayout>
+                    
                 </Frame>
 
-                <Frame BackgroundColor="#4b4b4b"
-                       WidthRequest="70"
-                       HeightRequest="40"
+                <Frame BackgroundColor="{Binding ButtonColor4}"
+                       WidthRequest="82"
+                       HeightRequest="50"
                        CornerRadius="10"
                        BorderColor="Transparent"
                        Padding="0">
 
                     <StackLayout>
-                        <Label TextColor="White"
-                               VerticalOptions="CenterAndExpand"
-                               HorizontalOptions="CenterAndExpand"
-                               FontSize="12"
-                               FontAttributes="Bold"
-                               Text="Manual"/>
+                        <Button
+                            Text="Manual"
+                            TextColor="White"
+                            BackgroundColor="Transparent"
+                            VerticalOptions="Center"
+                            HorizontalOptions="Center"
+                            FontSize="16"
+                            Clicked="SetBudgetManual"/>
                     </StackLayout>
                 </Frame>
             </FlexLayout>
@@ -181,51 +188,49 @@
             <VerticalStackLayout Margin="10">
                 <Label TextColor="#4b9460"
                        FontAttributes="Bold"
-                       TranslationX="12"
                        Text="Current Budget"/>
 
                 <Frame BackgroundColor="#4b9460"
-                       WidthRequest="150"
-                       HeightRequest="55"
+                       WidthRequest="146"
+                       HeightRequest="45"
                        HorizontalOptions="Start"
-                       TranslationX="10"
-                       Margin="10"
                        BorderColor="Transparent"
-                       CornerRadius="20">
-
-                    <StackLayout>
-                        <Label Text="$2500.00"
-                               TextColor="White"
-                               FontSize="12"
-                               FontAttributes="Bold"
-                               VerticalOptions="CenterAndExpand"
-                               HorizontalOptions="CenterAndExpand"/>
-                    </StackLayout>
+                       CornerRadius="25"
+                       Margin="0,10,0,0"
+                       Padding="0">
+                    <Label Text="{Binding User.Budget, StringFormat='${0:F2}'}"
+                           TextColor="White"
+                           FontSize="12"
+                           VerticalOptions="Center"
+                           HorizontalOptions="Center"
+                           VerticalTextAlignment="Center"
+                           HorizontalTextAlignment="Center"/>
                 </Frame>
+
             </VerticalStackLayout>
 
             <FlexLayout>
                 <Frame BackgroundColor="#4b4b4b"
-                       MinimumWidthRequest="200"
-                       WidthRequest="400"
-                       HeightRequest="100"
-                       Margin="10"
+                       WidthRequest="333"
+                       HeightRequest="150"
+                       Margin="5"
                        BorderColor="Transparent">
 
                     <HorizontalStackLayout>
                         <Image Source="innovation.png"
-                               MinimumWidthRequest="30"
-                               HeightRequest="30"
+                               WidthRequest="42"
+                               HeightRequest="42"
                                VerticalOptions="Center"
-                               TranslationX="-10"/>
+                               Margin="10,0,0,0"/>
 
                         <Label TextColor="White"
-                               FontSize="10"
-                               LineBreakMode="WordWrap"
-                               VerticalOptions="CenterAndExpand"
-                               Text="Do you know? The rule of thumb for setting a budget is to use the 
-                               &#10;50-30-20 rule, where 50% of your budget goes towards necessities, 
-                               &#10;30% towards your wants and 20% towards savings."/>
+                               FontSize="15"
+                               VerticalOptions="Start"
+                               HorizontalOptions="Start"
+                               WidthRequest="260"
+                               Text="Do you know? The rule of thumb for setting a budget is to use the 50-30-20 rule, where 50% of your budget goes towards necessities, 30% towards your wants and 20% towards savings."
+                               Margin="10"/>
+
                     </HorizontalStackLayout>
                 </Frame>
             </FlexLayout>

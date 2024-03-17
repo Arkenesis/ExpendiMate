@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ExpendiMate.Pages.SetInstallment"
+             xmlns:models="clr-namespace:ExpendiMate.Models"
+             Shell.FlyoutBehavior="Disabled"
+             Title="Add Installment">
+    <ScrollView>
+        <StackLayout>
+            <Label Text="Name"
+                   TextColor="#009040"
+                   FontSize="20"
+                   FontAttributes="Bold"
+                   Padding="10"/>
+
+            <Entry Placeholder="Amazon Prime" 
+                   TextColor="Green"
+                   HorizontalOptions="FillAndExpand"
+                   Text="{Binding InstallmentName, Mode=TwoWay}"
+                   Margin="10"/>
+
+            <BoxView Color="Green" HeightRequest="2" HorizontalOptions="Fill" Margin="10"/>
+
+            <Label Text="Cost"
+                   TextColor="#009040"
+                   FontSize="20"
+                   FontAttributes="Bold"
+                   Padding="10"/>
+
+            <Entry Placeholder="14.99" 
+                   TextColor="Green" 
+                   HorizontalOptions="FillAndExpand"
+                   Margin="10"
+                   Text="{Binding InstallmentCost, Mode=TwoWay}"/>
+
+            <BoxView Color="Green" HeightRequest="2" HorizontalOptions="Fill" Margin="10"/>
+
+            <Label Text="Set Date"
+                   TextColor="#009040"
+                   FontSize="20"
+                   FontAttributes="Bold"
+                   Padding="10"/>
+            <DatePicker 
+                   MinimumDate="01/01/2024"
+                   MaximumDate="12/31/2024"
+                   Date="{Binding InstallmentDate}"
+                   Margin="10"/>
+            <HorizontalStackLayout>
+                <Label Text="Enable Notifications"
+                   TextColor="#009040"
+                   FontSize="20"
+                   FontAttributes="Bold"
+                   Margin="10"/>
+
+                <Switch IsToggled="{Binding InstallmentIsActivated}" TranslationX="50" OnColor="Green" ThumbColor="Green"/>
+                
+            </HorizontalStackLayout>
+
+            <HorizontalStackLayout>
+                <Button Text="Save"
+                        TextColor="White"
+                        FontAttributes="Bold"
+                        FontSize="16"
+                        BackgroundColor="#009040"
+                        WidthRequest="180"
+                        Margin="10, 10"
+                        HorizontalOptions="End"
+                        Clicked="SaveInstallment"/>
+            </HorizontalStackLayout>
+        </StackLayout>
+    </ScrollView>
+
+</ContentPage>

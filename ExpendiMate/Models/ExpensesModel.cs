@@ -1,4 +1,5 @@
-﻿using ExpendiMate.ViewModels;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using ExpendiMate.ViewModels;
 using SQLite;
 using System;
 using System.Collections.Generic;
@@ -10,6 +11,7 @@ namespace ExpendiMate.Models
 {
 
     //Expense
+    [Table("Expenses")]
     public class ExpensesModel : ObservableObject
     {
         [PrimaryKey, AutoIncrement]

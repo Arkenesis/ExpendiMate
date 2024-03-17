@@ -2,12 +2,54 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ExpendiMate.Pages.Analytics"
-             Title="Analytics">
-    
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+             xmlns:models="clr-namespace:ExpendiMate.Models"
+             xmlns:micro="clr-namespace:Microcharts.Maui;assembly=Microcharts.Maui"
+             BackgroundColor="White"
+             Title="Analytics"
+             x:Name="AnalyticsPage">
+    <ScrollView>
+        <VerticalStackLayout>
+            <Label Text="{Binding Year}" FontSize="Large" TextColor="#2A794D" FontAttributes="Bold" HorizontalOptions="Center" Margin="0,20,0,0"/>
+            
+            <Frame HeightRequest="230" Margin="20">
+                <micro:ChartView  Chart="{Binding Item}"/>
+            </Frame>
+
+            <Grid ColumnDefinitions="*,*">
+                <Button Margin="20,0,0,0" Grid.Column="0" Text="&lt;" FontAttributes="Bold" FontSize="24" TextColor="White" HeightRequest="1" CornerRadius="10" BackgroundColor="#00B14F" HorizontalOptions="Start" Clicked="MinusYear"/>
+                <Button Margin="0,0,20,0" Grid.Column="1" Text="&gt;" FontAttributes="Bold" FontSize="24" TextColor="White" HeightRequest="1" CornerRadius="10" BackgroundColor="#00B14F" HorizontalOptions="End" Clicked="PlusYear"/>
+            </Grid>
+            
+            <ListView ItemsSource="{Binding ExpensesOrderByYears}" IsGroupingEnabled="True">
+                <ListView.GroupHeaderTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout>
+                                <Frame WidthRequest="330" HeightRequest="40" Margin="20,10,20,0" BackgroundColor="Transparent" BorderColor="Transparent">
+                                    <Frame.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="Frame_Tapped" NumberOfTapsRequired="1" />
+                                    </Frame.GestureRecognizers>
+                                    <Grid ColumnDefinitions="25,2*,*,*" ColumnSpacing="10">
+                                        <BoxView Color="#68DE68" CornerRadius="16" WidthRequest="16" HeightRequest="16" HorizontalOptions="End" Grid.Column="0"/>
+                                        <Label Text="{Binding Name}"                               TextColor="Black" FontSize="14" FontAttributes="Bold" HorizontalOptions="Start" VerticalOptions="Center" Grid.Column="1" />
+                                        <Label Text="{Binding Total,  StringFormat='${0:F2}'}"     TextColor="Black" FontSize="14" FontAttributes="Bold" HorizontalOptions="Start"   VerticalOptions="Center" Grid.Column="2" />
+                                        <Label Text="{Binding Percentage, StringFormat='{0:P1}'}" TextColor="Black" FontSize="14" FontAttributes="Bold" HorizontalOptions="Start"   VerticalOptions="Center" Grid.Column="3" />
+                                    </Grid>
+                                </Frame>
+                                <BoxView Color="#2A794D" HeightRequest="2" HorizontalOptions="Fill" Margin="10"/>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.GroupHeaderTemplate>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </VerticalStackLayout>
+    </ScrollView>
+
 </ContentPage>

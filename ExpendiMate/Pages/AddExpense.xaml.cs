@@ -38,6 +38,13 @@ public partial class AddExpense : ContentPage
         await Navigation.PopToRootAsync();
     }
 
+    private void CalculateDate()
+    {
+        DateTime today = DateTime.Today;
+        DateTime yesterday = today.AddDays(-1);
+        DateTime twoDaysAgo = today.AddDays(-2);
+    }
+
     private async void ClearAllExpenses(object sender, EventArgs e)
     {
         ExpensesViewModel.Current.DeleteAllData();

@@ -55,7 +55,7 @@
                 Date="{Binding ExpenseDate}"
                 Margin="20,10,20,10"/>
 
-            <HorizontalStackLayout>
+            <HorizontalStackLayout TranslationY="-10">
                 <Frame BackgroundColor="#32df7f"
                        WidthRequest="90"
                        HeightRequest="45"
@@ -145,6 +145,7 @@
                    Margin="20,10,20,10"/>
 
             <Entry Placeholder="Enter the cost amount" 
+
                    TextColor="Green"
                    HorizontalOptions="FillAndExpand"
                    Margin="20,10,20,10"

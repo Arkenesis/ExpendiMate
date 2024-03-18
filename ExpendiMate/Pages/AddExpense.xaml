@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ExpendiMate.Pages.AddExpense"
              xmlns:models="clr-namespace:ExpendiMate.Models"
-             Shell.FlyoutBehavior="Disabled">
+             Shell.FlyoutBehavior="Disabled"
+             BackgroundColor="White">
     <ScrollView>
         <VerticalStackLayout>
             <Label Text="Name"
@@ -53,7 +54,9 @@
                 MinimumDate="01/01/2023"
                 MaximumDate="12/31/2024"
                 Date="{Binding ExpenseDate}"
-                Margin="20,10,20,10"/>
+                Margin="20,10,20,10"
+                TextColor="White"
+                Background="#32df7f"/>
 
             <HorizontalStackLayout>
                 <Frame BackgroundColor="#32df7f"
@@ -159,7 +162,8 @@
             <Entry Placeholder="Leave your feedback here..." 
                    TextColor="Green"
                    HorizontalOptions="FillAndExpand"
-                   Margin="20,10,20,10"/>
+                   Margin="20,10,20,10"
+                   Text="{Binding ExpenseComments}"/>
 
             <Label Text="Photo"
                    TextColor="#00B14F"
@@ -167,23 +171,21 @@
                    FontAttributes="Bold"
                    Margin="20,10,20,10"/>
 
-            <HorizontalStackLayout Margin="20,10,20,10">
+            <HorizontalStackLayout Margin="20,10,20,10" Spacing="10">
+                <Image  Source="{Binding ExpensePicturePath}"
+                        WidthRequest="100"
+                        HeightRequest="100"
+                        Aspect="Fill"
+                        AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
+                        AbsoluteLayout.LayoutFlags="All"/>
                 <Button Text="+"
                         TextColor="White"
                         FontAttributes="Bold"
                         FontSize="80"
                         BackgroundColor="#00B14F"
                         HeightRequest="100"
-                        WidthRequest="100"/>
-
-                <Button Text="+"
-                        TextColor="White"
-                        FontAttributes="Bold"
-                        FontSize="80"
-                        BackgroundColor="#00B14F"
-                        Margin="20,0"
-                        HeightRequest="100"
-                        WidthRequest="100"/>
+                        WidthRequest="100"
+                        Clicked="AddPhoto"/>
             </HorizontalStackLayout>
 
             <Button Text="Save"

@@ -12,13 +12,13 @@
             <Label Text="{Binding Year}" FontSize="Large" TextColor="#2A794D" FontAttributes="Bold" HorizontalOptions="Center" Margin="0,20,0,0"/>
             
             <Frame HeightRequest="230" Margin="20">
-                <micro:ChartView  Chart="{Binding Item}"/>
+                <!--<micro:ChartView  Chart="{Binding Item}"/>-->
             </Frame>
 
-            <Grid ColumnDefinitions="*,*">
-                <Button Margin="20,0,0,0" Grid.Column="0" Text="&lt;" FontAttributes="Bold" FontSize="24" TextColor="White" HeightRequest="1" CornerRadius="10" BackgroundColor="#00B14F" HorizontalOptions="Start" Clicked="MinusYear"/>
-                <Button Margin="0,0,20,0" Grid.Column="1" Text="&gt;" FontAttributes="Bold" FontSize="24" TextColor="White" HeightRequest="1" CornerRadius="10" BackgroundColor="#00B14F" HorizontalOptions="End" Clicked="PlusYear"/>
-            </Grid>
+            <HorizontalStackLayout>
+                <Button Margin="20,0,0,0" Text="&lt;" FontAttributes="Bold" FontSize="24" TextColor="White" HeightRequest="1" CornerRadius="10" BackgroundColor="#00B14F" HorizontalOptions="Start" Clicked="MinusYear"/>
+                <Button Margin="0,0,20,0" Text="&gt;" FontAttributes="Bold" FontSize="24" TextColor="White" HeightRequest="1" CornerRadius="10" BackgroundColor="#00B14F" HorizontalOptions="End" Clicked="PlusYear"/>
+            </HorizontalStackLayout>
             
             <ListView ItemsSource="{Binding ExpensesOrderByYears}" IsGroupingEnabled="True">
                 <ListView.GroupHeaderTemplate>

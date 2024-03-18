@@ -1,8 +1,8 @@
 ﻿using ExpendiMate.Models;
 using ExpendiMate.Pages;
+using ExpendiMate.Services.PartialMethods;
 using ExpendiMate.ViewModels;
 using Microcharts;
-using Microcharts.Maui;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Xml;
@@ -18,21 +18,23 @@ namespace ExpendiMate
             viewModel = new ExpensesViewModel();
             BindingContext = viewModel;
             InitializeComponent();
-        }
 
+        }
 
         //Update the view if property change
         protected override void OnAppearing()
         {
-            //    The name of the property that we listen in 
-            //    viewModel.OnPropertyChanged("ExpensesByCategory");
+            base.OnAppearing();
+
             viewModel.UpdateView();
             DayLabel.TextColor = Color.FromHex("#4b9460");
             DayLabel.TextDecorations = TextDecorations.Underline;
             resetLabel(WeekLabel);
             resetLabel(MonthLabel);
             resetLabel(YearLabel);
-            base.OnAppearing();
+
+            //DateTime temp = DateTime.Now.AddSeconds(10);
+            //NotificationService.SendNotification("Hello","How are you, i m fine.",temp);
         }
 
         private void ExpenseButton_Clicked(object sender, EventArgs e)

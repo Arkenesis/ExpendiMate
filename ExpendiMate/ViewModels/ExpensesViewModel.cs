@@ -1,11 +1,9 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using ExpendiMate.Models;
 using ExpendiMate.Services;
-using Microcharts;
 using SkiaSharp;
 using SQLite;
-using System.Collections.ObjectModel;
-using System.Xml;
+using Microcharts;
 
 
 namespace ExpendiMate.ViewModels
@@ -20,38 +18,9 @@ namespace ExpendiMate.ViewModels
         {
             Current = this;
             connection = DatabaseServices.Connection;
-            UpdateView();
+            ExpensesByCategory = new ();
+            //UpdateView();
         }
-
-        //Get every expense record
-        //public List<ExpensesModel> Expenses
-        //{
-        //    get
-        //    {
-        //        UpdateExpensesByCategory();
-        //        return connection.Table<ExpensesModel>().ToList();
-        //    }
-        //}
-
-        //public List<ExpensesModel> ExpensesByWeek
-        //{
-        //    get
-        //    {
-        //        UpdateExpensesByCategory();
-        //        return connection.Query<ExpensesModel>("SELECT * FROM Expenses WHERE ExpenseDate >= DATE('now', '-7 days')").ToList();
-        //    }
-        //}
-
-        //public List<ExpensesModel> ExpensesByMonth
-        //{
-        //    get
-        //    {
-        //        UpdateExpensesByCategory();
-        //        return connection.Table<ExpensesModel>().ToList();
-        //    }
-        //}
-
-        public ObservableCollection<ExpensesCategoryModel> ExpensesByCategory { get ; set ; } = new ();
 
         public void SaveExpenses(ExpensesModel model)
         {
@@ -75,7 +44,9 @@ namespace ExpendiMate.ViewModels
             }
         }
 
-        // Total Cost of all the expenses
+        [ObservableProperty]
+        List<ExpensesCategoryModel> expensesByCategory;
+
         [ObservableProperty]
         double total;
 
@@ -169,7 +140,7 @@ namespace ExpendiMate.ViewModels
                     ValueLabel = "$" + sum,
                     Color = SKColor.Parse(categoryModel.IconColor),
                     ValueLabelColor = SKColor.Parse("#FFFFFF"),
-                    OtherColor = SKColor.Parse(categoryModel.IconColor)
+                    //OtherColor = SKColor.Parse(categoryModel.IconColor)
                 };
                 entries.Add(entry);
                 ExpensesByCategory.Add(categoryModel);
@@ -190,17 +161,6 @@ namespace ExpendiMate.ViewModels
 
         public void createChart(IEnumerable<ChartEntry> entries)
         {
-            //if (Item != null) return;
-
-            //var entries = new[]
-            //{
-            //    new ChartEntry(212)
-            //    {
-            //        Label = "UWP",
-            //        ValueLabel = "112",
-            //        Color = SKColor.Parse("#2c3e50")
-            //    }
-            //};
             Item = new DonutChart { 
                 Entries = entries, 
                 BackgroundColor = SKColor.Parse("#4b4b4b"), 
@@ -211,14 +171,5 @@ namespace ExpendiMate.ViewModels
             };
         }
 
-        //public void UpdateView()
-        //{
-        //    OnPropertyChanged(nameof(Expenses));
-        //}
-
-        //internal void setExpenses(string res)
-        //{
-        //    throw new NotImplementedException();
-        //}
     }
 }

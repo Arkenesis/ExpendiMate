@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ExpendiMate.Pages.AccountSettings"
+             BackgroundColor="White"
+             Title="Account Settings">
+    <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto">
+
+        <Label Text="Display Name"                                                         Margin="24,50,0,0" TextColor="#009040" FontSize="20" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" FontAttributes="Bold" Grid.Row="0"/>
+        <Entry Text="{Binding NewName}" Placeholder="{Binding User.User.Info.DisplayName}" Margin="16,0,16,0" TextColor="#00B14F" FontSize="16" HorizontalTextAlignment="Start" FontAttributes="Bold" Grid.Row="1"/>
+        <BoxView Color="#00B14F" HeightRequest="2" VerticalOptions="End" HorizontalOptions="FillAndExpand" Grid.Row="1" Margin="24,0,24,0"/>
+
+        <Label Text="Password"                                                                 Margin="24,24,0,0" TextColor="#009040" FontSize="20" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" FontAttributes="Bold" Grid.Row="2"/>
+        <Entry Text="{Binding NewPassword}" IsPassword="True" Placeholder="{Binding Password}" Margin="16,0,16,0" TextColor="#00B14F" FontSize="16" HorizontalTextAlignment="Start" FontAttributes="Bold" Grid.Row="3"/>
+        <BoxView Color="#00B14F" HeightRequest="2" VerticalOptions="End" HorizontalOptions="FillAndExpand" Grid.Row="3" Margin="24,0,24,0"/>
+
+        <Grid ColumnDefinitions="*,*" Grid.Row="4" Margin="24,24" ColumnSpacing="20">
+            <Frame WidthRequest="160" HeightRequest="50" BackgroundColor="#4B4B4B" BorderColor="Transparent" HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="0" CornerRadius="25">
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="DiscardChanges_Clicked" NumberOfTapsRequired="1" />
+                </Frame.GestureRecognizers>
+                <Label Text="Discard Changes" TextColor="White" FontSize="14" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontAttributes="Bold"/>
+            </Frame>
+
+            <Frame WidthRequest="160" HeightRequest="50" BackgroundColor="#00B14F" BorderColor="Transparent" HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="1" CornerRadius="25">
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="SaveChanges_Clicked" NumberOfTapsRequired="1" />
+                </Frame.GestureRecognizers>
+                <Label Text="Save Changes" TextColor="White" FontSize="14" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontAttributes="Bold"/>
+            </Frame>
+        </Grid>
+
+        <Grid Grid.Row="5" ColumnDefinitions="Auto,*" Margin="24,0,24,0">
+            <Label Text="Last Created Backup Files" TextColor="#009040" FontSize="20" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" FontAttributes="Bold" Grid.Column="0"/>
+            <Frame BackgroundColor="#00B14F" WidthRequest="30" CornerRadius="30" HeightRequest="30" BorderColor="Transparent" HorizontalOptions="End" VerticalOptions="Center" Grid.Column="1">
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="Upload_Clicked" NumberOfTapsRequired="1" />
+                </Frame.GestureRecognizers>
+                <Label Text="+" TextColor="White" FontSize="20" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Grid.Column="1" />
+            </Frame>
+
+        </Grid>
+
+        <Frame HeightRequest="50" BackgroundColor="#3C93C9" BorderColor="Transparent" HorizontalOptions="FillAndExpand" VerticalOptions="Center" Grid.Row="6" Margin="20,10">
+            <Frame.GestureRecognizers>
+                <TapGestureRecognizer Tapped="Restore_Clicked" NumberOfTapsRequired="1" />
+            </Frame.GestureRecognizers>
+            <Grid ColumnDefinitions="25,2*,*" ColumnSpacing="10">
+                <BoxView Color="White" CornerRadius="16" WidthRequest="16" HeightRequest="16" HorizontalOptions="End" Grid.Column="0"/>
+                <Label Text="{Binding LastUploadData}" TextColor="White" FontSize="14" FontAttributes="Bold" HorizontalOptions="Start" VerticalOptions="Center" Grid.Column="1" />
+                <Label Text="{Binding FileSize, StringFormat='{0:F2}Kb'}"       TextColor="White" FontSize="14" FontAttributes="Bold" HorizontalOptions="Center"   VerticalOptions="Center" Grid.Column="2" />
+            </Grid>
+        </Frame>
+
+    </Grid>
+</ContentPage>

@@ -12,8 +12,9 @@
     Title="ExpendiMate">
 
     <FlyoutItem Title="Dashboard" 
-                FlyoutDisplayOptions="AsMultipleItems">
-        
+                FlyoutDisplayOptions="AsMultipleItems"
+                Route="AllRoutes">
+
         <ShellContent Title="Home"
                       ContentTemplate="{DataTemplate main:MainPage}"
                       Route="MainPage"
@@ -39,16 +40,19 @@
                       Route="BudgetingGuide"
                       Icon="tutorial.png"/>
 
+        <ShellContent Title="Account Settings"
+                      ContentTemplate="{DataTemplate local:AccountSettings}"
+                      Route="AccountSettings"
+                      Icon="settings.png"/>
+
     </FlyoutItem>
 
     <Shell.ItemTemplate>
         <DataTemplate>
-            <Grid ColumnDefinitions="*, 0" RowDefinitions="*,*,*" RowSpacing="5" ColumnSpacing="10">
-                <HorizontalStackLayout Grid.Row="0" Spacing="10">
-                    <Image Source="{Binding FlyoutIcon}" WidthRequest="30" HeightRequest="30"></Image>
-                    <Label Text="{Binding Title}" TextColor="White"></Label>
-                </HorizontalStackLayout>
-            </Grid>
+            <HorizontalStackLayout>
+                <Image Source="{Binding FlyoutIcon}" WidthRequest="30" HeightRequest="30"></Image>
+                <Label Text="{Binding Title}" TextColor="White"></Label>
+            </HorizontalStackLayout>
         </DataTemplate>
     </Shell.ItemTemplate>
 

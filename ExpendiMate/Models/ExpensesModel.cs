@@ -12,7 +12,7 @@ namespace ExpendiMate.Models
 
     //Expense
     [Table("Expenses")]
-    public class ExpensesModel : ObservableObject
+    public partial class ExpensesModel : ObservableObject
     {
         [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
@@ -21,7 +21,9 @@ namespace ExpendiMate.Models
         public double ExpenseCost { get; set; }
         public string ExpenseComments { get; set; } = "";
         public DateTime ExpenseDate { get; set; }
-        public string ExpensePicturePath { get; set; } = "";
+
+        [ObservableProperty]
+        string expensePicturePath;
 
 
     }

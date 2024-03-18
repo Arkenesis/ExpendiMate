@@ -1,4 +1,5 @@
-﻿using ExpendiMate.Services;
+﻿using ExpendiMate.Pages;
+using Microsoft.Maui.Controls.Handlers.Items;
 
 namespace ExpendiMate
 {
@@ -6,8 +7,9 @@ namespace ExpendiMate
     {
         public App()
         {
+            //DependencyService.Register<IMessageService, MessageService>();
             InitializeComponent();
-            MainPage = new AppShell();
+            MainPage = new Login();
         }
 
         //Simulate phone device screen size in window machine
@@ -40,5 +42,7 @@ namespace ExpendiMate
         window.Y = (disp.Height / disp.Density - window.Height) / 2;
 #endif
         }
+
+
     }
 }

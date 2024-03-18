@@ -7,7 +7,7 @@
              Title="Installment">
 
     <ScrollView>
-        <FlexLayout Direction="Column" JustifyContent="SpaceEvenly">
+        <StackLayout>
             <Label Text="Installment Summary" FontSize="Large" TextColor="Black" HorizontalOptions="Center"/>
             <Label Text="{Binding TotalCost, StringFormat='${0:F2}'}" FontSize="Large" TextColor="Black" HorizontalOptions="Center"/>
 
@@ -37,20 +37,19 @@
                 </ListView.ItemTemplate>
             </ListView>
 
-            <Grid ColumnDefinitions="*,*,*,*,*">
-                <Button Text="+"
-                        TextColor="White"
-                        FontAttributes="Bold"
-                        FontSize="24"
-                        WidthRequest="30"
-                        HeightRequest="30"
-                        BackgroundColor="#009040"
-                        Clicked="InstallmentButton_Clicked"
-                        HorizontalOptions="Center"
-                        CornerRadius="100"
-                        Grid.Column="2"/>
-            </Grid>
+            <Button Text="+"
+                    TextColor="White"
+                    FontAttributes="Bold"
+                    FontSize="24"
+                    WidthRequest="30"
+                    HeightRequest="30"
+                    BackgroundColor="#009040"
+                    Clicked="InstallmentButton_Clicked"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"
+                    CornerRadius="100"
+                    Grid.Column="2"/>
 
-        </FlexLayout>
+        </StackLayout>
     </ScrollView>
 </ContentPage>

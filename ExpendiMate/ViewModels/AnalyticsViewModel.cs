@@ -27,6 +27,7 @@ namespace ExpendiMate.ViewModels
 
         public void UpdateView(int year=0)
         {
+
             DateTime currYear = new DateTime(DateTime.Now.Year, 1, 1);
             DateTime firstDayOfYear = currYear.AddYears(year).AddDays(-1);
             DateTime lastDayOfYear = firstDayOfYear.AddYears(1).AddDays(1);

@@ -4,7 +4,8 @@
              xmlns:micro="clr-namespace:Microcharts.Maui;assembly=Microcharts.Maui"
              x:Class="ExpendiMate.MainPage"
              BackgroundColor="White"
-             Title="Expenses">
+             Title="Expenses"
+             Shell.TitleColor="Red">
 
     <ScrollView>
         <VerticalStackLayout>
@@ -105,7 +106,7 @@
                                    Margin="5"/>
                         </StackLayout>
 
-                        <micro:ChartView HeightRequest="200" Chart="{Binding Item}"/>
+                        <!--<micro:ChartView Chart="{Binding Item}"/>-->
 
                         <Frame BackgroundColor="Transparent" BorderColor="Transparent" HorizontalOptions="End" TranslationX="-10" TranslationY="-10">
                             <Button Text="+"
@@ -120,24 +121,6 @@
                     </VerticalStackLayout>
                 </Frame>
             </FlexLayout>
-
-            <!--<ListView x:Name="ExpensesListView"
-                SelectionMode="None"
-                ItemsSource="{Binding Expenses}">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell>
-                            <VerticalStackLayout>
-                                <Label TextColor="Black" Text="{Binding ExpenseName}" FontAttributes="Bold"/>
-                                <Label TextColor="Black" Text="{Binding ExpenseCost}"/>
-                                <Label TextColor="Black" Text="{Binding ExpenseComments}" />
-                                <Label TextColor="Black" Text="{Binding ExpenseDate}"/>
-                                <Label TextColor="Black" Text="{Binding ExpensePicturePath}" />
-                            </VerticalStackLayout>
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>-->
 
             <ListView ItemsSource="{Binding ExpensesByCategory}" IsGroupingEnabled="True">
                 <ListView.GroupHeaderTemplate>

@@ -14,45 +14,32 @@ namespace ExpendiMate.ViewModels
     {
         public static ExpensesViewModel Current { get; set; }
 
+        public DateTime ExpenseDate { get; set; }
+
         SQLiteConnection connection;
 
         public ExpensesViewModel()
         {
             Current = this;
             connection = DatabaseServices.Connection;
+
+            TodayButtonColor = Color.FromHex("#32df7f");
+            YesterdayButtonColor = Color.FromRgba(0, 0, 0, 0);
+            TwoDaysAgoButtonColor = Color.FromRgba(0, 0, 0, 0);
+
             UpdateView();
         }
 
-        //Get every expense record
-        //public List<ExpensesModel> Expenses
-        //{
-        //    get
-        //    {
-        //        UpdateExpensesByCategory();
-        //        return connection.Table<ExpensesModel>().ToList();
-        //    }
-        //}
-
-        //public List<ExpensesModel> ExpensesByWeek
-        //{
-        //    get
-        //    {
-        //        UpdateExpensesByCategory();
-        //        return connection.Query<ExpensesModel>("SELECT * FROM Expenses WHERE ExpenseDate >= DATE('now', '-7 days')").ToList();
-        //    }
-        //}
-
-        //public List<ExpensesModel> ExpensesByMonth
-        //{
-        //    get
-        //    {
-        //        UpdateExpensesByCategory();
-        //        return connection.Table<ExpensesModel>().ToList();
-        //    }
-        //}
-
         public ObservableCollection<ExpensesCategoryModel> ExpensesByCategory { get ; set ; } = new ();
 
+        [ObservableProperty]
+        private Color _todayButtonColor;
+
+        [ObservableProperty]
+        private Color _yesterdayButtonColor;
+
+        [ObservableProperty]
+        private Color _twoDaysAgoButtonColor;
         public void SaveExpenses(ExpensesModel model)
         {
             //If it has an Id, then it already exists and we can update it 
@@ -122,8 +109,6 @@ namespace ExpendiMate.ViewModels
             }
             InBetween = result;
 
-            
-
             // Group expenses by category
             // Key: Category Name
             // Value: Category List
@@ -190,18 +175,8 @@ namespace ExpendiMate.ViewModels
 
         public void createChart(IEnumerable<ChartEntry> entries)
         {
-            //if (Item != null) return;
-
-            //var entries = new[]
-            //{
-            //    new ChartEntry(212)
-            //    {
-            //        Label = "UWP",
-            //        ValueLabel = "112",
-            //        Color = SKColor.Parse("#2c3e50")
-            //    }
-            //};
-            Item = new DonutChart { 
+            Item = new DonutChart 
+            { 
                 Entries = entries, 
                 BackgroundColor = SKColor.Parse("#4b4b4b"), 
                 LabelColor = new SKColor(255, 255, 255),
@@ -210,15 +185,5 @@ namespace ExpendiMate.ViewModels
                 LabelMode = LabelMode.LeftAndRight
             };
         }
-
-        //public void UpdateView()
-        //{
-        //    OnPropertyChanged(nameof(Expenses));
-        //}
-
-        //internal void setExpenses(string res)
-        //{
-        //    throw new NotImplementedException();
-        //}
     }
 }

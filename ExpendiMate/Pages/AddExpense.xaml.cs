@@ -12,6 +12,7 @@ public partial class AddExpense : ContentPage
     {
         model = m;
         BindingContext = model;
+        model.ExpenseDate = DateTime.Today;
         InitializeComponent();
     }
 
@@ -38,16 +39,39 @@ public partial class AddExpense : ContentPage
         await Navigation.PopToRootAsync();
     }
 
-    private void CalculateDate()
+    public void TodayButtonClicked(object sender, EventArgs e)
     {
-        DateTime today = DateTime.Today;
-        DateTime yesterday = today.AddDays(-1);
-        DateTime twoDaysAgo = today.AddDays(-2);
+        model.ExpenseDate = DateTime.Today;
+
+        TodayButtonColor.BackgroundColor = Color.FromHex("#32df7f");
+        YesterdayButtonColor.BackgroundColor = Color.FromRgba(0, 0, 0, 0);
+        TwoDaysAgoButtonColor.BackgroundColor = Color.FromRgba(0, 0, 0, 0);
     }
 
-    private async void ClearAllExpenses(object sender, EventArgs e)
+    public void YesterdayButtonClicked(object sender, EventArgs e)
     {
-        ExpensesViewModel.Current.DeleteAllData();
+        DateTime today = DateTime.Today;
+        model.ExpenseDate = today.AddDays(-1);
+
+        TodayButtonColor.BackgroundColor = Color.FromRgba(0, 0, 0, 0);
+        YesterdayButtonColor.BackgroundColor = Color.FromHex("#32df7f");
+        TwoDaysAgoButtonColor.BackgroundColor = Color.FromRgba(0, 0, 0, 0);
+    }
+
+    public void TwoDaysAgoButtonClicked(object sender, EventArgs e)
+    {
+        DateTime today = DateTime.Today;
+        model.ExpenseDate = today.AddDays(-2);
+
+        TodayButtonColor.BackgroundColor = Color.FromRgba(0, 0, 0, 0);
+        YesterdayButtonColor.BackgroundColor = Color.FromRgba(0, 0, 0, 0);
+        TwoDaysAgoButtonColor.BackgroundColor = Color.FromHex("#32df7f");
+    }
+
+    private async void ClearExpense(object sender, EventArgs e)
+    {
+        var model = (ExpensesModel)BindingContext;
+        ExpensesViewModel.Current.DeleteExpenses(model);
         ExpensesViewModel.Current.UpdateView();
         await Navigation.PopToRootAsync();
     }

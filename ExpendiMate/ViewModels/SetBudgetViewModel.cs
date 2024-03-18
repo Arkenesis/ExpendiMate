@@ -27,6 +27,9 @@ namespace ExpendiMate.ViewModels
         [ObservableProperty]
         private Color _buttonColor4;
 
+        [ObservableProperty]
+        private Color _balanceColor;
+
         public SetBudgetViewModel()
         {
             Current = this;
@@ -55,19 +58,31 @@ namespace ExpendiMate.ViewModels
             if (User.BudgetPercent == 0.5 )
                 ButtonColor1 = new Color(50, 223, 127);
             else 
-                ButtonColor1 = new Color(75, 75, 75);
+                ButtonColor1 = new Color(0, 0, 0,0);
+
             if (User.BudgetPercent == 0.3)
                 ButtonColor2 = new Color(50, 223, 127);
             else 
-                ButtonColor2 = new Color(75, 75, 75);
+                ButtonColor2 = new Color(0, 0, 0, 0);
+
             if (User.BudgetPercent == 0.2)
                 ButtonColor3 = new Color(50, 223, 127);
             else 
-                ButtonColor3 = new Color(75, 75, 75);
+                ButtonColor3 = new Color(0, 0, 0, 0);
+
             if (User.BudgetPercent != 0.5 && User.BudgetPercent != 0.3 && User.BudgetPercent != 0.2)
                 ButtonColor4 = new Color(50, 223, 127); // Green
             else
-                ButtonColor4 = new Color(75, 75, 75);  // Grey
+                ButtonColor4 = new Color(0, 0, 0, 0); //Transparent
+
+            if (User.BudgetBalance < 0)
+            {
+                BalanceColor = new Color(200, 0, 0);
+            }
+            else
+            {
+                BalanceColor = new Color(255, 255, 255);
+            }
         }
         public double getTotalExpense()
         {

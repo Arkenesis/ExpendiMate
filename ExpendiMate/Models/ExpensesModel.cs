@@ -16,13 +16,39 @@ namespace ExpendiMate.Models
     {
         [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
-        public string ExpenseName { get; set; } = "";
-        public string ExpenseCategory { get; set; } = "";
+        public string ExpenseName { get; set; } = string.Empty;
+        public string ExpenseCategory { get; set; } = string.Empty;
         public double ExpenseCost { get; set; }
-        public string ExpenseComments { get; set; } = "";
+        public string ExpenseComments { get; set; } = string.Empty;
         public DateTime ExpenseDate { get; set; }
-        public string ExpensePicturePath { get; set; } = "";
+        public string ExpensePicturePath { get; set; } = string.Empty;
 
+        public string TodayText
+        {
+            get
+            {
+                DateTime today = DateTime.Today;
+                return today.ToString("dd/MM") + "\n Today";
+            }
+        }
 
+        public string YesterdayText
+        {
+            get
+            {
+                DateTime today = DateTime.Today;
+                DateTime yesterday = today.AddDays(-1);
+                return yesterday.ToString("dd/MM") + "\n Yesterday";
+            }
+        }
+        public string TwoDaysAgoText
+        {
+            get
+            {
+                DateTime today = DateTime.Today;
+                DateTime twoDaysAgo = today.AddDays(-2);
+                return twoDaysAgo.ToString("dd/MM") + "\n 2 days ago";
+            }
+        }
     }
 }

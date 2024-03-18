@@ -7,168 +7,139 @@
     <ScrollView>
         <VerticalStackLayout>
             <Label Text="Name"
-                   TextColor="#00B14F"
+                   TextColor="#009040"
                    FontSize="20"
                    FontAttributes="Bold"
-                   Margin="20,10,20,10"/>
+                   Margin="10, 20"/>
 
             <Entry Placeholder="Enter the expense name" 
                    TextColor="Green" 
-                   HorizontalOptions="FillAndExpand"
-                   Margin="20,10,20,10"
+                   MaxLength="500"
+                   WidthRequest="330"
+                   HorizontalOptions="Start"
+                   Margin="10, 0"
                    Text="{Binding ExpenseName}"/>
 
             <Label Text="Category"
-                   TextColor="#00B14F"
+                   TextColor="#009040"
                    FontSize="20"
                    FontAttributes="Bold"
-                   Margin="20,10,20,10"/>
+                   Margin="10, 20"/>
 
             <Picker x:Name="Category"
+                    TranslationY="-20"
                     BackgroundColor="#8D8D8D"
                     TextColor="White"
-                    HorizontalOptions="FillAndExpand"
-                    Margin="20,10,20,10"
+                    WidthRequest="330"
+                    HorizontalOptions="Start"
+                    Margin="10, 20"
                     ItemsSource="{x:Static models:CategoryModel.CategoryList}"
                     SelectedItem="{Binding ExpenseCategory}">
-            
-                <!--<Picker.ItemsSource>
-                    <x:Array Type="{x:Type x:String}">
-                        <x:String>Groceries</x:String>
-                        <x:String>Food</x:String>
-                        <x:String>Education</x:String>
-                        <x:String>Leisure</x:String>
-                        <x:String>Health</x:String>
-                        <x:String>Gifts</x:String>
-                    </x:Array>
-                </Picker.ItemsSource>-->
             </Picker>
 
             <Label Text="Date"
-                   TextColor="#00B14F"
+                   TextColor="#009040"
                    FontSize="20"
                    FontAttributes="Bold"
-                   Margin="20,10,20,10"/>
-            <DatePicker 
-                MinimumDate="01/01/2023"
-                MaximumDate="12/31/2024"
-                Date="{Binding ExpenseDate}"
-                Margin="20,10,20,10"/>
+                   Margin="10, 20"
+                   TranslationY="-40"/>
 
-            <HorizontalStackLayout TranslationY="-10">
-                <Frame BackgroundColor="#32df7f"
-                       WidthRequest="90"
-                       HeightRequest="45"
-                       CornerRadius="10"
-                       BorderColor="Transparent"
-                       Margin="20,10,20,10">
+            <HorizontalStackLayout TranslationY="-40">
+                <Button x:Name="TodayButtonColor"
+                        BackgroundColor="#32df7f"
+                        WidthRequest="90"
+                        HeightRequest="45"
+                        CornerRadius="10"
+                        BorderColor="Transparent"
+                        Padding="0"
+                        Margin="10, 0"
+                        FontSize="12"
+                        FontAttributes="Bold"
+                        TextColor="Black"
+                        Text="{Binding TodayText}"
+                        Clicked="TodayButtonClicked">
+                </Button>
 
-                    <!-- Text="Binding MyDate, StringFormat='{0:d}'-->
-                    <VerticalStackLayout>
-                        <Label Text="14/01"
-                               TextColor="Black"
-                               HorizontalOptions="Center"
-                               FontAttributes="Bold"
-                               FontSize="12"
-                               TranslationY="5"/>
+                <Button x:Name="YesterdayButtonColor"
+                        BackgroundColor="Transparent"
+                        WidthRequest="90"
+                        HeightRequest="45"
+                        CornerRadius="10"
+                        BorderColor="Transparent"
+                        Padding="0"
+                        Margin="10, 0"
+                        FontSize="12"
+                        FontAttributes="Bold"
+                        TextColor="Black"
+                        Text="{Binding YesterdayText}"
+                        Clicked="YesterdayButtonClicked">
+                </Button>
 
-                        <Label Text="Today"
-                               TextColor="Black"
-                               HorizontalOptions="Center"
-                               FontAttributes="Bold"
-                               FontSize="12"
-                               TranslationY="5"/>
-                    </VerticalStackLayout>
-                </Frame>
-
-                <Frame BackgroundColor="#4b9460"
-                       WidthRequest="90"
-                       HeightRequest="45"
-                       CornerRadius="10"
-                       BorderColor="Transparent"
-                       Padding="0"
-                       Margin="10, -20">
-
-                    <VerticalStackLayout>
-                        <Label Text="13/01"
-                               TextColor="Black"
-                               HorizontalOptions="Center"
-                               FontAttributes="Bold"
-                               FontSize="12"
-                               TranslationY="5"/>
-
-                        <Label Text="Yesterday"
-                               TextColor="Black"
-                               HorizontalOptions="Center"
-                               FontAttributes="Bold"
-                               FontSize="12"
-                               TranslationY="5"/>
-                    </VerticalStackLayout>
-                </Frame>
-
-                <Frame BackgroundColor="#4b9460"
-                       WidthRequest="90"
-                       HeightRequest="45"
-                       CornerRadius="10"
-                       BorderColor="Transparent"
-                       Padding="0"
-                       Margin="10, -20">
-
-                    <VerticalStackLayout>
-                        <Label Text="12/01"
-                               TextColor="Black"
-                               HorizontalOptions="Center"
-                               FontAttributes="Bold"
-                               FontSize="12"
-                               TranslationY="5"/>
-
-                        <Label Text="2 days ago"
-                               TextColor="Black"
-                               HorizontalOptions="Center"
-                               FontAttributes="Bold"
-                               FontSize="12"
-                               TranslationY="5"/>
-                    </VerticalStackLayout>
-                </Frame>
-
-                <Image Source="calendar.png"
-                       WidthRequest="45" 
-                       HeightRequest="45"
-                       Margin="20, 0"/>
+                <Button x:Name="TwoDaysAgoButtonColor"
+                        BackgroundColor="Transparent"
+                        WidthRequest="90"
+                        HeightRequest="45"
+                        CornerRadius="10"
+                        BorderColor="Transparent"
+                        Padding="0"
+                        Margin="10, 0"
+                        FontSize="12"
+                        FontAttributes="Bold"
+                        TextColor="Black"
+                        Text="{Binding TwoDaysAgoText}"
+                        Clicked="TwoDaysAgoButtonClicked">
+                </Button>
             </HorizontalStackLayout>
 
+            <DatePicker x:Name="xDatePicker"
+                        MinimumDate="2024-01-01"
+                        MaximumDate="2025-12-31"
+                        Date="{Binding ExpenseDate}"
+                        Margin="10, 20"
+                        TranslationY="-40"/>
+
             <Label Text="Cost"
-                   TextColor="#00B14F"
+                   TextColor="#009040"
                    FontSize="20"
                    FontAttributes="Bold"
                    HorizontalOptions="FillAndExpand"
-                   Margin="20,10,20,10"/>
+                   Margin="10,20"
+                   TranslationY="-60"/>
 
             <Entry Placeholder="Enter the cost amount" 
-
                    TextColor="Green"
-                   HorizontalOptions="FillAndExpand"
-                   Margin="20,10,20,10"
+                   MaxLength="500"
+                   WidthRequest="330"
+                   HorizontalOptions="Start"
+                   Margin="10, 20"
+                   TranslationY="-80"
                    Text="{Binding ExpenseCost}"/>
 
             <Label Text="Comments"
-                   TextColor="#00B14F"
+                   TextColor="#009040"
                    FontSize="20"
                    FontAttributes="Bold"
-                   Margin="20,10,20,10"/>
+                   Margin="10, 20"
+                   TranslationY="-100"/>
 
-            <Entry Placeholder="Leave your feedback here..." 
+            <Entry x:Name="CommentText"
+                   Placeholder="Leave your comments here" 
+                   Text="{Binding ExpenseComments}"
                    TextColor="Green"
-                   HorizontalOptions="FillAndExpand"
-                   Margin="20,10,20,10"/>
+                   HorizontalOptions="Start"
+                   Margin="10, 10"
+                   WidthRequest="330"
+                   TranslationY="-120"/>
 
             <Label Text="Photo"
-                   TextColor="#00B14F"
+                   TextColor="#009040"
                    FontSize="20"
                    FontAttributes="Bold"
-                   Margin="20,10,20,10"/>
+                   Margin="10, 20"
+                   TranslationY="-120"/>
 
-            <HorizontalStackLayout Margin="20,10,20,10">
+            <HorizontalStackLayout Margin="10, 20"
+                                   TranslationY="-140">
                 <Button Text="+"
                         TextColor="White"
                         FontAttributes="Bold"
@@ -192,20 +163,22 @@
                     FontAttributes="Bold"
                     FontSize="16"
                     BackgroundColor="#00B14F"
-                    WidthRequest="200"
-                    Margin="20,10,20,10"
+                    WidthRequest="330"
+                    Margin="10,10"
                     HorizontalOptions="Start"
+                    TranslationY="-120"
                     Clicked="AddExpenses"/>
 
             <Button
                 x:Name="ClearExpensesButton"
-                Text="Delete all Data"
+                Text="Delete expense"
                 TextColor="White"
-                WidthRequest="200"
-                Margin="20,10,20,10"
+                WidthRequest="330"
+                Margin="10, 0"
                 HorizontalOptions="Start"
-                Clicked="ClearAllExpenses"
-                BackgroundColor="LightCoral"/>
+                TranslationY="-120"
+                Clicked="ClearExpense"
+                BackgroundColor="#fc3d3d"/>
         </VerticalStackLayout>
     </ScrollView>
 

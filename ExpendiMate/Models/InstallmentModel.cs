@@ -15,12 +15,16 @@ namespace ExpendiMate.Models
     {
         [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
+
         [ObservableProperty]
-        private string installmentName = "";
+        private string installmentName = string.Empty;
+
         [ObservableProperty]
         private double installmentCost = 0;
+
         [ObservableProperty]
         private DateTime installmentDate;
+
         [ObservableProperty]
         private bool installmentIsActivated = false;
     }

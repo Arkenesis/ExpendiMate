@@ -24,7 +24,7 @@ namespace ExpendiMate.Models
         public double ExpenditurePercent { get; set; }
 
         //Account Page
-        public string AccountEmail { get; set; } = "";
-        public string AccountPassword { get; set; } = "";
+        public string AccountEmail { get; set; } = string.Empty;
+        public string AccountPassword { get; set; } = string.Empty;
     }
 }

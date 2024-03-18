@@ -8,7 +8,60 @@
 
     <ScrollView>
         <VerticalStackLayout>
-            <HorizontalStackLayout HorizontalOptions="Center" Margin="10">
+            <Grid>
+                <Frame BackgroundColor="#4b9460"
+                       BorderColor="Transparent"
+                       HeightRequest="69"
+                       WidthRequest="188"
+                       CornerRadius="32"
+                       Margin="20"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center">
+
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <Image Source="wallet.png"
+                               WidthRequest="32"
+                               HeightRequest="32"
+                               Grid.Row="0"
+                               Grid.Column="0"
+                               TranslationX="20"
+                               TranslationY="15"/>
+
+                        <Label Text="Total"
+                               TextColor="White"
+                               FontSize="Small"
+                               FontAttributes="Bold"
+                               TranslationX="0"
+                               TranslationY="5"
+                               Grid.Row="0"
+                               Grid.Column="1"
+                               HorizontalTextAlignment="Center"/>
+
+                        <Label Text="{Binding Total, StringFormat='${0:F2}'}"
+                               TextColor="White"
+                               FontSize="18"
+                               FontAttributes="Bold"
+                               TranslationX="0"
+                               TranslationY="-1"
+                               Grid.Row="1"
+                               Grid.Column="1"
+                               LineBreakMode="WordWrap"
+                               HorizontalTextAlignment="Center"/>
+                    </Grid>
+                </Frame>
+            </Grid>
+            
+            <!--<HorizontalStackLayout HorizontalOptions="Center" Margin="10">
 
                 <Frame BackgroundColor="#4b9460"
                        BorderColor="Transparent"
@@ -18,15 +71,18 @@
                     <HorizontalStackLayout HorizontalOptions="CenterAndExpand"
                                            VerticalOptions="CenterAndExpand"
                                            Margin="20,0,0,0">
+                        
                         <Image Source="wallet.png"
                                WidthRequest="32"
                                HeightRequest="32"/>
+                        
                         <Label Text="Total"
                                TextColor="White"
                                FontSize="Small"
                                FontAttributes="Bold"
                                TranslationX="40"
                                TranslationY="-5"/>
+                        
                         <Label Text="{Binding Total, StringFormat='${0:F2}'}"
                                TextColor="White"
                                Margin="5"
@@ -36,18 +92,20 @@
                                TranslationY="8"/>
                     </HorizontalStackLayout>
                 </Frame>
-            </HorizontalStackLayout>
+            </HorizontalStackLayout>-->
 
             <FlexLayout Direction="Row"
                         AlignItems="Center"
                         JustifyContent="SpaceEvenly"
                         Wrap="Wrap">
+                
                 <Frame BackgroundColor="#4b4b4b"
                        WidthRequest="330"
                        HeightRequest="328"
-                       Margin="10"
+                       Margin="10, 0"
                        BorderColor="Transparent"
                        CornerRadius="20">
+                    
                     <VerticalStackLayout>
                         <Grid ColumnDefinitions="*,*,*,*" Margin="0,20,0,0">
                             <Frame BackgroundColor="Transparent" BorderColor="Transparent" Grid.Column="0">
@@ -120,24 +178,6 @@
                     </VerticalStackLayout>
                 </Frame>
             </FlexLayout>
-
-            <!--<ListView x:Name="ExpensesListView"
-                SelectionMode="None"
-                ItemsSource="{Binding Expenses}">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell>
-                            <VerticalStackLayout>
-                                <Label TextColor="Black" Text="{Binding ExpenseName}" FontAttributes="Bold"/>
-                                <Label TextColor="Black" Text="{Binding ExpenseCost}"/>
-                                <Label TextColor="Black" Text="{Binding ExpenseComments}" />
-                                <Label TextColor="Black" Text="{Binding ExpenseDate}"/>
-                                <Label TextColor="Black" Text="{Binding ExpensePicturePath}" />
-                            </VerticalStackLayout>
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>-->
 
             <ListView ItemsSource="{Binding ExpensesByCategory}" IsGroupingEnabled="True">
                 <ListView.GroupHeaderTemplate>

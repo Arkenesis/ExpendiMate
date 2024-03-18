@@ -9,6 +9,7 @@
         <VerticalStackLayout>
             <HorizontalStackLayout HorizontalOptions="Center"
                                    Margin="10">
+                
                 <Frame BackgroundColor="#4b9460"
                        BorderColor="Transparent"
                        HeightRequest="80"
@@ -25,7 +26,7 @@
                                TranslationX="-10"/>
 
                         <Label Text="{Binding User.BudgetBalance,StringFormat='${0:F2}'}"
-                               TextColor="White"
+                               TextColor="{Binding BalanceColor}"
                                FontSize="Medium"
                                FontAttributes="Bold"/>
                     </HorizontalStackLayout>
@@ -49,7 +50,7 @@
                                FontAttributes="Bold" 
                                TextColor="White" 
                                HorizontalTextAlignment="Center"
-                               Text="INCOME"
+                               Text="Income"
                                Margin="0,20,0,0"/>
 
                         <Label FontSize="24"
@@ -63,10 +64,11 @@
                                 <TapGestureRecognizer Tapped="IncomeClicked" NumberOfTapsRequired="1" />
                             </Frame.GestureRecognizers>
                             <VerticalStackLayout>
-                                <Image Source="pencil.png"/>
+                                <Image Source="pencil.png"
+                                       WidthRequest="20"
+                                       HeightRequest="20"/>
                             </VerticalStackLayout>
                         </Frame>
-
                     </StackLayout>
                 </Frame>
 
@@ -116,11 +118,12 @@
                     <StackLayout>
                         <Button
                             Text="50%"
-                            TextColor="White"
+                            TextColor="Black"
                             BackgroundColor="Transparent"
                             VerticalOptions="Center"
                             HorizontalOptions="Center"
                             FontSize="16"
+                            FontAttributes="Bold"
                             Clicked="SetBudget50" />
                     </StackLayout>
                 </Frame>
@@ -135,11 +138,12 @@
                     <StackLayout>
                         <Button
                             Text="30%"
-                            TextColor="White"
+                            TextColor="Black"
                             BackgroundColor="Transparent"
                             VerticalOptions="Center"
                             HorizontalOptions="Center"
                             FontSize="16"
+                            FontAttributes="Bold"
                             Clicked="SetBudget30" />
                     </StackLayout>
                 </Frame>
@@ -154,11 +158,12 @@
                     <StackLayout>
                         <Button
                             Text="20%"
-                            TextColor="White"
+                            TextColor="Black"
                             BackgroundColor="Transparent"
                             VerticalOptions="Center"
                             HorizontalOptions="Center"
                             FontSize="16"
+                            FontAttributes="Bold"
                             Clicked="SetBudget20" />
                         
                     </StackLayout>
@@ -175,11 +180,12 @@
                     <StackLayout>
                         <Button
                             Text="Manual"
-                            TextColor="White"
+                            TextColor="Black"
                             BackgroundColor="Transparent"
                             VerticalOptions="Center"
                             HorizontalOptions="Center"
-                            FontSize="16"
+                            FontSize="14"
+                            FontAttributes="Bold"
                             Clicked="SetBudgetManual"/>
                     </StackLayout>
                 </Frame>
@@ -200,7 +206,8 @@
                        Padding="0">
                     <Label Text="{Binding User.Budget, StringFormat='${0:F2}'}"
                            TextColor="White"
-                           FontSize="12"
+                           FontSize="14"
+                           FontAttributes="Bold"
                            VerticalOptions="Center"
                            HorizontalOptions="Center"
                            VerticalTextAlignment="Center"

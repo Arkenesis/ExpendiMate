@@ -10,8 +10,6 @@ namespace ExpendiMate.Models
     //Expense
     public class ExpensesCategoryModel : List<ExpensesModel>
     {
-        private List<ExpensesModel> expensesModels;
-
         public string Name { get; set; }
         public string IconColor { get; set; }
         public double Total { get; set; }
@@ -21,5 +19,4 @@ namespace ExpendiMate.Models
             Name = name;
         }
     }
-
 }

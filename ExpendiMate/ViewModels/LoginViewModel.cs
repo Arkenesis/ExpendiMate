@@ -9,7 +9,7 @@ using System.Net;
 namespace ExpendiMate.ViewModels
 {
      partial class LoginViewModel : ObservableObject
-    {
+     {
 
         public static LoginViewModel Current { get; set; }
 
@@ -42,6 +42,7 @@ namespace ExpendiMate.ViewModels
 
             try
             {
+                IsBusy = true;
                 var response = await client.SignInWithEmailAndPasswordAsync(Email, Password);
 
                 User = response;
@@ -62,8 +63,10 @@ namespace ExpendiMate.ViewModels
             catch(FirebaseAuthHttpException ex)
             {
                 System.Diagnostics.Debug.WriteLine(ex);
+                IsBusy = false;
                 return false;
             }
+            IsBusy = false;
             return true;
         }
 
@@ -74,14 +77,17 @@ namespace ExpendiMate.ViewModels
 
             try
             {
+                IsBusy = true;
                 await client.ResetEmailPasswordAsync(email);
             }
             catch (FirebaseAuthHttpException ex)
             {
                 System.Diagnostics.Debug.WriteLine(ex);
+                IsBusy = false;
                 return false;
             }
 
+            IsBusy = false;
             return true;
 
         }
@@ -98,6 +104,7 @@ namespace ExpendiMate.ViewModels
             ProgressValue = 0.00;
             try
             {
+                IsBusy = true;
                 //1. File path
                 //2. What type of operation? Create Delete Open Overwrite
                 //3. What specific operation can perform? read or write
@@ -123,9 +130,11 @@ namespace ExpendiMate.ViewModels
             catch(Exception ex)
             {
                 System.Diagnostics.Debug.WriteLine(ex);
+                IsBusy = false;
                 return false;
             }
 
+            IsBusy = false;
             return true;
         }
 
@@ -139,6 +148,7 @@ namespace ExpendiMate.ViewModels
         {
             try
             {
+                IsBusy = true;
                 var temp = User;
                 await User.User.ChangeDisplayNameAsync(NewName);
                 await User.User.ChangePasswordAsync(NewPassword);
@@ -146,8 +156,10 @@ namespace ExpendiMate.ViewModels
             catch (FirebaseAuthHttpException ex)
             {
                 System.Diagnostics.Debug.WriteLine(ex);
+                IsBusy = false;
                 return false;
             }
+            IsBusy = false;
             return true;
 
         }
@@ -161,6 +173,7 @@ namespace ExpendiMate.ViewModels
         {
             try
             {
+                IsBusy = false;
                 var task = await new FirebaseStorage("courseplanner-192be.appspot.com")
                  .Child("expenses")
                  .Child(User.User.Uid)
@@ -176,10 +189,12 @@ namespace ExpendiMate.ViewModels
             {
                 System.Diagnostics.Debug.WriteLine(ex);
                 LastUploadData = "You don't have any backup data.";
+                IsBusy = false;
             }
             catch (Exception ex)
             {
                 LastUploadData = "Contact admin to seek for support.";
+                IsBusy = false;
             }
         }
 
@@ -187,6 +202,7 @@ namespace ExpendiMate.ViewModels
         {
             try
             {
+                IsBusy = true;
                 FileStream fs = File.Open(DatabaseServices.DatabaseFile, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
 
                 var path = new FirebaseStorage("courseplanner-192be.appspot.com").Child("expenses").Child(User.User.Uid).Child("expenses.sqlite");
@@ -201,8 +217,10 @@ namespace ExpendiMate.ViewModels
             catch (Exception ex)
             {
                 System.Diagnostics.Debug.WriteLine(ex);
+                IsBusy = false;
                 return false;
             }
+            IsBusy = false;
             return true;
         }
 
@@ -212,18 +230,25 @@ namespace ExpendiMate.ViewModels
             {
                 using (var client = new WebClient())
                 {
+                    IsBusy = true;
                     client.DownloadFile(url, path);
                 }
             }
             catch(Exception ex)
             {
                 System.Diagnostics.Debug.WriteLine(ex);
+                IsBusy = false;
                 return false;
             }
+            IsBusy = false;
             return true;
-            
         }
 
+        [ObservableProperty]
+        bool isBusy = false;
+
+        [ObservableProperty]
+        bool hideCredentials = true;
 
 
     }

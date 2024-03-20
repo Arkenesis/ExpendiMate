@@ -1,4 +1,5 @@
 using ExpendiMate.Models;
+using ExpendiMate.Services.PartialMethods;
 using ExpendiMate.ViewModels;
 
 namespace ExpendiMate.Pages;
@@ -43,6 +44,7 @@ public partial class Installment : ContentPage
         {
             item.InstallmentIsActivated = e.Value;
             viewModel.SaveAndUpdate(item);
+
         }
     }
 

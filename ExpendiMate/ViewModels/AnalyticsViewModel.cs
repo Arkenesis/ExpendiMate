@@ -1,11 +1,15 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using ExpendiMate.Models;
 using ExpendiMate.Services;
+using LiveChartsCore.SkiaSharpView.Painting;
+using LiveChartsCore.SkiaSharpView;
 using Microcharts;
 using SkiaSharp;
 using SQLite;
 using System.Collections.ObjectModel;
 using System.Globalization;
+using LiveChartsCore;
+using LiveChartsCore.Drawing;
 
 
 namespace ExpendiMate.ViewModels
@@ -20,11 +24,23 @@ namespace ExpendiMate.ViewModels
         {
             Current = this;
             connection = DatabaseServices.Connection;
+            ExpensesOrderByYears = new List<ExpensesYearModel>();
+            Series = new List<ISeries>();
+            XAxis = new List<Axis>();
+            YAxis = new List<Axis>();
             UpdateView();
         }
+        [ObservableProperty]
+        List<ExpensesYearModel> ?expensesOrderByYears;
 
-        public ObservableCollection<ExpensesYearModel> ExpensesOrderByYears { get ; set ; } = new ();
+        [ObservableProperty]
+        List<ISeries> series;
 
+        [ObservableProperty]
+        List<Axis> xAxis;
+
+        [ObservableProperty]
+        List<Axis> yAxis;
         public void UpdateView(int year=0)
         {
 
@@ -35,20 +51,14 @@ namespace ExpendiMate.ViewModels
 
             List<ExpensesModel> allExpenses = connection.Table<ExpensesModel>().Where(e => e.ExpenseDate >= firstDayOfYear && e.ExpenseDate <= lastDayOfYear).ToList();
 
-            if(allExpenses.Capacity == 0)
+            var result = new List<ExpensesYearModel>();
+
+            if (allExpenses.Capacity == 0)
             {
-                ExpensesOrderByYears.Clear();
-                List<ChartEntry> entries = new();
-                var entry = new ChartEntry(0)
-                {
-                    Label = "In "+ currYear.AddYears(year).Year + " you don't record anythings.",
-                    ValueLabel = "0",
-                    Color = SKColor.Parse("#5DB075"),
-                    ValueLabelColor = SKColor.Parse("#000000"),
-                    TextColor = SKColor.Parse("#5DB075")
-                };
-                entries.Add(entry);
-                createChart(entries);
+                ExpensesOrderByYears = null;
+                Series = new List<ISeries>();
+                XAxis = new List<Axis>();
+                YAxis = new List<Axis>();
             }
             else
             {
@@ -56,9 +66,8 @@ namespace ExpendiMate.ViewModels
 
                 var total = allExpenses.Sum(item => item.ExpenseCost);
 
-                ExpensesOrderByYears.Clear();
-
-                List<ChartEntry> entries = new();
+                List<double> values = new();
+                List<string> x = new();
 
                 foreach (var group in groupedExpenses)
                 {
@@ -77,20 +86,17 @@ namespace ExpendiMate.ViewModels
                     // Calculate Percentage
                     model.Percentage = sum / total;
 
-                    ExpensesOrderByYears.Add(model);
+                    // Add items to the expenses year list
+                    result.Add(model);
 
-                    // Create Chart Data
-                    var entry = new ChartEntry((int)sum)
-                    {
-                        Label = monthName,
-                        ValueLabel = "$" + sum,
-                        Color = SKColor.Parse("#5DB075"),
-                        ValueLabelColor = SKColor.Parse("#000000"),
-                        TextColor = SKColor.Parse("#5DB075")
-                    };
-                    entries.Add(entry);
+                    // Chart Labels = january/feb/mar
+                    x.Add(model.Name);
+
+                    // Chart column values
+                    values.Add(model.Total);
                 }
-                createChart(entries);
+                createChart(values, x);
+                ExpensesOrderByYears = result;
             }
 
         }
@@ -98,17 +104,36 @@ namespace ExpendiMate.ViewModels
         [ObservableProperty]
         int year;
 
-        [ObservableProperty]
-        BarChart item;
+        public LiveChartsCore.Measure.Margin Margin { get; set; } = new LiveChartsCore.Measure.Margin(0,0,0,75);
 
-        public void createChart(IEnumerable<ChartEntry> entries)
+        public void createChart(List<double> _values, List<string> x)
         {
-            Item = new BarChart {
-                Entries = entries,
-                LabelOrientation = Orientation.Horizontal,
-                ValueLabelOrientation = Orientation.Horizontal,
-                ValueLabelOption = ValueLabelOption.TopOfElement
-            };
+
+            ColumnSeries<double> temp = new();
+            temp.DataLabelsSize = 10;
+            temp.Rx = 50;
+            temp.Ry = 50;
+            temp.MaxBarWidth = 18;
+            temp.Padding = 0;
+            temp.Values = _values;
+
+            List<Axis> xAxes = new();
+            var temp2 = new Axis();
+            temp2.LabelsRotation = 90;
+            temp2.Labels = x;
+            temp2.Position = LiveChartsCore.Measure.AxisPosition.Start;
+            xAxes.Add(temp2);
+
+            List<Axis> yAxes = new();
+            var temp3 = new Axis();
+            temp3.IsVisible = false;
+            yAxes.Add(temp3);
+
+            List<ISeries> tempSeries = [temp];
+
+            YAxis = yAxes;
+            XAxis = xAxes;
+            Series = tempSeries;
         }
 
     }

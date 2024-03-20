@@ -21,6 +21,7 @@ public partial class Category : ContentPage
     {
         Title = m.Name;
         model = new CategoryViewModel(m);
+        model.IconColor = "#68DE68";
         categoryName = m.Name;
         BindingContext = model;
         InitializeComponent();

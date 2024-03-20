@@ -6,7 +6,8 @@ using Microcharts;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Xml;
-
+using System.Xml.Linq;
+using System.Reflection;
 namespace ExpendiMate
 {
     public partial class MainPage : ContentPage
@@ -26,13 +27,12 @@ namespace ExpendiMate
         {
             base.OnAppearing();
 
-            viewModel.UpdateView();
             DayLabel.TextColor = Color.FromHex("#4b9460");
             DayLabel.TextDecorations = TextDecorations.Underline;
             resetLabel(WeekLabel);
             resetLabel(MonthLabel);
             resetLabel(YearLabel);
-
+            viewModel.UpdateView();
             //DateTime temp = DateTime.Now.AddSeconds(10);
             //NotificationService.SendNotification("Hello","How are you, i m fine.",temp);
         }

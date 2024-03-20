@@ -24,6 +24,15 @@ namespace ExpendiMate.ViewModels
         [ObservableProperty]
         string password;
 
+        [ObservableProperty]
+        string name;
+
+        [ObservableProperty]
+        bool isBusy;
+
+        [ObservableProperty]
+        bool hideCredentials = true;
+
         public async Task<bool> SignUp()
         {
 
@@ -31,13 +40,16 @@ namespace ExpendiMate.ViewModels
 
             try
             {
-                var response = await client.CreateUserWithEmailAndPasswordAsync(Email, Password);
+                IsBusy = true;
+                var response = await client.CreateUserWithEmailAndPasswordAsync(Email, Password, Name);
             }
             catch(FirebaseAuthHttpException ex)
             {
                 System.Diagnostics.Debug.WriteLine(ex);
+                IsBusy = false;
                 return false;
             }
+            IsBusy = false;
             return true;
 
         }

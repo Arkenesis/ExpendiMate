@@ -21,6 +21,21 @@ public partial class SignUp : ContentPage
 
     private async void SignUp_Clicked(object sender, EventArgs e)
     { 
+        if(viewModel.Name == "")
+        {
+            await DisplayAlert("Sign Up", "You are required to enter your username.", "Ok");
+            return;
+        }
+        if(viewModel.Password == "")
+        {
+            await DisplayAlert("Sign Up", "You are required to fill in the password.", "Ok");
+            return;
+        }
+        if(viewModel.Email == "")
+        {
+            await DisplayAlert("Sign Up", "You are required to register with valid email address", "Ok");
+            return;
+        }
         bool response = await viewModel.SignUp();
         if(response)
         {

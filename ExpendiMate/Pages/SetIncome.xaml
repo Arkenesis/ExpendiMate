@@ -17,7 +17,8 @@
                    TextColor="Green"
                    HorizontalOptions="FillAndExpand"
                    Margin="10"
-                   Text="{Binding Income, Mode=TwoWay}"/>
+                   Text="{Binding Income, Mode=TwoWay}"
+                   Keyboard="Numeric"/>
 
             <HorizontalStackLayout>
                 <Button Text="Save"

@@ -6,7 +6,6 @@ namespace ExpendiMate.Pages;
 public partial class Analytics : ContentPage
 {
     AnalyticsViewModel viewModel;
-    bool initCompleted = false;
 
     int year = 0;
     public Analytics()
@@ -14,7 +13,6 @@ public partial class Analytics : ContentPage
         viewModel = new AnalyticsViewModel();
         BindingContext = viewModel;
 		InitializeComponent();
-        initCompleted = true;
 	}
 
     private void Frame_Tapped(object sender, EventArgs e)
@@ -26,8 +24,7 @@ public partial class Analytics : ContentPage
 
     protected override void OnAppearing()
     {
-        if(initCompleted)
-            viewModel.UpdateView(year);
+        viewModel.UpdateView(year);
     }
 
     private void PlusYear(object sender, EventArgs e)
@@ -41,7 +38,4 @@ public partial class Analytics : ContentPage
         year--;
         viewModel.UpdateView(year);
     }
-
-
-    //https://learn.microsoft.com/en-us/dotnet/standard/base-types/standard-numeric-format-strings
 }

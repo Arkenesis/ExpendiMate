@@ -9,55 +9,62 @@
     <Shell.BackButtonBehavior>
         <BackButtonBehavior IsVisible="False" IsEnabled="False"/>
     </Shell.BackButtonBehavior>
+    <StackLayout>
 
-    <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto">
+        <ActivityIndicator IsVisible="{Binding IsBusy}" IsRunning="{Binding IsBusy}" Color="Red" Margin="20"/>
+        <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto">
 
-        <Grid ColumnDefinitions="*,*,*" Grid.Row="0">
-            <Frame BackgroundColor="Transparent" BorderColor="Transparent" Grid.Column="1" Margin="0,50,0,0">
-                <Label Text="Log In" FontSize="36" FontAttributes="Bold" TextColor="#00B14F" VerticalOptions="Center" HorizontalOptions="Center" Grid.Column="0"/>
+            <Grid ColumnDefinitions="*,*,*" Grid.Row="0">
+                <Frame BackgroundColor="Transparent" BorderColor="Transparent" Grid.Column="1" Margin="0,50,0,0">
+                    <Label Text="Log In" FontSize="36" FontAttributes="Bold" TextColor="#00B14F" VerticalOptions="Center" HorizontalOptions="Center" Grid.Column="0"/>
+                </Frame>
+                <Frame BackgroundColor="Transparent" BorderColor="Transparent" Grid.Column="2" Margin="0,50,25,0" VerticalOptions="Center" HorizontalOptions="End">
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="SingUpPage_Clicked" NumberOfTapsRequired="1" />
+                    </Frame.GestureRecognizers>
+                    <Label Text="Sign Up" FontSize="16" TextColor="#00B14F" Grid.Column="0"/>
+                </Frame>
+            </Grid>
+
+            <Frame WidthRequest="310" HeightRequest="50" BackgroundColor="#E8E8E8" BorderColor="Transparent" Grid.Row="1" Margin="0,50,0,20">
+                <Entry Text="{Binding Email}" Placeholder="Email" TextColor="Black" FontSize="16" HorizontalTextAlignment="Start" FontAttributes="Bold"/>
             </Frame>
-            <Frame BackgroundColor="Transparent" BorderColor="Transparent" Grid.Column="2" Margin="0,50,25,0" VerticalOptions="Center" HorizontalOptions="End">
+
+            <Frame WidthRequest="310" HeightRequest="50" BackgroundColor="#E8E8E8" BorderColor="Transparent" Grid.Row="2">
+                <Grid ColumnDefinitions="*,Auto">
+                    <Entry Text="{Binding Password}" IsPassword="{Binding HideCredentials}" Placeholder="Password" TextColor="Black" FontSize="16" HorizontalTextAlignment="Start" FontAttributes="Bold"/>
+                    <CheckBox IsChecked="{Binding HideCredentials}" HorizontalOptions="End"/>
+                </Grid>
+            </Frame>
+
+            <Frame WidthRequest="310" HeightRequest="50" BackgroundColor="Transparent" BorderColor="Transparent" Grid.Row="3">
+                <Grid ColumnDefinitions="*,*">
+                    <Label Text="Remember Me:" TextColor="Black" VerticalOptions="Center" HorizontalOptions="End" Grid.Column="0"/>
+                    <CheckBox IsChecked="{Binding RememberMe}"      VerticalOptions="Center" HorizontalOptions="Center" Grid.Column="1"/>
+                </Grid>
+            </Frame>
+
+            <Frame WidthRequest="310" HeightRequest="50" BackgroundColor="#00B14F" BorderColor="Transparent" Grid.Row="4" CornerRadius="25" Margin="0,200,0,0">
                 <Frame.GestureRecognizers>
-                    <TapGestureRecognizer Tapped="SingUpPage_Clicked" NumberOfTapsRequired="1" />
+                    <TapGestureRecognizer Tapped="Login_Clicked" NumberOfTapsRequired="1" />
                 </Frame.GestureRecognizers>
-                <Label Text="Sign Up" FontSize="16" TextColor="#00B14F" Grid.Column="0"/>
+                <Label Text="Log In" TextColor="White" FontSize="16" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontAttributes="Bold"/>
+            </Frame>
+
+            <Frame WidthRequest="310" HeightRequest="50" BackgroundColor="Transparent" BorderColor="Transparent" Grid.Row="5" CornerRadius="25">
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="ForgotPassword_Clicked" NumberOfTapsRequired="1" />
+                </Frame.GestureRecognizers>
+                <Label Text="Forgot Your Password?" TextColor="Gray" FontSize="14" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontAttributes="Bold"/>
+            </Frame>
+
+            <Frame WidthRequest="310"  BackgroundColor="Transparent" BorderColor="Transparent" Grid.Row="6" CornerRadius="25">
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="Anonymous_Clicked" NumberOfTapsRequired="1" />
+                </Frame.GestureRecognizers>
+                <Label Text="Continue without creating an account" TextDecorations="Underline" TextColor="Gray" FontSize="12" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontAttributes="Bold"/>
             </Frame>
         </Grid>
+    </StackLayout>
 
-        <Frame WidthRequest="310" HeightRequest="50" BackgroundColor="#E8E8E8" BorderColor="Transparent" Grid.Row="1" Margin="0,50,0,20">
-            <Entry Text="{Binding Email}" Placeholder="Email" TextColor="Black" FontSize="16" HorizontalTextAlignment="Start" FontAttributes="Bold"/>
-        </Frame>
-
-        <Frame WidthRequest="310" HeightRequest="50" BackgroundColor="#E8E8E8" BorderColor="Transparent" Grid.Row="2">
-            <Entry Text="{Binding Password}" IsPassword="True" Placeholder="Password" TextColor="Black" FontSize="16" HorizontalTextAlignment="Start" FontAttributes="Bold"/>
-        </Frame>
-
-        <Frame WidthRequest="310" HeightRequest="50" BackgroundColor="Transparent" BorderColor="Transparent" Grid.Row="3">
-            <Grid ColumnDefinitions="*,*">
-                <Label Text="Remember Me:" TextColor="Black" VerticalOptions="Center" HorizontalOptions="End" Grid.Column="0"/>
-                <CheckBox IsChecked="{Binding RememberMe}"      VerticalOptions="Center" HorizontalOptions="Center" Grid.Column="1"/>
-            </Grid>
-        </Frame>
-
-        <Frame WidthRequest="310" HeightRequest="50" BackgroundColor="#00B14F" BorderColor="Transparent" Grid.Row="4" CornerRadius="25" Margin="0,200,0,0">
-            <Frame.GestureRecognizers>
-                <TapGestureRecognizer Tapped="Login_Clicked" NumberOfTapsRequired="1" />
-            </Frame.GestureRecognizers>
-            <Label Text="Log In" TextColor="White" FontSize="16" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontAttributes="Bold"/>
-        </Frame>
-
-        <Frame WidthRequest="310" HeightRequest="50" BackgroundColor="Transparent" BorderColor="Transparent" Grid.Row="5" CornerRadius="25">
-            <Frame.GestureRecognizers>
-                <TapGestureRecognizer Tapped="ForgotPassword_Clicked" NumberOfTapsRequired="1" />
-            </Frame.GestureRecognizers>
-            <Label Text="Forgot Your Password?" TextColor="Gray" FontSize="14" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontAttributes="Bold"/>
-        </Frame>
-
-        <!--<Frame WidthRequest="310" HeightRequest="50" BackgroundColor="#00B14F" BorderColor="Transparent" Grid.Row="4">
-            <Frame.GestureRecognizers>
-                <TapGestureRecognizer Tapped="Upload_Clicked" NumberOfTapsRequired="1" />
-            </Frame.GestureRecognizers>
-            <Label Text="Upload" TextColor="White" FontSize="16" HorizontalTextAlignment="Center" FontAttributes="Bold"/>
-        </Frame>-->
-    </Grid>
 </ContentPage>

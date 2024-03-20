@@ -4,6 +4,12 @@ using ExpendiMate.Services;
 using SkiaSharp;
 using SQLite;
 using Microcharts;
+using Newtonsoft.Json;
+using LiveChartsCore.SkiaSharpView.Extensions;
+using LiveChartsCore;
+using LiveChartsCore.SkiaSharpView.VisualElements;
+using LiveChartsCore.SkiaSharpView.Painting;
+using LiveChartsCore.SkiaSharpView;
 
 
 namespace ExpendiMate.ViewModels
@@ -18,10 +24,8 @@ namespace ExpendiMate.ViewModels
         {
             Current = this;
             connection = DatabaseServices.Connection;
-            ExpensesByCategory = new ();
-            //UpdateView();
+            UpdateView();
         }
-
         public void SaveExpenses(ExpensesModel model)
         {
             //If it has an Id, then it already exists and we can update it 
@@ -45,7 +49,7 @@ namespace ExpendiMate.ViewModels
         }
 
         [ObservableProperty]
-        List<ExpensesCategoryModel> expensesByCategory;
+        List<ExpensesCategoryModel> expensesByCategory = new();
 
         [ObservableProperty]
         double total;
@@ -55,6 +59,9 @@ namespace ExpendiMate.ViewModels
 
         [ObservableProperty]
         string selectedDate;
+
+        [ObservableProperty]
+        List<ISeries> series;
 
         public void UpdateView(string input="")
         {
@@ -93,8 +100,6 @@ namespace ExpendiMate.ViewModels
             }
             InBetween = result;
 
-            
-
             // Group expenses by category
             // Key: Category Name
             // Value: Category List
@@ -106,10 +111,9 @@ namespace ExpendiMate.ViewModels
             // Calculate total of all categories
             Total = allExpenses.Sum(item => item.ExpenseCost);
 
-            List<ChartEntry> entries = new();
-
-            // Add into ObservableCollection
-            // ObservableCollection allows display data on the UI
+            List<ISeries> pies = new();
+            List<ExpensesCategoryModel> _expensesByCategory = new();
+            // Add into Observable (Observable allows display data on the UI)
             foreach (var group in groupedExpenses)
             {
                 //Create new object to store data
@@ -117,12 +121,7 @@ namespace ExpendiMate.ViewModels
 
                 // Calculate category Cost
                 List<ExpensesModel> expensesDetailsList = group.ToList();
-                double sum = 0;
-                foreach (var item in expensesDetailsList)
-                {
-                    sum = sum + item.ExpenseCost;
-                }
-                categoryModel.Total = sum;
+                categoryModel.Total = expensesDetailsList.Sum(i =>  i.ExpenseCost);
 
                 // Set color
                 if (CategoryModel.Category.TryGetValue(group.Key, out string outputColor))
@@ -132,21 +131,26 @@ namespace ExpendiMate.ViewModels
                 }
 
                 // Calculate percentage
-                categoryModel.Percentage = sum / Total * 100;
+                categoryModel.Percentage = categoryModel.Total / Total * 100;
+
+                // Add item to list
+                _expensesByCategory.Add(categoryModel);
 
                 // Create Chart Data
-                var entry = new ChartEntry((int)sum)
-                { Label = categoryModel.Name,
-                    ValueLabel = "$" + sum,
-                    Color = SKColor.Parse(categoryModel.IconColor),
-                    ValueLabelColor = SKColor.Parse("#FFFFFF"),
-                    //OtherColor = SKColor.Parse(categoryModel.IconColor)
+                var pie = new PieSeries<double>()
+                {
+                    Name = categoryModel.Name,
+                    DataLabelsFormatter = item => categoryModel.Name,
+                    Values = new double[] { categoryModel.Total },
+                    DataLabelsPaint = new SolidColorPaint(SKColors.White),
+                    DataLabelsSize = 14,
+                    Fill = new SolidColorPaint(SKColor.Parse(categoryModel.IconColor)),
+                    InnerRadius = 50
                 };
-                entries.Add(entry);
-                ExpensesByCategory.Add(categoryModel);
+                pies.Add(pie);
             }
-            createChart(entries);
-            OnPropertyChanged(nameof(Item));
+            ExpensesByCategory = _expensesByCategory;
+            Series = pies;
         }
 
         public void DeleteAllData()
@@ -154,21 +158,6 @@ namespace ExpendiMate.ViewModels
             connection.DeleteAll<ExpensesModel>();
             connection.DeleteAll<UserModel>();
             connection.DeleteAll<InstallmentModel>();
-        }
-
-        [ObservableProperty]
-        DonutChart item;
-
-        public void createChart(IEnumerable<ChartEntry> entries)
-        {
-            Item = new DonutChart { 
-                Entries = entries, 
-                BackgroundColor = SKColor.Parse("#4b4b4b"), 
-                LabelColor = new SKColor(255, 255, 255),
-                AnimationDuration = new TimeSpan(0,0,3),
-                HoleRadius = 0.8F,
-                LabelMode = LabelMode.LeftAndRight
-            };
         }
 
     }

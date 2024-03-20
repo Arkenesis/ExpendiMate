@@ -8,47 +8,43 @@
 
     <ScrollView>
         <StackLayout>
-            <Label Text="Installment Summary" FontSize="Large" TextColor="Black" HorizontalOptions="Center"/>
-            <Label Text="{Binding TotalCost, StringFormat='${0:F2}'}" FontSize="Large" TextColor="Black" HorizontalOptions="Center"/>
+            <Label Text="Installment Summary"                         FontSize="25" TextColor="#009040" FontAttributes="Bold" Margin="0,20,0,10" HorizontalOptions="Center"/>
+            <Label Text="{Binding TotalCost, StringFormat='${0:F2}'}" FontSize="40" TextColor="#009040" FontAttributes="Bold" Margin="0,0,0,40" HorizontalOptions="Center" />
 
-            <Grid ColumnDefinitions="*,*,*,*,*">
-                <Label Text="Item"   TextColor="Black" Grid.Column="0" HorizontalOptions="Center"/>
-                <Label Text="Cost"   TextColor="Black" Grid.Column="4" HorizontalOptions="Center"/>
+            <Grid ColumnDefinitions="*,*,*,*,*" Margin="20,0,20,0">
+                <Label Text="Item" TextColor="#009040" Grid.Column="0" FontSize="20" HorizontalOptions="Center"/>
+                <Label Text="Cost" TextColor="#009040" Grid.Column="4" FontSize="20" HorizontalOptions="End"/>
             </Grid>
 
+            
+            
             <ListView x:Name="listView" 
                           VerticalOptions="FillAndExpand"
                           SelectionMode="None"
                           ItemTapped="InstallmentItem_Clicked"
                           ItemsSource="{Binding Installments}"
-                          MinimumHeightRequest="200">
+                          Margin="20,0,20,0">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <Grid ColumnDefinitions="*,*,*,*,*">
-                                <Label Text="{Binding InstallmentName}"   TextColor="Black" Grid.Column="0" Grid.ColumnSpan="3" HorizontalOptions="Start" TranslationX="10"/>
+                            <Grid ColumnDefinitions="*,*,*,*,*"  VerticalOptions="Center">
+                                <Label Text="{Binding InstallmentName}"   TextColor="#009040" Grid.Column="0" Grid.ColumnSpan="3" VerticalOptions="Center"/>
 
-                                <Switch IsToggled="{Binding InstallmentIsActivated, Mode=OneWay}" Toggled="ToggleInstallment" Grid.Column="3" HorizontalOptions="Center" TranslationY="-10"/>
+                                <Switch IsToggled="{Binding InstallmentIsActivated, Mode=OneWay}" Toggled="ToggleInstallment" Grid.Column="3" HorizontalOptions="Center" VerticalOptions="Center"/>
 
-                                <Label Text="{Binding InstallmentCost}"   TextColor="Black" Grid.Column="4" HorizontalOptions="Center"/>
+                                <Label Text="{Binding InstallmentCost}"   TextColor="#009040" Grid.Column="4" HorizontalOptions="End" VerticalOptions="Center"/>
                             </Grid>
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
 
-            <Button Text="+"
-                    TextColor="White"
-                    FontAttributes="Bold"
-                    FontSize="24"
-                    WidthRequest="30"
-                    HeightRequest="30"
-                    BackgroundColor="#009040"
-                    Clicked="InstallmentButton_Clicked"
-                    HorizontalOptions="Center"
-                    VerticalOptions="Center"
-                    CornerRadius="100"
-                    Grid.Column="2"/>
+            <Frame BackgroundColor="#009040" BorderColor="Transparent" VerticalOptions="Center" HorizontalOptions="Center" CornerRadius="100" WidthRequest="50" HeightRequest="50" Margin="0,0,0,50">
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="InstallmentButton_Clicked" NumberOfTapsRequired="1" />
+                </Frame.GestureRecognizers>
+                <Label Text="+" FontSize="24" FontAttributes="Bold" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" TextColor="White" Grid.Column="0"/>
+            </Frame>
 
         </StackLayout>
     </ScrollView>

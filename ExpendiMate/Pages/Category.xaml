@@ -8,7 +8,7 @@
              x:Name="CategoryPage">
 
     <ScrollView>
-        <FlexLayout Direction="Column">
+        <StackLayout>
             <Label Text="Total Expenditure"                           FontSize="28" TextColor="#009040" HorizontalOptions="Center" FontAttributes="Bold" Margin="0,20,0,0" />
             <Label Text="{Binding TotalCost, StringFormat='${0:F2}'}" FontSize="28" TextColor="#009040" HorizontalOptions="Center" FontAttributes="Bold"/>
 
@@ -17,10 +17,9 @@
             <Grid ColumnDefinitions="Auto,*">
                 <Label Text="Expenses"           FontSize="24" TextColor="#009040" HorizontalOptions="Start" Grid.Column="0" Margin="20,0,0,0"/>
                 <Button Text="+ Add new expense" FontSize="14" TextColor="#009040" HorizontalOptions="End"   Grid.Column="1" Margin="20,0,20,0"   Clicked="ExpenseButton_Clicked" BackgroundColor="Transparent"/>
-                <BoxView Color="#2A794D" HeightRequest="2" WidthRequest="130"      HorizontalOptions="End"   Grid.Column="1" Margin="75,20,30,20" TranslationY="10"/>
             </Grid>
 
-            <ListView ItemsSource="{Binding CategoryItems}">
+            <ListView ItemsSource="{Binding CategoryItems}" Margin="20,0,20,0">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
@@ -31,8 +30,8 @@
                                 <StackLayout>
                                     <Grid ColumnDefinitions="21,*" ColumnSpacing="3">
                                         <!--<BoxView Color="#91F742" CornerRadius="16" WidthRequest="16" HeightRequest="16" HorizontalOptions="Fill" Margin="20,20,0,0" Grid.ColumnSpan="0"/>-->
-                                        <BoxView Color="{Binding BindingContext.IconColor, Source={x:Reference CategoryPage}}" CornerRadius="16" WidthRequest="16" HeightRequest="16" HorizontalOptions="Fill" Margin="20,20,0,0" Grid.ColumnSpan="0"/>
-                                        <Grid ColumnDefinitions="2*,*,1.2*" ColumnSpacing="10" Grid.Column="1">
+                                        <Frame BackgroundColor="{Binding BindingContext.IconColor, Source={x:Reference CategoryPage}}" BorderColor="Transparent" CornerRadius="16" WidthRequest="16" HeightRequest="16" HorizontalOptions="Fill" Margin="20,20,0,0" Grid.ColumnSpan="0"/>
+                                        <Grid ColumnDefinitions="2*,1.1*,1.2*" ColumnSpacing="10" Grid.Column="1">
                                             <Label Text="{Binding ExpenseName}"                                   FontSize="14" TextColor="Black" HorizontalOptions="Start" VerticalOptions="Center"  Grid.Column="0" Margin="20,20,0,0"/>
                                             <Label Text="{Binding ExpenseDate, StringFormat='{}{0:dd/M/yyyy}'}"   FontSize="14" TextColor="Black" HorizontalOptions="Start" VerticalOptions="Center"  Grid.Column="1" Margin="0,20,0,0"/>
                                             <Label Text="{Binding ExpenseCost, StringFormat='${0:F2}'}"           FontSize="14" TextColor="Black" HorizontalOptions="End"   VerticalOptions="Center"  Grid.Column="2" Margin="0,20,20,0"/>
@@ -46,6 +45,6 @@
                 </ListView.ItemTemplate>
             </ListView>
 
-        </FlexLayout>
+        </StackLayout>
     </ScrollView>
 </ContentPage>

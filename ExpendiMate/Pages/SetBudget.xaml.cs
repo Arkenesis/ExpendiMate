@@ -87,7 +87,7 @@ public partial class SetBudget : ContentPage
     private async void SetBudgetManual(object sender, EventArgs e)
     {
         
-        string result = await DisplayPromptAsync("Budget Percentage", "Enter your budget percentage (1-100)");
+        string result = await DisplayPromptAsync("Budget Percentage", "Enter your budget percentage (1-100)", keyboard: Keyboard.Numeric);
 
         if (double.TryParse(result, out double budgetPercent))
         {
@@ -101,10 +101,6 @@ public partial class SetBudget : ContentPage
             {
                 await DisplayAlert("Income", "Budget Percentage must be a number within 1-100", "OK");
             }
-        }
-        else
-        {
-            await DisplayAlert("Income", "Invalid input. Please enter a valid number.", "OK");
         }
 
 

@@ -2,6 +2,7 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:micro="clr-namespace:Microcharts.Maui;assembly=Microcharts.Maui"
+             xmlns:lvc="clr-namespace:LiveChartsCore.SkiaSharpView.Maui;assembly=LiveChartsCore.SkiaSharpView.Maui"
              x:Class="ExpendiMate.MainPage"
              BackgroundColor="White"
              Title="Expenses"
@@ -106,48 +107,45 @@
                                    Margin="5"/>
                         </StackLayout>
 
-                        <!--<micro:ChartView Chart="{Binding Item}"/>-->
+                        <lvc:PieChart Series="{Binding Series}" BackgroundColor="Transparent" WidthRequest="180" HeightRequest="180" TooltipPosition="Top" HorizontalOptions="Center" VerticalOptions="Center"/>
 
-                        <Frame BackgroundColor="Transparent" BorderColor="Transparent" HorizontalOptions="End" TranslationX="-10" TranslationY="-10">
-                            <Button Text="+"
-                                    FontAttributes="Bold"
-                                    FontSize="30"
-                                    TextColor="White"
-                                    HeightRequest="5"
-                                    CornerRadius="10"
-                                    BackgroundColor="#00B14F"
-                                    Clicked="ExpenseButton_Clicked"/>
+                        <Frame BackgroundColor="#00B14F" BorderColor="Transparent" HorizontalOptions="End" WidthRequest="50" HeightRequest="50" CornerRadius="30" Margin="0,0,20,20">
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="ExpenseButton_Clicked" NumberOfTapsRequired="1" />
+                            </Frame.GestureRecognizers>
+                            <Label Text="+" FontAttributes="Bold" FontSize="36" TextColor="White" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
                         </Frame>
                     </VerticalStackLayout>
                 </Frame>
             </FlexLayout>
 
-            <ListView ItemsSource="{Binding ExpensesByCategory}" IsGroupingEnabled="True">
-                <ListView.GroupHeaderTemplate>
+            <CollectionView ItemsSource="{Binding ExpensesByCategory}" IsGrouped="True">
+                <CollectionView.GroupHeaderTemplate>
                     <DataTemplate>
-                        <ViewCell>
+                        <StackLayout>
                             <Frame WidthRequest="330" HeightRequest="40" Margin="20,10,20,0" BackgroundColor="#4B4B4B">
                                 <Frame.GestureRecognizers>
                                     <TapGestureRecognizer Tapped="Frame_Tapped" NumberOfTapsRequired="1" />
                                 </Frame.GestureRecognizers>
-                                <Grid ColumnDefinitions="25,2*,*,*" ColumnSpacing="10">
-                                    <BoxView Color="{Binding IconColor}" CornerRadius="16" WidthRequest="16" HeightRequest="16" HorizontalOptions="End" Grid.Column="0"/>
+                                <Grid ColumnDefinitions="30,2*,*,*" ColumnSpacing="10">
+                                    <Frame BackgroundColor="{Binding IconColor}" BorderColor="Transparent" CornerRadius="16" WidthRequest="16" HeightRequest="16" HorizontalOptions="End" Grid.Column="0"/>
                                     <Label Text="{Binding Name}"                               TextColor="White" FontSize="14" FontAttributes="Bold" HorizontalOptions="Start" VerticalOptions="Center" Grid.Column="1" />
                                     <Label Text="{Binding Percentage, StringFormat='{0:F1}%'}" TextColor="White" FontSize="14" FontAttributes="Bold" HorizontalOptions="Start"   VerticalOptions="Center" Grid.Column="2" />
                                     <Label Text="{Binding Total,      StringFormat='${0:F2}'}" TextColor="White" FontSize="14" FontAttributes="Bold" HorizontalOptions="Start"   VerticalOptions="Center" Grid.Column="3" />
                                 </Grid>
                             </Frame>
-                        </ViewCell>
+                        </StackLayout>
                     </DataTemplate>
-                </ListView.GroupHeaderTemplate>
-                <ListView.ItemTemplate>
+                </CollectionView.GroupHeaderTemplate>
+                <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <ViewCell>
+                        <StackLayout>
+                            
 
-                        </ViewCell>
+                        </StackLayout>
                     </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

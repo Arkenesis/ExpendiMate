@@ -7,6 +7,8 @@
     xmlns:main="clr-namespace:ExpendiMate"
     Shell.FlyoutBehavior="Flyout"
     Shell.TabBarIsVisible="False"
+    Shell.ForegroundColor="White"
+    Shell.BackgroundColor="#19a76a"
     FlyoutBackgroundColor="#19a76a"
     FlyoutWidth="200"
     Title="ExpendiMate">
@@ -49,9 +51,9 @@
 
     <Shell.ItemTemplate>
         <DataTemplate>
-            <HorizontalStackLayout>
-                <Image Source="{Binding FlyoutIcon}" WidthRequest="30" HeightRequest="30"></Image>
-                <Label Text="{Binding Title}" TextColor="White"></Label>
+            <HorizontalStackLayout Spacing="13" Margin="5,10,10,5">
+                <Image Source="{Binding FlyoutIcon}" WidthRequest="30" HeightRequest="30" VerticalOptions="Center" HorizontalOptions="Center"></Image>
+                <Label Text="{Binding Title}" TextColor="White"                         VerticalOptions="Center" HorizontalOptions="Start"></Label>
             </HorizontalStackLayout>
         </DataTemplate>
     </Shell.ItemTemplate>

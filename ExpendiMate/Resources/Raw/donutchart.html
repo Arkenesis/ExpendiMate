@@ -14,24 +14,29 @@
 </head>
 
 <body>
+    <p>Chart</p>
     <canvas id="myChart"></canvas>
-    <script>
-        let data = {
-            labels: ['First', 'Second', 'Third'],
-            datasets: [{
-                data: [300, 50, 100],
-                backgroundColor: ['rgb(255, 99, 132)', 'rgb(54, 162, 235)', 'rgb(255, 205, 86)'],
-                hoverOffset: 10
-            }]
-        };
-
-        const config = {type: 'doughnut', data: data};
-        var ctx = document.getElementById('myChart').getContext('2d');
-        var myChart = new Chart(ctx, config);
-
-        function loadChart(labels, datasets) {
-
+    <p id="texttext">DOG</p>
+    <script type="text/javascript">
+        function createChart(input) {
+            const newData = JSON.parse(input);
+            document.getElementById('texttext').innerHTML() = newData;
+            const config = { type: 'doughnut', data: newData };
+            var ctx = document.getElementById('myChart').getContext('2d');
+            var myChart = new Chart(ctx, config);
+            return "abc";
         }
+        function changeWord(input) {
+            document.getElementById('texttext').innerHTML() = "ABC";
+            return input;
+        }
+
+        function tryResponse(input) {
+            document.getElementById('texttext').innerHTML() = input;
+            return input;
+        }
+
+        changeWord();
     </script>
 </body>
 

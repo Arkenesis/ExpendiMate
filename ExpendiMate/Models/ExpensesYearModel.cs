@@ -15,6 +15,7 @@ namespace ExpendiMate.Models
         public string Name { get; set; }
         public double Total { get; set; }
         public double Percentage { get; set; }
+        public string IconColor { get; set; }
         public ExpensesYearModel(string name, List<ExpensesModel> list) : base(list)
         {
             Name = name;

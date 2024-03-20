@@ -1,25 +1,34 @@
 using CommunityToolkit.Mvvm.ComponentModel;
 using ExpendiMate.Models;
 using ExpendiMate.ViewModels;
+using Microsoft.Maui;
 
 namespace ExpendiMate.Pages;
 
 public partial class AddExpense : ContentPage
 {
     ExpensesModel model;
-
     //Pass the variable in
     public AddExpense(ExpensesModel m)
     {
         model = m;
         BindingContext = model;
+        if (model.ExpenseCategory == "")
+        {
+            if (CategoryModel.CategoryList != null)
+                model.ExpenseCategory = CategoryModel.CategoryList[0];
+        }
+        if (model.ExpenseDate == DateTime.MinValue)
+        {
+            model.ExpenseDate = DateTime.Now;
+        }
         InitializeComponent();
     }
 
     private async void AddExpenses(object sender, EventArgs e)
     {
         var model = (ExpensesModel) BindingContext;
-        if (model.ExpenseName == null )
+        if (model.ExpenseName == null || model.ExpenseName == "")
         {
             await DisplayAlert("Warning", "You must enter expense name.", "OK");
             return;
@@ -40,13 +49,6 @@ public partial class AddExpense : ContentPage
         await Navigation.PopToRootAsync();
     }
 
-    private async void ClearAllExpenses(object sender, EventArgs e)
-    {
-        ExpensesViewModel.Current.DeleteAllData();
-        ExpensesViewModel.Current.UpdateView();
-        await Navigation.PopToRootAsync();
-    }
-
     private async void AddPhoto(object sender, EventArgs e)
     {
         FileResult photo = null;
@@ -54,12 +56,26 @@ public partial class AddExpense : ContentPage
         PermissionStatus status = await GetMediaPermission();
         if (status == PermissionStatus.Granted)
         {
-            photo = await MediaPicker.PickPhotoAsync();
+            photo = await MediaPicker.Default.PickPhotoAsync();
         }
 
         if (photo != null)
         {
-            model.ExpensePicturePath = photo.FullPath;
+            string imagesDir = System.IO.Path.Combine(FileSystem.CacheDirectory, "images");
+            System.Diagnostics.Debug.WriteLine(imagesDir);
+            //Create folder
+            System.IO.Directory.CreateDirectory(imagesDir);
+            //Create file path
+            var newFile = Path.Combine(imagesDir, photo.FileName);
+            //Create photo
+            using (var stream = await photo.OpenReadAsync())
+            //Save the photo to file path
+            using (var newStream = File.OpenWrite(newFile))
+            {
+                await stream.CopyToAsync(newStream);
+            }
+            model.ExpensePicturePath = newFile;
+            OnPropertyChanged("ExpensePicturePath");
         }
     }
 
@@ -87,5 +103,42 @@ public partial class AddExpense : ContentPage
         status = await Permissions.RequestAsync<Permissions.StorageRead>();
 
         return status;
+    }
+
+    public void TodayButtonClicked(object sender, EventArgs e)
+    {
+        model.ExpenseDate = DateTime.Today;
+
+        TodayButtonColor.BackgroundColor = Color.FromHex("#32df7f");
+        YesterdayButtonColor.BackgroundColor = Color.FromRgba(0, 0, 0, 0);
+        TwoDaysAgoButtonColor.BackgroundColor = Color.FromRgba(0, 0, 0, 0);
+    }
+
+    public void YesterdayButtonClicked(object sender, EventArgs e)
+    {
+        DateTime today = DateTime.Today;
+        model.ExpenseDate = today.AddDays(-1);
+
+        TodayButtonColor.BackgroundColor = Color.FromRgba(0, 0, 0, 0);
+        YesterdayButtonColor.BackgroundColor = Color.FromHex("#32df7f");
+        TwoDaysAgoButtonColor.BackgroundColor = Color.FromRgba(0, 0, 0, 0);
+    }
+
+    public void TwoDaysAgoButtonClicked(object sender, EventArgs e)
+    {
+        DateTime today = DateTime.Today;
+        model.ExpenseDate = today.AddDays(-2);
+
+        TodayButtonColor.BackgroundColor = Color.FromRgba(0, 0, 0, 0);
+        YesterdayButtonColor.BackgroundColor = Color.FromRgba(0, 0, 0, 0);
+        TwoDaysAgoButtonColor.BackgroundColor = Color.FromHex("#32df7f");
+    }
+
+    private async void Delete(object sender, EventArgs e)
+    {
+        var model = (ExpensesModel)BindingContext;
+        ExpensesViewModel.Current.DeleteExpenses(model);
+        ExpensesViewModel.Current.UpdateView();
+        await Navigation.PopToRootAsync();
     }
 }

@@ -6,20 +6,17 @@
              Shell.FlyoutBehavior="Disabled"
              Title="Add Installment">
     <ScrollView>
-        <StackLayout>
+        <StackLayout Margin="20,20,20,20">
             <Label Text="Name"
                    TextColor="#009040"
                    FontSize="20"
-                   FontAttributes="Bold"
-                   Padding="10"/>
+                   FontAttributes="Bold"/>
 
             <Entry Placeholder="Amazon Prime" 
                    TextColor="Green"
                    HorizontalOptions="FillAndExpand"
                    Text="{Binding InstallmentName, Mode=TwoWay}"
-                   Margin="10"/>
-
-            <BoxView Color="Green" HeightRequest="2" HorizontalOptions="Fill" Margin="10"/>
+                   />
 
             <Label Text="Cost"
                    TextColor="#009040"
@@ -30,10 +27,8 @@
             <Entry Placeholder="14.99" 
                    TextColor="Green" 
                    HorizontalOptions="FillAndExpand"
-                   Margin="10"
+                   
                    Text="{Binding InstallmentCost, Mode=TwoWay}"/>
-
-            <BoxView Color="Green" HeightRequest="2" HorizontalOptions="Fill" Margin="10"/>
 
             <Label Text="Set Date"
                    TextColor="#009040"
@@ -44,29 +39,23 @@
                    MinimumDate="01/01/2024"
                    MaximumDate="12/31/2024"
                    Date="{Binding InstallmentDate}"
-                   Margin="10"/>
-            <HorizontalStackLayout>
-                <Label Text="Enable Notifications"
-                   TextColor="#009040"
-                   FontSize="20"
-                   FontAttributes="Bold"
-                   Margin="10"/>
+                   />
+            
+            <Grid ColumnDefinitions="2*,*">
+                <Label Text="Enable Notifications" TextColor="#009040" FontSize="20" FontAttributes="Bold" HorizontalOptions="Start"/>
+                <Switch IsToggled="{Binding InstallmentIsActivated}" TranslationY="0" OnColor="Green" ThumbColor="Green" Grid.Column="1" HorizontalOptions="End"/>
+            </Grid>
 
-                <Switch IsToggled="{Binding InstallmentIsActivated}" TranslationX="50" OnColor="Green" ThumbColor="Green"/>
-                
-            </HorizontalStackLayout>
 
-            <HorizontalStackLayout>
-                <Button Text="Save"
-                        TextColor="White"
-                        FontAttributes="Bold"
-                        FontSize="16"
-                        BackgroundColor="#009040"
-                        WidthRequest="180"
-                        Margin="10, 10"
-                        HorizontalOptions="End"
-                        Clicked="SaveInstallment"/>
-            </HorizontalStackLayout>
+            <Button Text="Save"
+                    TextColor="White"
+                    FontAttributes="Bold"
+                    FontSize="16"
+                    BackgroundColor="#009040"
+                    WidthRequest="180"
+                    Margin="10, 10"
+                    HorizontalOptions="Start"
+                    Clicked="SaveInstallment"/>
         </StackLayout>
     </ScrollView>
 

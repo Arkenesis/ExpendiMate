@@ -31,7 +31,10 @@ public partial class Login : ContentPage
         }
     }
 
-
+    private void Anonymous_Clicked(object sender, EventArgs e)
+    {
+        App.Current.MainPage = new AppShell();
+    }
 
 
     private async void SingUpPage_Clicked(object sender, EventArgs e)

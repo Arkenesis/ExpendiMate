@@ -17,17 +17,17 @@
 
                     <HorizontalStackLayout HorizontalOptions="Center"
                                            VerticalOptions="Center"
-                                           Padding="0">
+                                           Spacing="10">
                         
                         <Image Source="wallet.png"
                                WidthRequest="30"
-                               HeightRequest="30"
-                               TranslationX="-10"/>
+                               HeightRequest="30"/>
 
                         <Label Text="{Binding User.BudgetBalance,StringFormat='${0:F2}'}"
                                TextColor="White"
                                FontSize="Medium"
-                               FontAttributes="Bold"/>
+                               FontAttributes="Bold"
+                               VerticalTextAlignment="Center"/>
                     </HorizontalStackLayout>
                 </Frame>
             </HorizontalStackLayout>
@@ -94,11 +94,10 @@
                 </Frame>
             </FlexLayout>
 
-            <StackLayout Margin="10,0,0,0">
-                <Label TextColor="#4b9460"
-                       FontAttributes="Bold"
-                       Text="Set Budget"/>
-            </StackLayout>
+            <Label TextColor="#4b9460"
+                   FontAttributes="Bold"
+                   Text="Set Budget"
+                   Margin="25,0,0,0"/>
 
             <FlexLayout Margin="5,10,0,0"
                         JustifyContent="SpaceEvenly"
@@ -107,8 +106,6 @@
                         Direction="Row">
 
                 <Frame BackgroundColor="{Binding ButtonColor1}"
-                       WidthRequest="76"
-                       HeightRequest="50"
                        CornerRadius="10"
                        BorderColor="Transparent"
                        Padding="0">
@@ -126,8 +123,6 @@
                 </Frame>
 
                 <Frame BackgroundColor="{Binding ButtonColor2}"
-                       WidthRequest="76"
-                       HeightRequest="50"
                        CornerRadius="10"
                        BorderColor="Transparent"
                        Padding="0">
@@ -145,8 +140,6 @@
                 </Frame>
 
                 <Frame BackgroundColor="{Binding ButtonColor3}"
-                       WidthRequest="76"
-                       HeightRequest="50"
                        CornerRadius="10"
                        BorderColor="Transparent"
                        Padding="0">
@@ -166,11 +159,8 @@
                 </Frame>
 
                 <Frame BackgroundColor="{Binding ButtonColor4}"
-                       WidthRequest="82"
-                       HeightRequest="50"
                        CornerRadius="10"
-                       BorderColor="Transparent"
-                       Padding="0">
+                       BorderColor="Transparent">
 
                     <StackLayout>
                         <Button
@@ -185,7 +175,7 @@
                 </Frame>
             </FlexLayout>
 
-            <VerticalStackLayout Margin="10">
+            <VerticalStackLayout Margin="25,20,25,20" Spacing="10">
                 <Label TextColor="#4b9460"
                        FontAttributes="Bold"
                        Text="Current Budget"/>
@@ -196,7 +186,6 @@
                        HorizontalOptions="Start"
                        BorderColor="Transparent"
                        CornerRadius="25"
-                       Margin="0,10,0,0"
                        Padding="0">
                     <Label Text="{Binding User.Budget, StringFormat='${0:F2}'}"
                            TextColor="White"
@@ -208,32 +197,15 @@
                 </Frame>
 
             </VerticalStackLayout>
+            <Frame BackgroundColor="#4b4b4b" Margin="25,0,25,20" BorderColor="Transparent">
+                <Grid ColumnDefinitions="Auto,*"  ColumnSpacing="10">
+                    <Image Source="innovation.png" WidthRequest="42" HeightRequest="42" VerticalOptions="Center" HorizontalOptions="Center" Grid.Column="0" Margin="8,0,0,0"/>
+                    <Label TextColor="White" FontSize="15" VerticalOptions="Start" HorizontalOptions="Start" Grid.Column="1" Margin="0,8,8,8"
+                       Text="Do you know? The rule of thumb for setting a budget is to use the 50-30-20 rule, where 50% of your budget goes towards necessities, 30% towards your wants and 20% towards savings."/>
+                </Grid>
+            </Frame>
 
-            <FlexLayout>
-                <Frame BackgroundColor="#4b4b4b"
-                       WidthRequest="333"
-                       HeightRequest="150"
-                       Margin="5"
-                       BorderColor="Transparent">
 
-                    <HorizontalStackLayout>
-                        <Image Source="innovation.png"
-                               WidthRequest="42"
-                               HeightRequest="42"
-                               VerticalOptions="Center"
-                               Margin="10,0,0,0"/>
-
-                        <Label TextColor="White"
-                               FontSize="15"
-                               VerticalOptions="Start"
-                               HorizontalOptions="Start"
-                               WidthRequest="260"
-                               Text="Do you know? The rule of thumb for setting a budget is to use the 50-30-20 rule, where 50% of your budget goes towards necessities, 30% towards your wants and 20% towards savings."
-                               Margin="10"/>
-
-                    </HorizontalStackLayout>
-                </Frame>
-            </FlexLayout>
 
         </VerticalStackLayout>
     </ScrollView>

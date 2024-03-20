@@ -1,6 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using ExpendiMate.Models;
 using ExpendiMate.Services;
+using ExpendiMate.Services.PartialMethods;
 using SQLite;
 using System.Collections.ObjectModel;
 
@@ -45,6 +46,7 @@ namespace ExpendiMate.ViewModels
 
         public void SaveAndUpdate(InstallmentModel model)
         {
+            model = sendNotificationToUser(model);
             if (model.Id > 0)
             {
                 connection.Update(model);
@@ -53,6 +55,7 @@ namespace ExpendiMate.ViewModels
             {
                 connection.Insert(model);
             }
+
             OnPropertyChanged("TotalCost");
         }
 
@@ -70,5 +73,22 @@ namespace ExpendiMate.ViewModels
             OnPropertyChanged(nameof(Installments));
         }
 
+        public InstallmentModel sendNotificationToUser(InstallmentModel model)
+        {
+            int day = model.InstallmentDate.Day;
+            int month = model.InstallmentDate.Month;
+            int year = model.InstallmentDate.Year;
+            DateTime scheduledTime = new DateTime(year, month, day).AddHours(8);
+            if (model.InstallmentIsActivated && scheduledTime >= DateTime.Now)
+            {
+                NotificationService.SendNotification(model.Id, model.InstallmentName, "Remember to pay the instament~", scheduledTime);
+            }
+            else
+            {
+                NotificationService.DeleteNotification(model.Id);
+                model.InstallmentIsActivated = false;
+            }
+            return model;
+        }
     }
 }

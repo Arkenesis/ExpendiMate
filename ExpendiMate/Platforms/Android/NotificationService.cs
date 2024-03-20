@@ -24,11 +24,10 @@ static partial class NotificationService
 
     }
 
-    static partial void DoSendNotification(string title, string message, DateTime scheduleTime)
+    static partial void DoSendNotification(int id, string title, string message, DateTime scheduleTime)
     {
         //Get the devices native alarm manager
         AlarmManager alarmManager = Context.GetSystemService(Context.AlarmService).JavaCast<AlarmManager>();
-        int id = 1;
         var alarmIntent = new Intent(Context, typeof(AlarmReceiver));
         //Add extra tags so we can read it later
         alarmIntent.PutExtra("id", id);
@@ -43,6 +42,23 @@ static partial class NotificationService
         //Schedule the alarm to trigger our AlarmReceiver at the designated time
         alarmManager.Set(AlarmType.RtcWakeup, millisecondsToBegin, pending);
     }
+
+    //https://stackoverflow.com/questions/3595232/android-remove-notification-from-notification-bar?rq=3
+    static partial void DoDeleteNotification(int id)
+    {
+        // Optionally, you might also want to cancel any alarms associated with this notification
+        AlarmManager alarmManager = Context.GetSystemService(Context.AlarmService).JavaCast<AlarmManager>();
+        PendingIntent pendingIntent = PendingIntent.GetBroadcast(Context, id, new Intent(Context, typeof(AlarmReceiver)), PendingIntentFlags.UpdateCurrent);
+        alarmManager.Cancel(pendingIntent);
+
+        // Get the notification service
+        String ns = Context.NotificationService;
+        NotificationManager nMgr = (NotificationManager)Context.GetSystemService(ns);
+
+        // Cancel the notification using the provided notifyId
+        nMgr.Cancel(id);
+    }
+
 }
 
 [BroadcastReceiver]

@@ -51,15 +51,13 @@ public partial class AccountSettings : ContentPage
         {
             await DisplayAlert("Login", "Fail to change your account details.", "Ok");
         }
-
-        
     }
 
     private async void DiscardChanges_Clicked(object sender, EventArgs e)
     {
         if (viewModel == null) return;
         viewModel.NewName = viewModel.User.User.Info.DisplayName;
-        viewModel.NewPassword = viewModel.Password;
+        viewModel.NewPassword = "";
     }
 
     private async void Upload_Clicked(object sender, EventArgs e)
@@ -94,6 +92,14 @@ public partial class AccountSettings : ContentPage
                 await DisplayAlert("Restore Fail.", "Pls ensure your backup data is available!", "OK");
             }
         }
+    }
+
+    private async void Logout_Clicked(object sender, EventArgs e)
+    {
+        if (viewModel == null) return;
+        viewModel.User = null;
+        await DisplayAlert("Logout", "Successfully logout for your account!", "Ok");
+        App.Current.MainPage = new Login();
     }
 
 

@@ -33,16 +33,6 @@
                     ItemsSource="{x:Static models:CategoryModel.CategoryList}"
                     SelectedItem="{Binding ExpenseCategory}">
             
-                <!--<Picker.ItemsSource>
-                    <x:Array Type="{x:Type x:String}">
-                        <x:String>Groceries</x:String>
-                        <x:String>Food</x:String>
-                        <x:String>Education</x:String>
-                        <x:String>Leisure</x:String>
-                        <x:String>Health</x:String>
-                        <x:String>Gifts</x:String>
-                    </x:Array>
-                </Picker.ItemsSource>-->
             </Picker>
 
             <Label Text="Date"
@@ -50,95 +40,52 @@
                    FontSize="20"
                    FontAttributes="Bold"
                    Margin="20,10,20,10"/>
-            <DatePicker 
-                MinimumDate="01/01/2023"
-                MaximumDate="12/31/2024"
-                Date="{Binding ExpenseDate}"
-                Margin="20,10,20,10"
-                TextColor="White"
-                Background="#32df7f"/>
 
-            <HorizontalStackLayout>
-                <Frame BackgroundColor="#32df7f"
-                       WidthRequest="90"
-                       HeightRequest="45"
-                       CornerRadius="10"
-                       BorderColor="Transparent"
-                       Margin="20,10,20,10">
+            <Grid Margin="20,10,20,10" ColumnDefinitions="*,*,*" ColumnSpacing="10">
+                <Button x:Name="TodayButtonColor"
+                        BackgroundColor="#32df7f"
+                        BorderColor="Transparent"
+                        CornerRadius="10"
+                        FontSize="12"
+                        FontAttributes="Bold"
+                        TextColor="Black"
+                        Text="Today"
+                        Clicked="TodayButtonClicked">
+                </Button>
 
-                    <!-- Text="Binding MyDate, StringFormat='{0:d}'-->
-                    <VerticalStackLayout>
-                        <Label Text="14/01"
-                               TextColor="Black"
-                               HorizontalOptions="Center"
-                               FontAttributes="Bold"
-                               FontSize="12"
-                               TranslationY="5"/>
+                <Button x:Name="YesterdayButtonColor"
+                        BackgroundColor="Transparent"
+                        CornerRadius="10"
+                        BorderColor="Transparent"
+                        Padding="0"
+                        FontSize="12"
+                        FontAttributes="Bold"
+                        TextColor="Black"
+                        Text="Yesterday"
+                        Clicked="YesterdayButtonClicked"
+                        Grid.Column="1">
+                </Button>
 
-                        <Label Text="Today"
-                               TextColor="Black"
-                               HorizontalOptions="Center"
-                               FontAttributes="Bold"
-                               FontSize="12"
-                               TranslationY="5"/>
-                    </VerticalStackLayout>
-                </Frame>
+                <Button x:Name="TwoDaysAgoButtonColor"
+                        BackgroundColor="Transparent"
+                        CornerRadius="10"
+                        BorderColor="Transparent"
+                        Padding="0"
+                        FontSize="12"
+                        FontAttributes="Bold"
+                        TextColor="Black"
+                        Text="Two Days Ago"
+                        Clicked="TwoDaysAgoButtonClicked"
+                        Grid.Column="2">
+                </Button>
 
-                <Frame BackgroundColor="#4b9460"
-                       WidthRequest="90"
-                       HeightRequest="45"
-                       CornerRadius="10"
-                       BorderColor="Transparent"
-                       Padding="0"
-                       Margin="10, -20">
 
-                    <VerticalStackLayout>
-                        <Label Text="13/01"
-                               TextColor="Black"
-                               HorizontalOptions="Center"
-                               FontAttributes="Bold"
-                               FontSize="12"
-                               TranslationY="5"/>
+            </Grid>
 
-                        <Label Text="Yesterday"
-                               TextColor="Black"
-                               HorizontalOptions="Center"
-                               FontAttributes="Bold"
-                               FontSize="12"
-                               TranslationY="5"/>
-                    </VerticalStackLayout>
-                </Frame>
-
-                <Frame BackgroundColor="#4b9460"
-                       WidthRequest="90"
-                       HeightRequest="45"
-                       CornerRadius="10"
-                       BorderColor="Transparent"
-                       Padding="0"
-                       Margin="10, -20">
-
-                    <VerticalStackLayout>
-                        <Label Text="12/01"
-                               TextColor="Black"
-                               HorizontalOptions="Center"
-                               FontAttributes="Bold"
-                               FontSize="12"
-                               TranslationY="5"/>
-
-                        <Label Text="2 days ago"
-                               TextColor="Black"
-                               HorizontalOptions="Center"
-                               FontAttributes="Bold"
-                               FontSize="12"
-                               TranslationY="5"/>
-                    </VerticalStackLayout>
-                </Frame>
-
-                <Image Source="calendar.png"
-                       WidthRequest="45" 
-                       HeightRequest="45"
-                       Margin="20, 0"/>
-            </HorizontalStackLayout>
+            <DatePicker Date="{Binding ExpenseDate}"
+                        Margin="20,10,20,10"
+                        TextColor="White"
+                        Background="#32df7f"/>
 
             <Label Text="Cost"
                    TextColor="#00B14F"
@@ -151,7 +98,8 @@
                    TextColor="Green"
                    HorizontalOptions="FillAndExpand"
                    Margin="20,10,20,10"
-                   Text="{Binding ExpenseCost}"/>
+                   Text="{Binding ExpenseCost}"
+                   Keyboard="Numeric"/>
 
             <Label Text="Comments"
                    TextColor="#00B14F"
@@ -171,42 +119,33 @@
                    FontAttributes="Bold"
                    Margin="20,10,20,10"/>
 
-            <HorizontalStackLayout Margin="20,10,20,10" Spacing="10">
-                <Image  Source="{Binding ExpensePicturePath}"
-                        WidthRequest="100"
-                        HeightRequest="100"
-                        Aspect="Fill"
-                        AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
-                        AbsoluteLayout.LayoutFlags="All"/>
-                <Button Text="+"
+            <Grid Margin="20,10,20,10" ColumnDefinitions="*,*" ColumnSpacing="20">
+                <Frame IsVisible="{Binding IsExist}" BorderColor="DarkGray" BackgroundColor="Transparent" Grid.Column="0">
+                    <Image  Source="{Binding ExpensePicturePath}" Aspect="Fill"/>
+                </Frame>
+
+                <Frame HorizontalOptions="Center" BackgroundColor="Transparent" WidthRequest="50" HeightRequest="50" BorderColor="Transparent" Grid.Column="1">
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="AddPhoto" NumberOfTapsRequired="1" />
+                    </Frame.GestureRecognizers>
+                    <Image WidthRequest="50" HeightRequest="50" Aspect="AspectFill" Source="upload.png"/>
+                </Frame>
+            </Grid>
+
+            <Grid Margin="20,10,20,10" ColumnDefinitions="*,*" ColumnSpacing="20">
+                <Button Text="Delete expense"
                         TextColor="White"
-                        FontAttributes="Bold"
-                        FontSize="80"
+                        HorizontalOptions="FillAndExpand"
+                        Clicked="Delete"
+                        BackgroundColor="LightCoral"
+                        Grid.Column="0"/>
+                <Button Text="Save"
+                        TextColor="White"
                         BackgroundColor="#00B14F"
-                        HeightRequest="100"
-                        WidthRequest="100"
-                        Clicked="AddPhoto"/>
-            </HorizontalStackLayout>
-
-            <Button Text="Save"
-                    TextColor="White"
-                    FontAttributes="Bold"
-                    FontSize="16"
-                    BackgroundColor="#00B14F"
-                    WidthRequest="200"
-                    Margin="20,10,20,10"
-                    HorizontalOptions="Start"
-                    Clicked="AddExpenses"/>
-
-            <Button
-                x:Name="ClearExpensesButton"
-                Text="Delete all Data"
-                TextColor="White"
-                WidthRequest="200"
-                Margin="20,10,20,10"
-                HorizontalOptions="Start"
-                Clicked="ClearAllExpenses"
-                BackgroundColor="LightCoral"/>
+                        HorizontalOptions="FillAndExpand"
+                        Clicked="AddExpenses"
+                        Grid.Column="1"/>
+            </Grid>
         </VerticalStackLayout>
     </ScrollView>
 

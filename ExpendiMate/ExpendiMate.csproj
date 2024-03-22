@@ -40,7 +40,7 @@
 
 	<ItemGroup>
 		<!-- App Icon -->
-		<MauiIcon Include="Resources\AppIcon\appicon.svg"/>
+		<MauiIcon Include="Resources\AppIcon\appicon.svg" />
 
 		<!-- Splash Screen -->
 		<MauiSplashScreen Include="Resources\Splash\splash.svg" BaseSize="256,256" />
@@ -66,6 +66,10 @@
 	  <None Remove="Resources\Images\subscription_model.png" />
 	  <None Remove="Resources\Images\tutorial.png" />
 	  <None Remove="Resources\Images\wallet.png" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiImage Include="Platforms\Android\Resources\money_bag.png" />
 	</ItemGroup>
 
 	<ItemGroup>

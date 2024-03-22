@@ -19,17 +19,33 @@ public partial class Login : ContentPage
 
     private async void Login_Clicked(object sender, EventArgs e)
     {
+        var button = (Button) sender;
+        Animation parent = new Animation();
+        Animation fade = new Animation(x => button.Opacity = x, 1, 0, Easing.CubicIn);
+        Animation size = new Animation(x => button.Scale = x, 1, 0, Easing.SpringIn);
+
+        parent.Add(0, 0.9, fade);
+        parent.Add(0, 1, size);
+
+        parent.Commit(this, "ButtonAnimation", 16, 1000, null, AnimationEnd);
+
         var response = await viewModel.Login();
         if(response)
         {
             await DisplayAlert("Login", "Successfully log in into your account.", "Ok");
             App.Current.MainPage = new AppShell();
+
         }
         else
         {
             await DisplayAlert("Login", "Fail to log in, please try again later.", "Ok");
         }
     }
+    private async void AnimationEnd(double x, bool y)
+    {
+        
+    }
+
 
     private void Anonymous_Clicked(object sender, EventArgs e)
     {

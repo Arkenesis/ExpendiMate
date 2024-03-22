@@ -42,14 +42,24 @@ public partial class AccountSettings : ContentPage
     private async void SaveChanges_Clicked(object sender, EventArgs e)
     {
         if (viewModel == null) return;
+        if (viewModel.NewName == "")
+        {
+            await DisplayAlert("Save Changes", "Name can not be empty!", "Ok");
+            return;
+        }
+        if (viewModel.NewPassword.Length <5)
+        {
+            await DisplayAlert("Save Changes", "Password must be atleast 6 letter long!", "Ok");
+            return;
+        }
         var response = await viewModel.SaveChanges();
         if (response)
         {
-            await DisplayAlert("Login", "Successfully change your account details.", "Ok");
+            await DisplayAlert("Save Changes", "Successfully change your account details.", "Ok");
         }
         else
         {
-            await DisplayAlert("Login", "Fail to change your account details.", "Ok");
+            await DisplayAlert("Save Changes", "Fail to change your account details.", "Ok");
         }
     }
 
@@ -96,7 +106,6 @@ public partial class AccountSettings : ContentPage
 
     private async void Logout_Clicked(object sender, EventArgs e)
     {
-        if (viewModel == null) return;
         viewModel.User = null;
         await DisplayAlert("Logout", "Successfully logout for your account!", "Ok");
         App.Current.MainPage = new Login();

@@ -19,7 +19,8 @@ public partial class Login : ContentPage
 
     private async void Login_Clicked(object sender, EventArgs e)
     {
-        var button = (Button) sender;
+        var frame = (Frame)sender;
+        var button = (Button) frame.Content;
         Animation parent = new Animation();
         Animation fade = new Animation(x => button.Opacity = x, 1, 0, Easing.CubicIn);
         Animation size = new Animation(x => button.Scale = x, 1, 0, Easing.SpringIn);

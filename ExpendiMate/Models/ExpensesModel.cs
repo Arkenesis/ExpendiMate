@@ -12,7 +12,7 @@ namespace ExpendiMate.Models
 
     //Expense
     [Table("Expenses")]
-    public class ExpensesModel : ObservableObject
+    public partial class ExpensesModel : ObservableObject
     {
         [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
@@ -21,7 +21,6 @@ namespace ExpendiMate.Models
         public double ExpenseCost { get; set; }
         public string ExpenseComments { get; set; } = string.Empty;
         public DateTime ExpenseDate { get; set; }
-        public string ExpensePicturePath { get; set; } = string.Empty;
 
         public string TodayText
         {
@@ -50,5 +49,8 @@ namespace ExpendiMate.Models
                 return twoDaysAgo.ToString("dd/MM") + "\n 2 days ago";
             }
         }
+
+        [ObservableProperty]
+        string expensePicturePath;
     }
 }

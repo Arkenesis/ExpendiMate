@@ -39,6 +39,10 @@
                       Route="BudgetingGuide"
                       Icon="tutorial.png"/>
 
+        <ShellContent Title="Account Settings"
+                      ContentTemplate="{DataTemplate local:AccountSettings}"
+                      Route="AccountSettings"
+                      Icon="settings.png"/>
     </FlyoutItem>
 
     <Shell.ItemTemplate>

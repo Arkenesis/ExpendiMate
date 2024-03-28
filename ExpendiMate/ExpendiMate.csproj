@@ -62,17 +62,22 @@
 	  <None Remove="Resources\Images\innovation.png" />
 	  <None Remove="Resources\Images\money_bag.png" />
 	  <None Remove="Resources\Images\pencil.png" />
+	  <None Remove="Resources\Images\settings.png" />
 	  <None Remove="Resources\Images\subscription_model.png" />
 	  <None Remove="Resources\Images\tutorial.png" />
+	  <None Remove="Resources\Images\upload.png" />
 	  <None Remove="Resources\Images\wallet.png" />
 	</ItemGroup>
 
 	<ItemGroup>
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />
+		<PackageReference Include="FirebaseAuthentication.net" Version="4.1.0" />
+		<PackageReference Include="FirebaseStorage.net" Version="1.0.3" />
 		<PackageReference Include="Microcharts.Maui" Version="1.0.0" />
 		<PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
 		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="$(MauiVersion)" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.0" />
+		<PackageReference Include="Microsoft.Toolkit.Uwp.Notifications" Version="7.1.3" />
 		<PackageReference Include="sqlite-net-pcl" Version="1.8.116" />
 		
 	</ItemGroup>
@@ -90,7 +95,13 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiXaml Update="Pages\AccountSettings.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Pages\Category.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Pages\Login.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Pages\SetInstallment.xaml">
@@ -112,6 +123,9 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Pages\SetBudget.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Pages\SignUp.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>

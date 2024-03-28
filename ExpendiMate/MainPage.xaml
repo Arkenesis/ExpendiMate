@@ -61,38 +61,7 @@
                 </Frame>
             </Grid>
             
-            <!--<HorizontalStackLayout HorizontalOptions="Center" Margin="10">
-
-                <Frame BackgroundColor="#4b9460"
-                       BorderColor="Transparent"
-                       HeightRequest="69"
-                       WidthRequest="188"
-                       CornerRadius="32">
-                    <HorizontalStackLayout HorizontalOptions="CenterAndExpand"
-                                           VerticalOptions="CenterAndExpand"
-                                           Margin="20,0,0,0">
-                        
-                        <Image Source="wallet.png"
-                               WidthRequest="32"
-                               HeightRequest="32"/>
-                        
-                        <Label Text="Total"
-                               TextColor="White"
-                               FontSize="Small"
-                               FontAttributes="Bold"
-                               TranslationX="40"
-                               TranslationY="-5"/>
-                        
-                        <Label Text="{Binding Total, StringFormat='${0:F2}'}"
-                               TextColor="White"
-                               Margin="5"
-                               FontSize="Medium"
-                               FontAttributes="Bold"
-                               TranslationX="-40"
-                               TranslationY="8"/>
-                    </HorizontalStackLayout>
-                </Frame>
-            </HorizontalStackLayout>-->
+           
 
             <FlexLayout Direction="Row"
                         AlignItems="Center"

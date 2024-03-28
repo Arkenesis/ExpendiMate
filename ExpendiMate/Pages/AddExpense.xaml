@@ -138,25 +138,42 @@
                    Margin="10, 20"
                    TranslationY="-120"/>
 
-            <HorizontalStackLayout Margin="10, 20"
-                                   TranslationY="-140">
-                <Button Text="+"
-                        TextColor="White"
-                        FontAttributes="Bold"
-                        FontSize="80"
-                        BackgroundColor="#00B14F"
-                        HeightRequest="100"
-                        WidthRequest="100"/>
+            <Grid Margin="20,10,20,10" 
+                  ColumnDefinitions="*,*" 
+                  ColumnSpacing="20">
+                
+                <Frame IsVisible="{Binding IsExist}" 
+                       BorderColor="DarkGray" 
+                       BackgroundColor="Transparent" 
+                       Grid.Column="0"
+                       HeightRequest="200"
+                       WidthRequest="330"
+                       TranslationX="80"
+                       TranslationY="-120">
+                    
+                    <Image  Source="{Binding ExpensePicturePath}" 
+                            Aspect="Fill"/>
+                </Frame>
 
-                <Button Text="+"
-                        TextColor="White"
-                        FontAttributes="Bold"
-                        FontSize="80"
-                        BackgroundColor="#00B14F"
-                        Margin="20,0"
-                        HeightRequest="100"
-                        WidthRequest="100"/>
-            </HorizontalStackLayout>
+                <Frame HorizontalOptions="End" 
+                       BackgroundColor="Transparent" 
+                       WidthRequest="30" 
+                       HeightRequest="30" 
+                       BorderColor="black" 
+                       Grid.Column="1"
+                       TranslationY="-260">
+                    
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="AddPhoto" 
+                                              NumberOfTapsRequired="1" />
+                    </Frame.GestureRecognizers>
+                    
+                    <Image WidthRequest="20" 
+                           HeightRequest="20" 
+                           Aspect="AspectFill" 
+                           Source="upload.png"/>
+                </Frame>
+            </Grid>
 
             <Button Text="Save"
                     TextColor="White"

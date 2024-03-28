@@ -2,12 +2,382 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ExpendiMate.Pages.BudgetingGuide"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              Title="Budgeting Guide">
-    
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+    <ScrollView>
+        <VerticalStackLayout>
+            <Label 
+                Text="Chapter 1: The ABCs of Budgeting"
+                VerticalOptions="End" 
+                HorizontalOptions="Center"
+                FontAttributes="Bold"
+                FontSize="18"
+                Margin="5"
+                Padding="10"/>
+
+            <Line 
+                Shape.Stroke="LightGray"
+                X2="{Binding Width, Source={RelativeSource Self}}"
+                Y1="10"
+                Y2="10"
+                VerticalOptions="Start" 
+                StrokeThickness="1" />
+
+            <Label Text="Welcome to the first step of your financial journey - understanding budgeting. This isn’t just about numbers and calculations; it’s about gaining control over your financial future."
+                   Padding="7"
+                   Margin="7"
+                   LineHeight="1.3"/>
+            <Label Text="In this chapter, we will be demystifying  the concept of budgeting. We'll start by exploring what a budget is and why it's crucial for everyone, regardless of income level or financial goals. We'll debunk common myths about budgeting that often discourage people from getting started. But first, take a look at the video below. It provides a quick overview of what budgeting is and why it's important."
+                   Padding="7"
+                   Margin="7"
+                   LineHeight="1.3"/>
+            <Label Text="After watching the video, continue reading for a deeper dive into the world of budgeting. We'll explore the different components of a budget, discuss strategies for effective budgeting, and address common challenges you might face along the way."
+                   Padding="7"
+                   Margin="7"
+                   LineHeight="1.3"/>
+            <Label Text="Remember, budgeting is not about restricting your spending, but about understanding and controlling it. So, let's get started on this journey towards financial freedom."
+                   Padding="7"
+                   Margin="7"
+                   LineHeight="1.3"/>
+            <WebView 
+                x:Name="webView"
+                Margin="14"
+                HorizontalOptions="FillAndExpand"
+                MinimumHeightRequest="300"
+                Source="https://www.youtube.com/embed/sVKQn2I4HDM"/>
+
+            <BoxView
+                HeightRequest="15"
+                Color="White"/>
+
+            <Label 
+                Text="Chapter 2: Understand Your Income"
+                VerticalOptions="End" 
+                HorizontalOptions="Center"
+                FontAttributes="Bold"
+                FontSize="18"
+                Margin="5"
+                Padding="10"/>
+
+            <Line 
+                Shape.Stroke="LightGray"
+                X2="{Binding Width, Source={RelativeSource Self}}"
+                Y1="10"
+                Y2="10"
+                VerticalOptions="Start" 
+                StrokeThickness="1" />
+
+            <Label Text="Initiating a budget requires a clear understanding of your monthly earnings, particularly your post-tax income. If you’re uncertain about your net income (the amount you earn after taxes), you can usually refer to your pay slips or bank statements to determine this."
+                Padding="7"
+                Margin="7"
+                LineHeight="1.3"/>
+
+            <Label Text="After you’ve estimated your income, you’ll need to calculate your monthly expenditures, which may include rent or mortgage payments, utilities, groceries, insurance, and fuel. If you have any debts, such as credit card balances or personal loans, these should also be factored in. Then, compare your income with your expenses."
+                Padding="7"
+                Margin="7"
+                LineHeight="1.3"/>
+
+            <Label Text="Todd Christensen, a certified financial counselor and education manager at Money Fit, suggests, “If your projected expenses exceed your anticipated income, you’ll need to increase your earnings, reduce some spending, incur debt, or implement a mix of these strategies.”"
+                Padding="7"
+                Margin="7"
+                LineHeight="1.3"/>
+
+            <Label Text="However, if your income surpasses your expenses, it indicates that you have surplus money that can be allocated towards savings, an emergency fund, or other financial objectives."
+                Padding="7"
+                Margin="7"
+                LineHeight="1.3"/>
+
+            <BoxView 
+                Color="White"
+                HeightRequest="1" />
+
+            <Label 
+                Text="Chapter 3: Budgeting Strategy"
+                VerticalOptions="End" 
+                HorizontalOptions="Center"
+                FontAttributes="Bold"
+                FontSize="18"
+                Margin="5"
+                Padding="10"/>
+
+            <Line 
+                Shape.Stroke="LightGray"
+                X2="{Binding Width, Source={RelativeSource Self}}"
+                Y1="10"
+                Y2="10"
+                VerticalOptions="Start" 
+                StrokeThickness="1" />
+
+            <Label Text="The next step in your budgeting journey involves formulating your budget — a detailed plan on how you’ll allocate your monthly earnings to eventually reach your financial goals."
+                Padding="7"
+                Margin="7"
+                LineHeight="1.3"/>
+
+            <Label Text="There are multiple strategies to accomplish this, each with its own unique advantages and disadvantages. Here are some methods you might consider:"
+                Padding="7"
+                Margin="7"
+                LineHeight="1.3"/>
+
+            <Label
+                Text="[ The 50/30/20 Rule ]"
+                Padding="15,7,0,7"
+                FontAttributes="Bold"/>
+
+            <Label Text="The 50/30/20 rule has gained significant popularity over the past two decades. According to Christensen, “It proposes that you spend 50% of your income on necessities like housing, transportation, cell phone, and utilities, allocate 30% for leisure activities like dining out, recreation, or travel, and save and invest the remaining 20%.”"
+                Padding="7"
+                Margin="7"
+                LineHeight="1.3"/>
+
+            <Label Text="The advantage of this method is its simplicity and ease of learning, not to mention it doesn’t require you to track every single purchase or expense! With that said, it doesn’t consider your personal circumstances so it may not be suitable for all situations. (For instance, if you reside in an area with high living costs, adhering to the 50% rule might be impractical.)"
+                Padding="7"
+                Margin="7"
+                LineHeight="1.3"/>
+
+            <Label
+                Text="[ The 70/20/10 Rule ]"
+                Padding="15,7,0,7"
+                FontAttributes="Bold"/>
+
+            <Label Text="Similar to the 50/30/20 rule, this rule provides a flexible budgeting structure. The distribution for this budgeting strategy is: 70% for wants and needs, 20% for savings and investments, and 10% for debt repayments or donations"
+                Padding="7"
+                Margin="7"
+                LineHeight="1.3"/>
+
+            <Label
+                Text="[ Zero Based Budgeting ]"
+                Padding="15,7,0,7"
+                FontAttributes="Bold"/>
+
+            <Label Text="A zero-based budget aims to make your income minus your expenses equal to zero. This means you allocate all your monthly income — initially, to your essentials, and then, to your desires and financial objectives. If you end up with an unspent $300 at the end of the month under this strategy, you’d allocate that money to savings, make an additional loan payment, or utilize it in some other way."
+                Padding="7"
+                Margin="7"
+                LineHeight="1.3"/>
+
+            <Label Text="The benefit of a zero-balance budget is that it accounts for every dollar, ensuring you maximize your earnings. The main disadvantage is that it’s time-consuming. Keeping track of each expense and every dollar you earn can be exhausting. It’s also challenging to implement with unpredictable incomes (you can’t predict how much you can allocate for each expense)."
+                Padding="7"
+                Margin="7"
+                LineHeight="1.3"/>
+
+            <WebView 
+                x:Name="zbbView"
+                Margin="14"
+                HorizontalOptions="FillAndExpand"
+                MinimumHeightRequest="300"
+                Source="https://www.youtube.com/embed/DUlF1tCMN54"/>
+
+            <Label
+                Text="[ Pay Yourself First ]"
+                Padding="15,7,0,7"
+                FontAttributes="Bold"/>
+
+            <Label Text="The pay yourself first strategy begins with your financial goals and works backward. For example, if you want to allocate $500 towards your mortgage and $500 into savings each month, you’d start by subtracting that $1,000 from your monthly net pay (for instance, $4,000 - $1,000), and then use that amount ($3,000) for your monthly bills and expenses."
+                Padding="7"
+                Margin="7"
+                LineHeight="1.3"/>
+
+            <Label Text="The major advantage of this strategy is that it prioritizes your goals and offers spending flexibility. However, it may induce stress if you leave yourself with insufficient funds to cover your monthly expenses."
+                Padding="7"
+                Margin="7"
+                LineHeight="1.3"/>
+
+            <WebView 
+                x:Name="pyfView"
+                Margin="14"
+                HorizontalOptions="FillAndExpand"
+                MinimumHeightRequest="300"
+                Source="https://www.youtube.com/embed/1tAVx-V8Qvw"/>
+
+            <Label
+                Text="[ Envelope Budget ]"
+                Padding="15,7,0,7"
+                FontAttributes="Bold"/>
+
+            <Label Text="The envelope system is a monthly budgeting method devised by financial author Dave Ramsey. It involves placing cash into individual envelopes for each expense or category of expenses (e.g., housing, utilities, food, and entertainment). You then withdraw cash from the envelopes as costs occur during the month."
+                Padding="7"
+                Margin="7"
+                LineHeight="1.3"/>
+
+            <Label Text="If you deplete the money in an envelope, it indicates you overspent or need to allocate more to that category. If you have a significant amount left over, you can adjust the budget for the next month and allocate those funds elsewhere."
+                Padding="7"
+                Margin="7"
+                LineHeight="1.3"/>
+
+            <Label Text="The advantage of this method is that it’s visual and tangible, making it easy to comprehend your budget and how you can enhance it. Unfortunately, it’s also time-consuming, and cash isn’t always accepted — particularly in today’s digital economy."
+                Padding="7"
+                Margin="7"
+                LineHeight="1.3"/>
+
+
+            <BoxView 
+                Color="White"
+                HeightRequest="1" />
+
+            <Label 
+                Text="Chapter 4: Cut Back on Spending"
+                VerticalOptions="End" 
+                HorizontalOptions="Center"
+                FontAttributes="Bold"
+                FontSize="18"
+                Margin="5"
+                Padding="10"/>
+
+            <Line 
+                Shape.Stroke="LightGray"
+                X2="{Binding Width, Source={RelativeSource Self}}"
+                Y1="10"
+                Y2="10"
+                VerticalOptions="Start" 
+                StrokeThickness="1" />
+
+
+            <Label Text="As you embark on the journey of budgeting, it’s crucial to scrutinize your expenses thoroughly. You should be asking questions like: Are these expenditures essential? If they are, can they be minimized or made more cost-effective? This could involve renegotiating your prices, changing service providers, or seeking out discounts or promotional offers. Remember, there's no shame in wanting to reduce costs."
+                Padding="7"
+                Margin="7"
+                LineHeight="1.3"/>
+
+            <Label Text="Here are some strategies to reduce your spending:"
+                Padding="7"
+                Margin="7"
+                LineHeight="1.3"/>
+
+            <Label
+                Text="[ Add Friction ]"
+                Padding="15,7,0,7"
+                FontAttributes="Bold"/>
+
+            <Label Text="Friction refers to making the process of spending money slightly more challenging. For instance, deleting your saved credit card details from your preferred website so that you have to manually input them each time can add friction to spending. This method effectively discourages easy spending."
+                Padding="7"
+                Margin="7"
+                LineHeight="1.3"/>
+
+            <Label
+                Text="[ Delay Purchases ]"
+                Padding="15,7,0,7"
+                FontAttributes="Bold"/>
+
+            <Label Text="Implement a 48-hour waiting period for your purchases. If you’re considering buying something, give it some thought. If it still appears to be a wise decision after two days, proceed with the purchase. This strategy helps you avoid impulsive and unnecessary purchases."
+                Padding="7"
+                Margin="7"
+                LineHeight="1.3"/>
+
+            <Label
+                Text="[ Review Monthly Subscriptions ]"
+                Padding="15,7,0,7"
+                FontAttributes="Bold"/>
+
+            <Label Text="With the plethora of subscription services available today, it’s easy to lose sight of your total expenditure. Examine your subscriptions critically and consider discontinuing any that you don’t actively use. This includes streaming services, apps, subscription boxes, and even Amazon’s Subscribe and Save subscriptions."
+                Padding="7"
+                Margin="7"
+                LineHeight="1.3"/>
+
+            <Label
+                Text="[ Refinance Loans for Lower Rates ]"
+                Padding="15,7,0,7"
+                FontAttributes="Bold"/>
+
+            <Label Text="The accumulated interest on your loans can be surprisingly high. Refinancing your mortgage, car loan, and occasionally your student loans could lower your interest rate, monthly payment, or both, freeing up cash flow that you can allocate to your budget for other, more pressing expenses. Ensure you explore options with multiple lenders if you’re considering this approach."
+                Padding="7"
+                Margin="7"
+                LineHeight="1.3"/>
+
+            <Label
+                Text="[ Plan Your Meals ]"
+                Padding="15,7,0,7"
+                FontAttributes="Bold"/>
+
+            <Label Text="Pre-planning your meals helps you stay organized at the grocery store and prevents you from resorting to eating out when in a hurry. You should have a plan for every meal of the week, including breakfasts, lunches, dinners, and snacks."
+                Padding="7"
+                Margin="7"
+                LineHeight="1.3"/>
+
+            <Label Text="Always keep in mind: Even a slight reduction in spending can free up more funds for debt repayment, achieving your financial objectives, or simply alleviating overall financial stress."
+                Padding="7"
+                Margin="7"
+                LineHeight="1.3"/>
+
+            <BoxView 
+                Color="White"
+                HeightRequest="1" />
+
+            <Label 
+                Text="Chapter 5: Savings Strategy"
+                VerticalOptions="End" 
+                HorizontalOptions="Center"
+                FontAttributes="Bold"
+                FontSize="18"
+                Margin="5"
+                Padding="10"/>
+
+            <Line 
+                Shape.Stroke="LightGray"
+                X2="{Binding Width, Source={RelativeSource Self}}"
+                Y1="10"
+                Y2="10"
+                VerticalOptions="Start" 
+                StrokeThickness="1" />
+
+            <Label Text="Streamline your savings and investments regardless of the budgeting strategy you adopt for incorporating savings into your plan is crucial. An automated transfer to your savings account is usually the most effective option, as it simplifies the process and ensures your objectives stay on course. To optimize your savings, you could contemplate a high-yield savings account, which accrues money at a rate superior to other alternatives."
+                Padding="7"
+                Margin="7"
+                LineHeight="1.3"/>
+
+            <Label Text="After setting up your savings automation, you might want to consider investing any surplus income. If this piques your interest, it would be beneficial to consult a certified financial planner prior to taking the plunge. They can assist you in selecting the most suitable investments aligned with your objectives."
+                Padding="7"
+                Margin="7"
+                LineHeight="1.3"/>
+
+            <WebView 
+                x:Name="automateView"
+                Margin="14"
+                HorizontalOptions="FillAndExpand"
+                MinimumHeightRequest="300"
+                Source="https://www.youtube.com/embed/XImly72tLw0"/>
+
+            <BoxView 
+                Color="White"
+                HeightRequest="1" />
+
+            <Label 
+                Text="Chapter 6: Monitor Progress"
+                VerticalOptions="End" 
+                HorizontalOptions="Center"
+                FontAttributes="Bold"
+                FontSize="18"
+                Margin="5"
+                Padding="10"/>
+
+            <Line 
+                Shape.Stroke="LightGray"
+                X2="{Binding Width, Source={RelativeSource Self}}"
+                Y1="10"
+                Y2="10"
+                VerticalOptions="Start" 
+                StrokeThickness="1" />
+
+            <Label Text="Budgets are dynamic tools, and it’s essential to regularly track your progress, make adjustments, and fine-tune as needed — particularly at the outset. You’ll also need to modify your spending habits along the way."
+                Padding="7"
+                Margin="7"
+                LineHeight="1.3"/>
+
+            <Label Text="“The crux is to recognize your spending patterns and ensure they align with your spending priorities,” says Christensen. “For instance, if you’re spending $50 a week on soft drinks, but you’d prefer to prioritize buying a new gaming console, then it’s time to alter your soft-drink purchasing habits.”"
+                Padding="7"
+                Margin="7"
+                LineHeight="1.3"/>
+
+            <Label Text="While you can certainly manually monitor your budget, Christensen suggests using a budgeting app that links to your bank account, as these can simplify the process. For instance, ExpendiMate is an app that assists you in creating a budget, negotiating your bills, and reducing your spending — and it offers a free plan."
+                Padding="7"
+                Margin="7"
+                LineHeight="1.3"/>
+
+            <Label Text="Some budgeting apps also provide credit monitoring services. Consider tracking your credit score and credit card usage when you’re monitoring your budget to gain a comprehensive understanding of your financial requirements."
+                Padding="7"
+                Margin="7"
+                LineHeight="1.3"/>
+
+            <Label Text="You can also establish an expense tracking spreadsheet in Excel, request receipts for every purchase, and tally them at the end of each week or month."
+                Padding="7"
+                Margin="7"
+                LineHeight="1.3"/>
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>

@@ -26,13 +26,14 @@ namespace ExpendiMate
         {
             //    The name of the property that we listen in 
             //    viewModel.OnPropertyChanged("ExpensesByCategory");
-            viewModel.UpdateView();
+            base.OnAppearing();
+            
             DayLabel.TextColor = Color.FromHex("#4b9460");
             DayLabel.TextDecorations = TextDecorations.Underline;
             resetLabel(WeekLabel);
             resetLabel(MonthLabel);
             resetLabel(YearLabel);
-            base.OnAppearing();
+            viewModel.UpdateView();
         }
 
         private void ExpenseButton_Clicked(object sender, EventArgs e)

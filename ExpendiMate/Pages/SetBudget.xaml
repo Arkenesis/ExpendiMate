@@ -178,15 +178,15 @@
                        Padding="0">
 
                     <StackLayout>
-                        <Button
-                            Text="Manual"
-                            TextColor="Black"
-                            BackgroundColor="Transparent"
-                            VerticalOptions="Center"
-                            HorizontalOptions="Center"
-                            FontSize="14"
-                            FontAttributes="Bold"
-                            Clicked="SetBudgetManual"/>
+                        <Button x:Name="ManualBudget"
+                                Text="Manual"
+                                TextColor="Black"
+                                BackgroundColor="Transparent"
+                                VerticalOptions="Center"
+                                HorizontalOptions="Center"
+                                FontSize="14"
+                                FontAttributes="Bold"
+                                Clicked="SetBudgetManual"/>
                     </StackLayout>
                 </Frame>
             </FlexLayout>

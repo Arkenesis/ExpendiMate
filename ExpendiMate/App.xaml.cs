@@ -1,4 +1,5 @@
-﻿using ExpendiMate.Services;
+﻿using ExpendiMate.Pages;
+using ExpendiMate.Services;
 
 namespace ExpendiMate
 {
@@ -7,7 +8,7 @@ namespace ExpendiMate
         public App()
         {
             InitializeComponent();
-            MainPage = new AppShell();
+            MainPage = new Login();
         }
 
         //Simulate phone device screen size in window machine

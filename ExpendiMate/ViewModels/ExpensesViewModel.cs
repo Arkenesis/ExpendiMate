@@ -159,7 +159,7 @@ namespace ExpendiMate.ViewModels
                 entries.Add(entry);
                 ExpensesByCategory.Add(categoryModel);
             }
-            createChart(entries);
+            CreateChart(entries);
             OnPropertyChanged(nameof(Item));
         }
 
@@ -173,7 +173,7 @@ namespace ExpendiMate.ViewModels
         [ObservableProperty]
         DonutChart item;
 
-        public void createChart(IEnumerable<ChartEntry> entries)
+        public void CreateChart(IEnumerable<ChartEntry> entries)
         {
             Item = new DonutChart 
             { 

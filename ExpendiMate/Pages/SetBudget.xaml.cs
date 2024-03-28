@@ -32,12 +32,14 @@ public partial class SetBudget : ContentPage
         var model = viewModel.User;
         model.BudgetPercent = 0.5;
         SetBudgetViewModel.Current.SaveAndUpdateUser(model);
+        ManualBudget.Text = "Manual";
     }
     private void SetBudget30(object sender, EventArgs e)
     {
         var model = viewModel.User;
         model.BudgetPercent = 0.3;
         SetBudgetViewModel.Current.SaveAndUpdateUser(model);
+        ManualBudget.Text = "Manual";
     }
 
     private void SetBudget20(object sender, EventArgs e)
@@ -45,6 +47,7 @@ public partial class SetBudget : ContentPage
         var model = viewModel.User;
         model.BudgetPercent = 0.2;
         SetBudgetViewModel.Current.SaveAndUpdateUser(model);
+        ManualBudget.Text = "Manual";
     }
 
     private async void SetBudgetManual(object sender, EventArgs e)
@@ -59,6 +62,7 @@ public partial class SetBudget : ContentPage
                 var model = viewModel.User;
                 model.BudgetPercent = budgetPercent / 100;
                 SetBudgetViewModel.Current.SaveAndUpdateUser(model);
+                ManualBudget.Text = (model.BudgetPercent * 100).ToString() + "%";
             }
             else
             {
@@ -69,9 +73,6 @@ public partial class SetBudget : ContentPage
         {
             await DisplayAlert("Income", "Invalid input. Please enter a valid number.", "OK");
         }
-
-
     }
-
 }
 

@@ -20,5 +20,4 @@ public partial class SetInstallment : ContentPage
         InstallmentViewModel.Current.SaveAndUpdate(model);
         await Navigation.PopAsync();
     }
-
 }

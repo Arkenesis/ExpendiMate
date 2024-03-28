@@ -12,7 +12,7 @@ namespace ExpendiMate.Services
     {
         private static string _databaseFile;
 
-        private static string DatabaseFile
+        public static string DatabaseFile
         {
             get
             {
@@ -26,7 +26,7 @@ namespace ExpendiMate.Services
             }
         }
 
-        private static SQLiteConnection _connection;
+        private static SQLiteConnection _connection { get; set; }
 
         public static SQLiteConnection Connection
         {
@@ -40,6 +40,16 @@ namespace ExpendiMate.Services
                     _connection.CreateTable<InstallmentModel>();
                 }
                 return _connection;
+            }
+        }
+
+        public static void closeConnection()
+        {
+            if (_connection != null)
+            {
+                _connection.Close();
+                _connection.Dispose();
+                _connection = null;
             }
         }
     }

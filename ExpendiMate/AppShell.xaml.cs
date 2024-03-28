@@ -1,4 +1,5 @@
-﻿//using AndroidX.ViewPager.Widget;
+﻿using ExpendiMate.Pages;
+using ExpendiMate.ViewModels;
 
 namespace ExpendiMate
 {

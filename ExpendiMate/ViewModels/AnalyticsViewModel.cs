@@ -91,7 +91,6 @@ namespace ExpendiMate.ViewModels
                 }
                 createChart(entries);
             }
-
         }
 
         [ObservableProperty]
@@ -109,6 +108,5 @@ namespace ExpendiMate.ViewModels
                 ValueLabelOption = ValueLabelOption.TopOfElement
             };
         }
-
     }
 }

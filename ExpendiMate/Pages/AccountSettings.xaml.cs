@@ -37,8 +37,6 @@ public partial class AccountSettings : ContentPage
                 await viewModel.getLastUpLoad();
             }
         }
-
-
     }
 
     private async void SaveChanges_Clicked(object sender, EventArgs e)
@@ -60,6 +58,11 @@ public partial class AccountSettings : ContentPage
         if (viewModel == null) return;
         viewModel.NewName = viewModel.User.User.Info.DisplayName;
         viewModel.NewPassword = viewModel.Password;
+    }
+
+    private void Read_Privacy(object sender, EventArgs e)
+    {
+        Navigation.PushAsync(new PrivacyPolicy());
     }
 
     private async void Upload_Clicked(object sender, EventArgs e)

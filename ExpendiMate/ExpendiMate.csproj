@@ -105,6 +105,9 @@
 	  <MauiXaml Update="Pages\Login.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Pages\PrivacyPolicy.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Pages\SetInstallment.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

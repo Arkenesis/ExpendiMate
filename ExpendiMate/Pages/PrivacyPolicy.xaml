@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ExpendiMate.Pages.PrivacyPolicy"
+             Title="Privacy Policy">
+    <ScrollView>
+        <VerticalStackLayout>
+            <Label 
+                Text="Privacy Policy"
+                VerticalOptions="End" 
+                HorizontalOptions="Start"
+                FontAttributes="Bold"
+                FontSize="16"
+                TextDecorations="Underline"
+                Margin="5"
+                Padding="5"/>
+
+            <Label Text="This privacy policy will help you understand how BitBois uses and protects the data you provide to us when you use ExpendiMate."
+                   Padding="7"
+                   Margin="7"
+                   LineHeight="1.3"/>
+
+            <Label Text="We reserve the right to change this policy at any given time, of which you will be promptly updated. If you want to make sure that you are up to date with the latest changes, we advise you to frequently visit this page."
+                   Padding="7"
+                   Margin="7"
+                   LineHeight="1.3"/>
+            <Label 
+                Text="What User Data We Collect"
+                VerticalOptions="End" 
+                HorizontalOptions="Start"
+                FontAttributes="Bold"
+                FontSize="16"
+                TextDecorations="Underline"
+                Margin="5"
+                Padding="5"/>
+
+            <Label Text="When you visit the blog, we may collect the following data:"
+                   Padding="7"
+                   Margin="7"
+                   LineHeight="1.3"/>
+            <Label Text="·       Your IP address."
+                   TranslationX="15"/>
+            <Label Text="·       Your contact information and email address."
+                   TranslationX="15"/>
+            <Label Text="·       Data profile regarding your online behavior on &#x0a;our blog."
+                   TranslationX="15"/>
+            <Label Text="We are collecting your data for several reasons:"
+                   Padding="7"
+                   Margin="7"
+                   LineHeight="1.3"/>
+            <Label Text="·       To better understand your needs."
+                   TranslationX="15"/>
+            <Label Text="·       To improve our services and products."
+                   TranslationX="15"/>
+            <Label Text="·       To send you promotional emails containing the information we think you will find interesting."
+                   TranslationX="15"/>
+            <Label Text="·       To contact you to fill out surveys and participate &#x0a; in other types of market research."
+                   TranslationX="15"/>
+            <Label Text="·       To customize our blog according to your online behavior and personal preferences."
+                   TranslationX="15"/>
+
+            <Label Margin=".1"
+                   Padding=".1" />
+
+
+            <Label 
+                Text="Safeguarding and Securing the Data"
+                VerticalOptions="End" 
+                HorizontalOptions="Start"
+                FontAttributes="Bold"
+                FontSize="16"
+                TextDecorations="Underline"
+                Margin="5"
+                Padding="5"/>
+
+            <Label Text="BitBois is committed to securing your data and keeping it confidential. BitBois has done all in its power to prevent data theft, unauthorized access, and disclosure by implementing the latest technological and managerial measures. However, we cannot guarantee the absolute security of your data transmission over the internet."
+                   Padding="7"
+                   Margin="7"
+                   LineHeight="1.3"/>
+
+
+            <Label 
+                Text="Our Cookie Policy"
+                VerticalOptions="End" 
+                HorizontalOptions="Start"
+                FontAttributes="Bold"
+                FontSize="16"
+                TextDecorations="Underline"
+                Margin="5"
+                Padding="5"/>
+
+            <Label Text="Once you agree to allow our website to use cookies, you also agree to use the data it collects regarding your online behavior (analyzed via cookies) to customize the blog for you."
+                   Padding="3"
+                   Margin="3"
+                   LineHeight="1.3"
+                   TranslationX="9"/>
+
+            <Label Text="The data gathered through cookies may include your IP address, browser type, domain names, access times, and referring website addresses."
+                   Padding="3"
+                   Margin="3"
+                   LineHeight="1.3"
+                   TranslationX="9"/>
+
+            <Label Text="Disabling cookies may affect the functionality of this website."
+                   Padding="3"
+                   Margin="3"
+                   LineHeight="1.3"
+                   TranslationX="9"/>
+
+            <Label 
+                Text="Links to Other Websites"
+                VerticalOptions="End" 
+                HorizontalOptions="Start"
+                FontAttributes="Bold"
+                FontSize="16"
+                TextDecorations="Underline"
+                Margin="5"
+                Padding="5"/>
+
+            <Label Text="Our blog may contain links to other websites of interest. However, once you have used these links to leave our site, you should note that we do not have any control over that other website. Therefore, we cannot be responsible for the protection and privacy of any information which you provide whilst visiting such sites and such sites are not governed by this privacy statement."
+                   Padding="7"
+                   Margin="7"
+                   LineHeight="1.3"/>
+
+            <Label Text="You should exercise caution and look at the privacy statement applicable to the website in question."
+                   Padding="3"
+                   Margin="3"
+                   LineHeight="1.3"
+                   TranslationX="9"/>
+
+            <Label 
+                Text="Restricting the Collection of your Personal Data"
+                VerticalOptions="End" 
+                HorizontalOptions="Start"
+                FontAttributes="Bold"
+                FontSize="16"
+                TextDecorations="Underline"
+                Margin="5"
+                Padding="5"/>
+
+            <Label Text="At some point, you might wish to restrict the use and collection of your personal data. You can achieve this by:"
+                   Padding="7"
+                   Margin="7"
+                   LineHeight="1.3"/>
+
+            <Label Text="·        Not providing personal data when prompted."
+                   TranslationX="15"/>
+
+            <Label Text="·        If you have previously agreed to us using your personal information for direct marketing purposes, you may change your mind at any time by writing to &#x0a;or emailing us at BitBois@gmail.com."
+                   TranslationX="15"/>
+
+            <Label Text="BitBois will not lease, sell, or distribute your personal information to any third parties unless we have your permission. We might do so if the law forces us."
+                   Padding="3"
+                   Margin="3"
+                   LineHeight="1.3"
+                   TranslationX="9"/>
+
+            <Label Text="Your data privacy is important to us. We will always strive to keep your data secure and use it responsibly."
+                   Padding="3"
+                   Margin="3"
+                   LineHeight="1.3"
+                   TranslationX="9"/>
+
+            <Label Margin=".1"
+                   Padding=".1" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

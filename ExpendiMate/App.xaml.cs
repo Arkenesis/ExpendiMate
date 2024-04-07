@@ -9,7 +9,7 @@ namespace ExpendiMate
         {
             //DependencyService.Register<IMessageService, MessageService>();
             InitializeComponent();
-            MainPage = new Login();
+            MainPage = new Welcome();
         }
 
         //Simulate phone device screen size in window machine

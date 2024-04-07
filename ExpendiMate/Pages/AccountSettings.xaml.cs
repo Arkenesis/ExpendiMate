@@ -77,7 +77,7 @@ public partial class AccountSettings : ContentPage
         if(response)
         {
             await viewModel.getLastUpLoad();
-            await DisplayAlert("Upload Successfuly.", "Best practice as an engineer tho.", "OK");
+            await DisplayAlert("Upload Successful.", "Remember to backup every 24 hours.", "OK");
         }
         else
         {

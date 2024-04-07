@@ -105,6 +105,9 @@
 	  <Compile Update="Pages\AccountSettings.xaml.cs">
 	    <DependentUpon>AccountSettings.xaml</DependentUpon>
 	  </Compile>
+	  <Compile Update="Pages\Welcome.xaml.cs">
+	    <DependentUpon>Welcome.xaml</DependentUpon>
+	  </Compile>
 	  <Compile Update="Pages\SignUp.xaml.cs">
 	    <DependentUpon>SignUp.xaml</DependentUpon>
 	  </Compile>
@@ -121,6 +124,9 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Pages\AccountSettings.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Pages\Welcome.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Pages\SignUp.xaml">

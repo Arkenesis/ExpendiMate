@@ -161,7 +161,7 @@
                                           NumberOfTapsRequired="1" />
                 </Frame.GestureRecognizers>
 
-                <Label Text="Continue without creating an account" 
+                <Label Text="Continue Offline" 
                        TextDecorations="Underline" 
                        TextColor="#00B14F" 
                        FontSize="12"

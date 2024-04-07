@@ -8,7 +8,7 @@ namespace ExpendiMate
         public App()
         {
             InitializeComponent();
-            MainPage = new Login();
+            MainPage = new Welcome();
         }
 
         //Simulate phone device screen size in window machine
@@ -22,7 +22,7 @@ namespace ExpendiMate
         private async void Window_Activated(object sender, EventArgs e)
         {
             #if WINDOWS
-                    const int DefaultWidth = 375;
+                    const int DefaultWidth = 380;
                     const int DefaultHeight = 812;
 
                     var window = sender as Window;

@@ -131,7 +131,8 @@
                    BackgroundColor="Transparent" 
                    BorderColor="Transparent" 
                    Grid.Row="5" 
-                   CornerRadius="25">
+                   CornerRadius="25"
+                   TranslationY="-20">
                 
                 <Frame.GestureRecognizers>
                     <TapGestureRecognizer Tapped="ForgotPassword_Clicked"
@@ -149,7 +150,8 @@
                    BackgroundColor="Transparent" 
                    BorderColor="Transparent" 
                    Grid.Row="6" 
-                   CornerRadius="25">
+                   CornerRadius="25"
+                   TranslationY="-40">
                 
                 <Frame.GestureRecognizers>
                     <TapGestureRecognizer Tapped="Anonymous_Clicked" 

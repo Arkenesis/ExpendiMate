@@ -13,7 +13,7 @@
 
     <FlyoutItem Title="Dashboard" 
                 FlyoutDisplayOptions="AsMultipleItems">
-        
+
         <ShellContent Title="Home"
                       ContentTemplate="{DataTemplate main:MainPage}"
                       Route="MainPage"

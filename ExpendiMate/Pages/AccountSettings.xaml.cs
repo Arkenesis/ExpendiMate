@@ -99,6 +99,7 @@ public partial class AccountSettings : ContentPage
     private async void Logout_Clicked(object sender, EventArgs e)
     {
         await DisplayAlert("Logout", "You have been logged out", "Ok");
+
         App.Current.MainPage = new Login();
     }
 }

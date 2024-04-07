@@ -67,6 +67,7 @@
 	  <None Remove="Resources\Images\tutorial.png" />
 	  <None Remove="Resources\Images\upload.png" />
 	  <None Remove="Resources\Images\wallet.png" />
+	  <None Remove="Resources\Images\welcome.png" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -126,6 +127,9 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Pages\SignUp.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Pages\Welcome.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>

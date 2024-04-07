@@ -163,7 +163,7 @@
 
                 <Label Text="Continue without creating an account" 
                        TextDecorations="Underline" 
-                       TextColor="Gray" 
+                       TextColor="#00B14F" 
                        FontSize="12"
                        VerticalTextAlignment="Center" 
                        HorizontalTextAlignment="Center" 
